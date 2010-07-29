@@ -1,0 +1,8 @@
+C:\Users\mheadd\Projects\TropoCSharp\TropoSample\bin\TropoSample.dll
+C:\Users\mheadd\Projects\TropoCSharp\TropoSample\bin\TropoSample.pdb
+C:\Users\mheadd\Projects\TropoCSharp\TropoSample\bin\TropoCSharp.dll
+C:\Users\mheadd\Projects\TropoCSharp\TropoSample\bin\TropoCSharp.pdb
+C:\Users\mheadd\Projects\TropoCSharp\TropoSample\bin\Newtonsoft.Json.xml
+C:\Users\mheadd\Projects\TropoCSharp\TropoSample\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\mheadd\Projects\TropoCSharp\TropoSample\obj\Debug\TropoSample.dll
+C:\Users\mheadd\Projects\TropoCSharp\TropoSample\obj\Debug\TropoSample.pdb

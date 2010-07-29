@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TropoCSharp", "TropoCSharp\TropoCSharp.csproj", "{DE021967-7AD1-4A8E-9A72-15CEBE69900F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TropoSamples", "TropoSample\TropoSamples.csproj", "{27AD4ADC-9774-40C0-A1FE-DA8A8BED5165}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DE021967-7AD1-4A8E-9A72-15CEBE69900F} = {DE021967-7AD1-4A8E-9A72-15CEBE69900F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TropoClassesTests", "TropoClassesTests\TropoClassesTests.csproj", "{81EEF23E-582C-4515-85BC-33518E294E17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{38CC78BC-FF65-4B69-BA7C-75997DD272D2}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		TropoCSharp.vsmdi = TropoCSharp.vsmdi
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = TropoCSharp.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE021967-7AD1-4A8E-9A72-15CEBE69900F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE021967-7AD1-4A8E-9A72-15CEBE69900F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE021967-7AD1-4A8E-9A72-15CEBE69900F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE021967-7AD1-4A8E-9A72-15CEBE69900F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27AD4ADC-9774-40C0-A1FE-DA8A8BED5165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27AD4ADC-9774-40C0-A1FE-DA8A8BED5165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27AD4ADC-9774-40C0-A1FE-DA8A8BED5165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27AD4ADC-9774-40C0-A1FE-DA8A8BED5165}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81EEF23E-582C-4515-85BC-33518E294E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81EEF23E-582C-4515-85BC-33518E294E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81EEF23E-582C-4515-85BC-33518E294E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81EEF23E-582C-4515-85BC-33518E294E17}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = TropoSample\TropoSample.csproj
+	EndGlobalSection
+EndGlobal

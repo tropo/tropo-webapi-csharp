@@ -1,0 +1,7 @@
+# Ignore Compiled source and Debug Files #
+##########################################
+*.dll
+*.mdb
+*.exe
+*.trx
+
