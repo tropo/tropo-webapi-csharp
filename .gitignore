@@ -4,4 +4,6 @@
 *.mdb
 *.exe
 *.trx
-
+*.tmp
+*.pidb
+*.cd
