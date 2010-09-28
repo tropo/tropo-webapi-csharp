@@ -19,7 +19,7 @@ namespace TropoSample
             tropo.Voice = Voice.US_English_male;
 
             // A prompt to give the say to the recipient.
-            Say say = new Say("Remember, you have a meeting at 2 PM");
+            Say say = new Say("Remember you have a meeting at 2 PM");
             
             // An ArrayList to hold the numbers to call (first call answered hears the prompt).
             ArrayList to = new ArrayList(2);

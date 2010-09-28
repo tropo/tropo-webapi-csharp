@@ -3,7 +3,7 @@
 namespace TropoCSharp.Tropo
 {
     /// <summary>
-    /// Creates an instance of the Tropo Session object.
+    /// Create an instance of the Tropo Session object.
     /// </summary>
     public class Session
     {

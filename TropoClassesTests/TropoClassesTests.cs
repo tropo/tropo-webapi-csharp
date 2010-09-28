@@ -10,7 +10,7 @@ using System.Collections;
 namespace TropoClassesTests
 {
     /// <summary>
-    /// Summary description for TropoClassesTests
+    /// A Summary description for TropoClassesTests
     /// </summary>
     [TestClass]
     public class TropoClassesTests

@@ -8,7 +8,7 @@ namespace TropoCSharp.Tropo
     #region Main Tropo class
 
     /// <summary>
-	/// The main tropo class.
+	/// Main tropo class.
 	/// </summary>
 	public class Tropo
 	{

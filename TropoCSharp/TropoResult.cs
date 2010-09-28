@@ -3,7 +3,7 @@
 namespace TropoCSharp.Tropo
 {
     /// <summary>
-    /// Creates an instance of the Tropo Result object.
+    /// Create an instance of the Tropo Result object.
     /// </summary>
     public class Result
     {

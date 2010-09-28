@@ -30,9 +30,9 @@ namespace TropoSamples
                     Result tropoResult = new Result(resultJSON);
 
                     // A simple example showing how to access properties of the Result object.
-                    Response.Write("State: " + tropoResult.State + "\n");
-                    Response.Write("Sequence: " + tropoResult.Sequence + "\n");
-                    Response.Write("SessionId: " + tropoResult.SessionId + "\n");
+                    Response.Write("State:  " + tropoResult.State + "\n");
+                    Response.Write("Sequence:  " + tropoResult.Sequence + "\n");
+                    Response.Write("SessionId:  " + tropoResult.SessionId + "\n");
                 }
 
                 catch (JsonReaderException ex)

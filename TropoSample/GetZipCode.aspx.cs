@@ -8,7 +8,7 @@ namespace TropoSample
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Create a new instance of the Tropo object.
+            // Create a new instance of the Tropo object
             Tropo tropo = new Tropo();
             
             // Set the grammar to use when collecting input.

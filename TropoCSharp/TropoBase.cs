@@ -3,7 +3,7 @@
 namespace TropoCSharp.Tropo
 {
     /// <summary>
-    /// Base class for all Tropo actions.
+    /// The Base class for all Tropo actions.
     /// </summary>
     public class TropoBase
     {
