@@ -1,7 +1,7 @@
 Overview
 ========
 
-TropoCSharp is a set of C# classes for working with [Tropo's cloud communication service](http://tropo.com/). Tropo allows a developer to create applications that run over the phone, IM, SMS, and Twitter using web technologies. This library communicates with Tropo over JSON.
+TropoCSharp is a set of C# classes for working with the [Tropo cloud communication service](http://tropo.com/). Tropo allows a developer to create applications that run over the phone, IM, SMS, and Twitter using web technologies. This library communicates with Tropo over JSON.
 
 Usage
 =====
@@ -14,11 +14,11 @@ Bin\DotNet\Newtonsoft.Json.dll
 Bin\DotNet\Newtonsoft.Json
 
 To the following directories (Each project in the TropoCSharp solution uses these files):
-
+<pre>
 TropoCSharp\TropoClassesTests\bin\Debug
 TropoCSharp\TropoCSharp\bin\Debug
 TropoCSharp\TropoSample\bin
-
+</pre>
 You may also set up references to a common location where these files reside (e.g., in the GAC). You may also designate an alternate build location for assemblies in this solution and place these files there.  The choice is yours.
 
 Build the solution.
@@ -31,7 +31,7 @@ Project with samples (ASP.NET web application) will use a directory called Tropo
 
 Example
 =======
-
+<pre>
 using System;
 using TropoCSharp.Tropo;
 
@@ -53,3 +53,4 @@ namespace TropoSamples
 		}
 	}
 }
+</pre>
