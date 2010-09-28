@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace TropoCSharp.TropoClasses
+namespace TropoCSharp.Tropo
 {
     /// <summary>
     /// Creates an instance of the Tropo Session object.

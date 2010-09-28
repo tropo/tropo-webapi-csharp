@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using Newtonsoft.Json;
 
-namespace TropoCSharp.TropoClasses
+namespace TropoCSharp.Tropo
 {
 
     #region Main Tropo class

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using TropoCSharp.TropoClasses;
+using TropoCSharp.Tropo;
 using TropoCSharp.Structs;
 
 namespace TropoSample

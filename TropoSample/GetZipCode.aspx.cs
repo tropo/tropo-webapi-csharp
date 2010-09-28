@@ -1,6 +1,6 @@
 ﻿using System;
 using TropoCSharp.Structs;
-using TropoCSharp.TropoClasses;
+using TropoCSharp.Tropo;
 
 namespace TropoSample
 {

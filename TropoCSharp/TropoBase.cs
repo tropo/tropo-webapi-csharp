@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace TropoCSharp.TropoClasses
+namespace TropoCSharp.Tropo
 {
     /// <summary>
     /// Base class for all Tropo actions.

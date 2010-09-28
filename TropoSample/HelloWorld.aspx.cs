@@ -1,5 +1,5 @@
 using System;
-using TropoCSharp.TropoClasses;
+using TropoCSharp.Tropo;
 
 namespace TropoSamples
 {

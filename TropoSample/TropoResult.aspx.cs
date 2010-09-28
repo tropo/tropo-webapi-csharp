@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
-using TropoCSharp.TropoClasses;
+using TropoCSharp.Tropo;
 using Newtonsoft.Json;
 
 namespace TropoSamples
