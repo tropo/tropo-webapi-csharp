@@ -18,12 +18,12 @@ namespace TropoClassesTests
         private string askJson = @"{""tropo"":[{ ""ask"":{""choices"":{""value"":""[5 DIGITS]""},""name"":""foo"",""say"":{""value"":""Please enter your 5 digit zip code.""}}}]}";
         private string askJsonWithOptions = @"{""tropo"":[{ ""ask"":{""choices"":{""value"":""[5 DIGITS]""},""attempts"":1,""bargein"":false,""minConfidence"":30,""name"":""foo"",""required"":true,""say"":{""value"":""Please enter your 5 digit zip code.""},""timeout"":30.0}}]}";
         private string recordJson = @"{""tropo"":[{ ""record"":{""choices"":{""value"":""[5 DIGITS]"",""termChar"":""#""},""required"":true,""say"":{""value"":""Please say your account number""},""format"":""audio/wav"",""method"":""POST""}}]}";
-        private string recordJsonWithTranscription = @"{""tropo"":[{ ""record"":{""choices"":{""value"":""[5 DIGITS]"",""termChar"":""#""},""attempts"":1,""bargein"":false,""required"":true,""say"":{""value"":""Please say your account number""},""timeout"":5.0,""format"":""audio/wav"",""maxSilence"":5.0,""maxTime"":30.0,""method"":""POST"",""password"":""foo"",""transcription"":{""id"":""foo"",""url"":""http://example.com/"",""emailFormat"":""encoded""},""username"":""bar"",""url"":""http://example.com/"",""beep"":true}}]}";
+        private string recordJsonWithTranscription = @"{""tropo"":[{ ""record"":{""choices"":{""value"":""[5 DIGITS]"",""termChar"":""#""},""attempts"":1,""bargein"":false,""required"":true,""say"":{""value"":""Please say your account number""},""timeout"":5.0,""format"":""audio/wav"",""maxSilence"":5.0,""maxTime"":30.0,""method"":""POST"",""password"":""foo"",""transcription"":{""id"":""foo"",""uri"":""http://example.com/"",""emailFormat"":""encoded""},""username"":""bar"",""url"":""http://example.com/"",""beep"":true}}]}";
         private string callJson = @"{""tropo"":[{ ""call"":{""to"":[""3055195825"",""3054445567""]}}]}";
         private string callJsonAllOptions = @"{""tropo"":[{ ""call"":{""timeout"":10.0,""to"":[""3055195825""],""from"":{""id"":""3055551212""},""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""headers"":{""foo"":""bar"",""bling"":""baz""},""recording"":{""format"":""audio/mp3"",""method"":""POST"",""password"":""password"",""username"":""jose"",""url"":""http://blah.com/recordings/1234.wav""}}}]}";
         private string conferenceJson = @"{""tropo"":[{ ""conference"":{""name"":""foo"",""id"":""1234"",""mute"":false,""playTones"":false,""terminator"":""#""}}]}";
         private string messageJson = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""timeout"":10.0,""to"":[""3055195825""],""from"":{""id"":""3055551212""},""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""voice"":""kate""}}]}";
-        private string messageJsonAllOptions = @"{""tropo"":[{ ""message"":{""name"":""foo"",""required"":true,""say"":{""value"":""This is an announcement""},""timeout"":10.0,""to"":[""3055195825""],""from"":{""id"":""3055551212"",""channel"":""VOICE"",""name"":""unknown""},""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""voice"":""kate""}}]}";
+        private string messageJsonAllOptions = @"{""tropo"":[{ ""message"":{""name"":""foo"",""required"":true,""say"":{""value"":""This is an announcement""},""timeout"":10.0,""to"":[""3055195825""],""from"":{""id"":""3055551212"",""channel"":""VOICE"",""name"":""unknown"",""network"":""PSTN""},""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""voice"":""kate""}}]}";
         private string startRecordingJson = @"{""tropo"":[{ ""startRecording"":{""format"":""audio/mp3"",""method"":""POST"",""password"":""password"",""username"":""jose"",""url"":""http://blah.com/recordings/1234.wav""}}]}";
 
         public TropoClassesTests()
@@ -316,7 +316,7 @@ namespace TropoClassesTests
             Choices choices = new Choices("[5 DIGITS]", null, "#");
             Transcription transcription = new Transcription();
 
-            transcription.url = "http://example.com/";
+            transcription.uri = "http://example.com/";
             transcription.id = "foo";
             transcription.emailFormat = "encoded";
 
