@@ -8,26 +8,26 @@ namespace TropoCSharp.Tropo
     #region Main Tropo class
 
     /// <summary>
-	/// Main tropo class.
-	/// </summary>
-	public class Tropo
-	{
+    /// The main tropo class.
+    /// </summary>
+    public class Tropo
+    {
         // The TTS voice to use when rendering content.
         private string _voice;
 
         // The language to use when rendering content.
         private string _language;
-        
+
         // An arry list to hold tropo action elements.
-		public ArrayList tropo;
+        public ArrayList tropo;
 
         /// <summary>
-		/// Class constructor.
-		/// </summary>
-		public Tropo () 
-		{
-			this.tropo = new ArrayList();
-		}
+        /// Class constructor.
+        /// </summary>
+        public Tropo()
+        {
+            this.tropo = new ArrayList();
+        }
 
         /// <summary>
         /// Set a default voice for use with all Text To Speech.
@@ -46,7 +46,7 @@ namespace TropoCSharp.Tropo
             get { return _language; }
             set { _language = value; }
         }
-        
+
         /// <summary>
         /// Sends a prompt to the user and optionally waits for a response. 
         /// </summary>
@@ -59,25 +59,25 @@ namespace TropoCSharp.Tropo
         /// <param name="say">This determines what is played or sent to the caller.</param>
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
         public void ask(int? attempts, bool? bargein, Choices choices, int? minConfidence, string name, bool? required, Say say, float? timeout)
-		{
-			Ask ask = new Ask();
-			ask.attempts = attempts;
-			ask.bargein = bargein;
-			ask.choices = choices;
-			ask.minConfidence = minConfidence;
-			ask.name = name;
-			ask.required = required;
+        {
+            Ask ask = new Ask();
+            ask.attempts = attempts;
+            ask.bargein = bargein;
+            ask.choices = choices;
+            ask.minConfidence = minConfidence;
+            ask.name = name;
+            ask.required = required;
 
-            if(!String.IsNullOrEmpty(this.Voice))
+            if (!String.IsNullOrEmpty(this.Voice))
             {
                 say.voice = this.Voice;
             }
 
-			ask.say = say;
-			ask.timeout = timeout;
+            ask.say = say;
+            ask.timeout = timeout;
 
-            serialize(ask, "ask");			
-		}
+            serialize(ask, "ask");
+        }
 
         /// <summary>
         /// Overload method for Ask that allows an array of events to be used.
@@ -146,7 +146,7 @@ namespace TropoCSharp.Tropo
             call.headers = headers;
             call.recording = recording;
 
-            serialize(call, "call");       
+            serialize(call, "call");
         }
 
         /// <summary>
@@ -282,7 +282,7 @@ namespace TropoCSharp.Tropo
         /// </summary>
         /// <param name="message">A Message object.</param>
         public void message(Message message)
-        {           
+        {
             this.message(message.say, message.to, message.answerOnMedia, message.channel, message.from, message.name, message.network, message.required, message.timeout);
         }
 
@@ -293,11 +293,11 @@ namespace TropoCSharp.Tropo
         /// <param name="next">When an associated event occurs, Tropo will post to the URL defined here. If left blank, Tropo will simply hangup.</param>
         /// <param name="say">This determines what is played or sent to the caller.</param>      
         public void on(string @event, string next, Say say)
-		{
-			On on = new On();
-			on.@event = @event;
-			on.next = next;
-			on.say = say;
+        {
+            On on = new On();
+            on.@event = @event;
+            on.next = next;
+            on.say = say;
 
             serialize(on, "on");
         }
@@ -441,25 +441,25 @@ namespace TropoCSharp.Tropo
 
         }
 
-		/// <summary>
-		/// When the current session is a voice channel this key will either play a message or an audio file from a URL.
+        /// <summary>
+        /// When the current session is a voice channel this key will either play a message or an audio file from a URL.
         /// In the case of an text channel it will send the text back to the user via i nstant messaging or SMS. 
-		/// </summary>
+        /// </summary>
         /// <param name="value">This defines what the user will hear when the action is executed. </param>
         /// <param name="as">This specifies the type of data being spoken, so the TTS Engine can interpret it correctly.</param>
         /// <param name="name">Identifies the return value of a Say, so you know the context for the returned information.</param>
         /// <param name="required">Determines whether Tropo should move on to the next action.</param>
         public void say(string @value, string @as, string name, bool? required)
-		{
-			Say say = new Say();
-			say.@value = @value;
-			say.@as = @as;
-			say.name = name;
-			say.required = required;
+        {
+            Say say = new Say();
+            say.@value = @value;
+            say.@as = @as;
+            say.name = name;
+            say.required = required;
             say.voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
 
             serialize(say, "say");
-		}
+        }
 
         /// <summary>
         /// Overload method for Say that allows only a string value to be passed.
@@ -494,7 +494,7 @@ namespace TropoCSharp.Tropo
                 say.name = null;
                 say.required = true;
 
-                saysToAdd.Add(say);                
+                saysToAdd.Add(say);
             }
 
             JsonSerializerSettings settings = new JsonSerializerSettings();
@@ -553,14 +553,13 @@ namespace TropoCSharp.Tropo
         /// <param name="ringRepeat">The number of rings to allow on the outbound call attempt.</param>
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
         /// <param name="to">The new destination for the incoming call as a URL.</param>
-        public void transfer(bool? answerOnMedia, Choices choices, Endpoint from, On on, int? ringRepeat, float? timeout, ArrayList to)
+        public void transfer(bool? answerOnMedia, Choices choices, Endpoint from, On on, float? timeout, ArrayList to)
         {
             Transfer transfer = new Transfer();
             transfer.answerOnMedia = answerOnMedia;
             transfer.choices = choices;
             transfer.from = from;
             transfer.on = on;
-            transfer.ringRepeat = ringRepeat;
             transfer.timeout = timeout;
             transfer.to = to;
 
@@ -573,7 +572,7 @@ namespace TropoCSharp.Tropo
         /// <param name="transfer">A Transfer object.</param>
         public void transfer(Transfer transfer)
         {
-            this.transfer(transfer.answerOnMedia, transfer.choices, transfer.from, transfer.on, transfer.ringRepeat, transfer.timeout, transfer.to);
+            this.transfer(transfer.answerOnMedia, transfer.choices, transfer.from, transfer.on, transfer.timeout, transfer.to);
         }
 
         /// <summary>
@@ -595,26 +594,47 @@ namespace TropoCSharp.Tropo
 
     /// <summary>
     /// Ask is essentially a say that requires input; it requests information from the caller and waits for a response.
-	/// </summary>
+    /// </summary>
     public class Ask : TropoBase
-	{
+    {
+        public new int? attempts { get; set; }
+        public new bool? bargein { get; set; }
+        public new int? minConfidence { get; set; }
+        public new string name { get; set; }
+        public new bool? required { get; set; }
+        public new Choices choices { get; set; }
+        public new Say say { get; set; }
+        public new float? timeout { get; set; }
+        public new string voice { get; set; }
+
         public Ask()
         {
         }
-        
+
         public Ask(Choices choices, string name, Say say)
         {
             this.choices = choices;
             this.name = name;
             this.say = say;
         }
-	}
+    }
 
     /// <summary>
     /// Initiates an outbound call or a text conversation. Note that this action is only valid when there is no active WebAPI call.
     /// </summary>
     public class Call : TropoBase
     {
+        public new ArrayList to { get; set; }
+        public new Endpoint from { get; set; }
+        public new string network { get; set; }
+        public new string channel { get; set; }
+        public new bool? answerOnMedia { get; set; }
+        public new string name { get; set; }
+        public new Hashtable headers { get; set; }
+        public new StartRecording recording { get; set; }
+        public new bool? required { get; set; }
+        public new float? timeout { get; set; }
+
         public Call()
         {
         }
@@ -636,6 +656,10 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class Choices : TropoBase
     {
+        public new string @value { get; set; }
+        public new string mode { get; set; }
+        public new string termChar { get; set; }
+
         public Choices()
         {
         }
@@ -658,6 +682,12 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class Conference : TropoBase
     {
+        public new string id { get; set; }
+        public new bool? mute { get; set; }
+        public new string name { get; set; }
+        public new bool? playTones { get; set; }
+        public new string terminator { get; set; }
+        public new bool? required { get; set; }
     }
 
     /// <summary>
@@ -672,6 +702,16 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class Message : TropoBase
     {
+        public new Say say { get; set; }
+        public new ArrayList to { get; set; }
+        public new Endpoint from { get; set; }
+        public new string network { get; set; }
+        public new string channel { get; set; }
+        public new bool? answerOnMedia { get; set; }
+        public new string name { get; set; }
+        public new bool? required { get; set; }
+        public new float? timeout { get; set; }
+        public new string voice { get; set; }
     }
 
     /// <summary>
@@ -679,6 +719,11 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class On : TropoBase
     {
+        public new string @event { get; set; }
+        public new string next { get; set; }
+        public new string name { get; set; }
+        public new bool? required { get; set; }
+        public new Say say { get; set; }
 
         public On()
         {
@@ -697,6 +742,23 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class Record : TropoBase
     {
+        public new int? attempts { get; set; }
+        public new bool? bargein { get; set; }
+        public new bool? beep { get; set; }
+        public new Choices choices { get; set; }
+        public new string format { get; set; }
+        public new float? maxSilence { get; set; }
+        public new float? maxTime { get; set; }
+        public new string method { get; set; }
+        public new int? minConfidence { get; set; }
+        public new string name { get; set; }
+        public new bool? required { get; set; }
+        public new Say say { get; set; }
+        public new float? timeout { get; set; }
+        public new string password { get; set; }
+        public new Transcription transcription { get; set; }
+        public new string username { get; set; }
+        public new string url { get; set; }
     }
 
     /// <summary>
@@ -704,6 +766,9 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class Redirect : TropoBase
     {
+        public new string name { get; set; }
+        public new bool? required { get; set; }
+        public new ArrayList to { get; set; }
     }
 
     /// <summary>
@@ -712,13 +777,18 @@ namespace TropoCSharp.Tropo
     public class Reject : TropoBase
     {
     }
-	
-	/// <summary>
-	/// When the current session is a voice channel this key will either play a message or an audio file from a URL. 
-	/// In the case of an text channel it will send the text back to the user via instant messaging or SMS.
-	/// </summary>
+
+    /// <summary>
+    /// When the current session is a voice channel this key will either play a message or an audio file from a URL. 
+    /// In the case of an text channel it will send the text back to the user via instant messaging or SMS.
+    /// </summary>
     public class Say : TropoBase
-	{
+    {
+        public new string @value { get; set; }
+        public new string @as { get; set; }
+        public new string name { get; set; }
+        public new bool? required { get; set; }
+        public new string voice { get; set; }
 
         public Say()
         {
@@ -728,13 +798,18 @@ namespace TropoCSharp.Tropo
         {
             this.value = @value;
         }
-	}
+    }
 
     /// <summary>
     /// Allows Tropo applications to begin recording the current session. 
     /// </summary>
     public class StartRecording : TropoBase
     {
+        public new string format { get; set; }
+        public new string method { get; set; }
+        public new string url { get; set; }
+        public new string username { get; set; }
+        public new string password { get; set; }
 
         public StartRecording()
         {
@@ -762,6 +837,9 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class Transcription : TropoBase
     {
+        public new string id { get; set; }
+        public new string uri { get; set; }
+        public new string emailFormat { get; set; }
     }
 
     /// <summary>
@@ -769,6 +847,16 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class Transfer : TropoBase
     {
+        public new ArrayList to { get; set; }
+        public new Endpoint from { get; set; }
+        public new bool? answerOnMedia { get; set; }
+        public new Choices choices { get; set; }
+        public new Hashtable headers { get; set; }
+        public new string name { get; set; }
+        public new On on { get; set; }
+        public new bool? required { get; set; }
+        public new string terminator { get; set; }
+        public new float? timeout { get; set; }
     }
 
     #endregion
@@ -789,7 +877,7 @@ namespace TropoCSharp.Tropo
             return JsonConvert.SerializeObject(tropo, Formatting.None, settings).Replace("\\", "").Replace("\"{", "{").Replace("}\"", "}");
         }
     }
-    
+
     /// <summary>
     /// Defnies an endoint for transfer and redirects.
     /// </summary>
@@ -810,7 +898,7 @@ namespace TropoCSharp.Tropo
             this.id = id;
             this.channel = channel;
             this.name = name;
-            this.id = id;
+            this.network = network;
         }
 
         public Endpoint(string to)

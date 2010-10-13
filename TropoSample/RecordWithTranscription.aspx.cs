@@ -13,13 +13,13 @@ namespace TropoSample
 
             // Create a transcription object to use with recording.
             Transcription trancription = new Transcription();
-            trancription.url = "mailto:homer@simpsons.com";
+            trancription.uri = "mailto:homer@simpsons.com";
             trancription.emailFormat = "omit";
 
             // Set up grammar for recording.
             Choices choices = new Choices();
             choices.value = "[10 DIGITS]";
-            choices.terminator = "#";
+            choices.termChar = "#";
 
             // Construct a prompt to use with the recording.
             Say say = new Say();
