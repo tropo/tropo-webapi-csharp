@@ -7,102 +7,66 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class Session
     {
-        private string _accountId;
-        private Endpoint _from;
-        private string _id;
-        private string _initialText;
-        private string _timestamp;
-        private Endpoint _to;
-        private string _userType;
-
         /// <summary>
         /// Class constructor.
         /// </summary>
-        /// <param name="JSON">Session JSON submitted from Tropo platform.</param>
-        public Session(string JSON)
+        /// <param name="json">Session JSON submitted from Tropo platform.</param>
+        public Session(string json)
         {
-            JObject session = JObject.Parse(JSON);
-            this._accountId = (string)session["session"]["accountId"];
-            this._id = (string)session["session"]["id"];
-            this._initialText = (string)session["session"]["initialText"];
-            this._timestamp = (string)session["session"]["timestamp"];
-            this._userType = (string)session["session"]["userType"];
+            JObject session = JObject.Parse(json);
+            AccountId = (string)session["session"]["accountId"];
+            Id = (string)session["session"]["id"];
+            InitialText = (string)session["session"]["initialText"];
+            Timestamp = (string)session["session"]["timestamp"];
+            UserType = (string)session["session"]["userType"];
 
-            string from_id = (string)session["session"]["from"]["id"];
-            string from_name = (string)session["session"]["from"]["name"];
-            string from_network = (string)session["session"]["from"]["from"];
-            string from_channel = (string)session["session"]["from"]["channel"];
-            this._from = new Endpoint(from_id, from_channel, from_name, from_network);
+            string fromId = (string)session["session"]["from"]["id"];
+            string fromName = (string)session["session"]["from"]["name"];
+            string fromNetwork = (string)session["session"]["from"]["from"];
+            string fromChannel = (string)session["session"]["from"]["channel"];
+            From = new Endpoint(fromId, fromChannel, fromName, fromNetwork);
 
-            string to_id = (string)session["session"]["to"]["id"];
-            string to_name = (string)session["session"]["to"]["name"];
-            string to_network = (string)session["session"]["to"]["from"];
-            string to_channel = (string)session["session"]["to"]["channel"];
-            this._to = new Endpoint(to_id, to_channel, to_name, to_network);
+            string toId = (string)session["session"]["to"]["id"];
+            string toName = (string)session["session"]["to"]["name"];
+            string toNetwork = (string)session["session"]["to"]["from"];
+            string toChannel = (string)session["session"]["to"]["channel"];
+            To = new Endpoint(toId, toChannel, toName, toNetwork);
         }
 
         /// <summary>
         /// Contains the user account ID that started this session.
         /// </summary>
-        public string AccountId
-        {
-            get { return _accountId; }
-            set { _accountId = value; }
-        }
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Contains the elements that identify the origination of the session.
         /// </summary>
-        public Endpoint From
-        {
-            get { return _from; }
-            set { _from = value; }
-        }
+        public Endpoint From { get; set; }
 
-       /// <summary>
-       /// Contains the GUID representing the unique session identifier.
-       /// </summary>
-        public string Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
+        /// <summary>
+        /// Contains the GUID representing the unique session identifier.
+        /// </summary>
+        public string Id { get; set; }
 
         /// <summary>
         /// When the channel is of a type "TEXT", this field contains the initial text of the message from the SMS 
         /// or instant message that the user sent when initiating the session.
         /// </summary>
-        public string InitialText
-        {
-            get { return _initialText; }
-            set { _initialText = value; }
-        }
+        public string InitialText { get; set; }
 
         /// <summary>
         /// The time that the session was started.
         /// </summary>
-        public string Timestamp
-        {
-            get { return _timestamp; }
-            set { _timestamp = value; }
-        }
+        public string Timestamp { get; set; }
 
         /// <summary>
         /// The SIP destination for the incoming call.
         /// </summary>
-        public Endpoint To
-        {
-            get { return _to; }
-            set { _to = value; }
-        }
+        public Endpoint To { get; set; }
 
         /// <summary>
         /// Identifies the type of user that is on the other end of the session; it can be set to 'HUMAN', 'MACHINE' or 'FAX'.
         /// </summary>
-        public string UserType
-        {
-            get { return _userType; }
-            set { _userType = value; }
-        }
+        public string UserType { get; set; }
     }
 }
