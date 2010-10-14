@@ -15,14 +15,14 @@ namespace TropoSample
             Choices choices = new Choices("[5 DIGITS]");
             
             // Create an event handler for when the input collection is finished.
-            On on = new On(Event.@continue, "http://thisisafakeurl.com/post", new Say("Please hold."));
+            On on = new On(Event.Continue, "http://thisisafakeurl.com/post", new Say("Please hold."));
 
             // Call the ask method of the Tropo object and pass in values. 
-            tropo.ask(3, false, choices, null, "zip", true, new Say("Please enter your 5 digit zip code"), 5);
-            tropo.on(on);
+            tropo.Ask(3, false, choices, null, "zip", true, new Say("Please enter your 5 digit zip code"), 5);
+            tropo.On(on);
 
             // Render the JSON for Tropo to consume.
-            Response.Write(TropoJSON.render(tropo));
+            Response.Write(tropo.RenderJSON());
         }
     }
 }

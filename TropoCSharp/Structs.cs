@@ -5,15 +5,15 @@
     /// </summary>
     public struct Date
     {
-        public static string monthDayYear = "mdy";
-        public static string dayMonthYear = "dmy";
-        public static string yearMonthDay = "ymd";
-        public static string yearMonth = "ym";
-        public static string monthYear = "my";
-        public static string monthDay = "md";
-        public static string year = "y";
-        public static string month = "m";
-        public static string day = "d"; 
+        public const string MonthDayYear = "mdy";
+        public const string DayMonthYear = "dmy";
+        public const string YearMonthDay = "ymd";
+        public const string YearMonth = "ym";
+        public const string MonthYear = "my";
+        public const string MonthDay = "md";
+        public const string Year = "y";
+        public const string Month = "m";
+        public const string Day = "d";
     }
 
     /// <summary>
@@ -21,11 +21,11 @@
     /// </summary>
     public struct Duration
     {
-        public static string hoursMinutesSeconds = "hms";
-        public static string hoursMinutes = "hm";
-        public static string hours = "h";
-        public static string minutes = "m";
-        public static string seconds = "s";
+        public const string HoursMinutesSeconds = "hms";
+        public const string HoursMinutes = "hm";
+        public const string Hours = "h";
+        public const string Minutes = "m";
+        public const string Seconds = "s";
     }
 
     /// <summary>
@@ -33,13 +33,13 @@
     /// </summary>
     public struct Event
     {
-        public static string @continue = "continue";
-        public static string incomplete = "incomplete";
-        public static string error = "error";
-        public static string hangup = "hangup";
-        public static string join = "join";
-        public static string leave = "leave";
-        public static string ring = "ring";
+        public const string Continue = "continue";
+        public const string Incomplete = "incomplete";
+        public const string Error = "error";
+        public const string Hangup = "hangup";
+        public const string Join = "join";
+        public const string Leave = "leave";
+        public const string Ring = "ring";
     }
 
     /// <summary>
@@ -47,9 +47,9 @@
     /// </summary>
     public struct SayAs
     {
-        public static string date = "DATE";
-        public static string digits = "DIGITS";
-        public static string number = "NUMBER";
+        public const string Date = "DATE";
+        public const string Digits = "DIGITS";
+        public const string Number = "NUMBER";
     }
 
     /// <summary>
@@ -57,24 +57,24 @@
     /// </summary>
     public struct Network
     {
-        public static string pstn = "PSTN";
-        public static string voip = "VOIP";
-        public static string aim = "AIM";
-        public static string gtalk = "GTALK";
-        public static string jabber = "JABBER";
-        public static string msn = "MSN";
-        public static string sms = "SMS";
-        public static string yahoo = "YAHOO";
-        public static string twitter = "TWITTER";
+        public const string Pstn = "PSTN";
+        public const string Voip = "VOIP";
+        public const string Aim = "AIM";
+        public const string Gtalk = "GTALK";
+        public const string Jabber = "JABBER";
+        public const string Msn = "MSN";
+        public const string SMS = "SMS";
+        public const string Yahoo = "YAHOO";
+        public const string Twitter = "TWITTER";
     }
-    
+
     /// <summary>
     /// Channel values for use with Call, Message, etc. 
     /// </summary>
     public struct Channel
     {
-        public static string voice = "VOICE";
-        public static string text = "TEXT";
+        public const string Voice = "VOICE";
+        public const string Text = "TEXT";
     }
 
     /// <summary>
@@ -82,8 +82,8 @@
     /// </summary>
     public struct AudioFormat
     {
-        public static string wav = "audio/wav";
-        public static string mp3 = "audio/mp3";
+        public const string Wav = "audio/wav";
+        public const string Mp3 = "audio/mp3";
     }
 
     /// <summary>
@@ -91,22 +91,22 @@
     /// </summary>
     public struct Voice
     {
-        public static string Castilian_Spanish_male = "jorge";
-        public static string Castilian_Spanish_female = "carmen";
-        public static string French_male = "bernard";
-        public static string French_female = "florence";
-        public static string US_English_male = "dave";
-        public static string US_English_female = "jill";
-        public static string British_English_male = "dave";
-        public static string British_English_female = "kate";
-        public static string German_male = "stefan";
-        public static string German_female = "katrin";
-        public static string Italian_male = "luca";
-        public static string Italian_female = "paola";
-        public static string Dutch_male = "willem";
-        public static string Dutch_female = "saskia";
-        public static string Mexican_Spanish_male = "carlos";
-        public static string Mexican_Spanish_female = "soledad";
+        public const string CastilianSpanishMale = "jorge";
+        public const string CastilianSpanishFemale = "carmen";
+        public const string FrenchMale = "bernard";
+        public const string FrenchFemale = "florence";
+        public const string UsEnglishMale = "dave";
+        public const string UsEnglishFemale = "jill";
+        public const string BritishEnglishMale = "dave";
+        public const string BritishEnglishFemale = "kate";
+        public const string GermanMale = "stefan";
+        public const string GermanFemale = "katrin";
+        public const string ItalianMale = "luca";
+        public const string ItalianFemale = "paola";
+        public const string DutchMale = "willem";
+        public const string DutchFemale = "saskia";
+        public const string MexicanSpanishMale = "carlos";
+        public const string MexicanSpanishFemale = "soledad";
     }
 
     /// <summary>
@@ -114,7 +114,7 @@
     /// </summary>
     public struct Method
     {
-        public static string post = "POST";
-        public static string put = "PUT";
+        public const string Post = "POST";
+        public const string Put = "PUT";
     }
 }

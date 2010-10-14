@@ -31,8 +31,8 @@ namespace TropoSamples
 
                     // A simple example showing how to access properties of the Session object.
                     Response.Write("ID:  " + tropoSession.Id + "\n");
-                    Response.Write("To-Channel: " + tropoSession.To.channel+ "\n");
-                    Response.Write("From-Channel: " + tropoSession.From.channel+ "\n");
+                    Response.Write("To-Channel: " + tropoSession.To.Channel+ "\n");
+                    Response.Write("From-Channel: " + tropoSession.From.Channel+ "\n");
                     Response.Write("Initial Text: " + tropoSession.InitialText + "\n");
                 }
 
