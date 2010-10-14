@@ -47,10 +47,10 @@ namespace TropoSamples
             Tropo tropo = new Tropo();
 
             // Call the say method of the Tropo object and give it a prompt to say.
-            tropo.say("Hello, World!");
+            tropo.Say("Hello World!");
 
             // Render the JSON for Tropo to consume.
-            Response.Write(TropoJSON.render(tropo));
+            Response.Write(tropo.RenderJSON());
 		}
 	}
 }
