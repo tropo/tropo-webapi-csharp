@@ -11,7 +11,6 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class Tropo
     {
-
         [JsonProperty(PropertyName = "tropo")]
         public IList<String> ActionElements { get; private set; }
 
@@ -53,12 +52,7 @@ namespace TropoCSharp.Tropo
             ask.MinConfidence = minConfidence;
             ask.Name = name;
             ask.Required = required;
-
-            if (!String.IsNullOrEmpty(this.Voice))
-            {
-                say.Voice = this.Voice;
-            }
-
+            ask.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
             ask.Say = say;
             ask.Timeout = timeout;
 
@@ -86,12 +80,7 @@ namespace TropoCSharp.Tropo
             ask.MinConfidence = minConfidence;
             ask.Name = name;
             ask.Required = required;
-
-            if (!String.IsNullOrEmpty(this.Voice))
-            {
-                say.Voice = this.Voice;
-            }
-
+            ask.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
             ask.Say = say;
             ask.Timeout = timeout;
 

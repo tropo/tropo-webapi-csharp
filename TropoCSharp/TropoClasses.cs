@@ -174,7 +174,7 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class Message : TropoBase
     {
-        [JsonProperty(PropertyName = "")]
+        [JsonProperty(PropertyName = "say")]
         public Say Say { get; set; }
 
         [JsonProperty(PropertyName = "to")]

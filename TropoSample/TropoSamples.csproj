@@ -42,6 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AskTest.aspx" />
     <Content Include="GetZipCode.aspx" />
     <Content Include="Global.asax" />
     <Content Include="RecordWithTranscription.aspx" />
@@ -50,8 +51,13 @@
     <Content Include="TropoSession.aspx" />
     <Content Include="web.config" />
     <Content Include="HelloWorld.aspx" />
+    <Content Include="CreateSession.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AskTest.aspx.cs">
+      <DependentUpon>AskTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="GetZipCode.aspx.cs">
       <DependentUpon>GetZipCode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -78,6 +84,13 @@
     <Compile Include="TropoSession.aspx.cs">
       <DependentUpon>TropoSession.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateSession.aspx.cs">
+      <DependentUpon>CreateSession.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateSession.aspx.designer.cs">
+      <DependentUpon>CreateSession.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

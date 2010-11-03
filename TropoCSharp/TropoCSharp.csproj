@@ -47,6 +47,7 @@
     <Compile Include="Tropo.cs" />
     <Compile Include="TropoBase.cs" />
     <Compile Include="TropoClasses.cs" />
+    <Compile Include="TropoCreateSession.cs" />
     <Compile Include="TropoJSON.cs" />
     <Compile Include="TropoResult.cs" />
     <Compile Include="TropoSession.cs" />
