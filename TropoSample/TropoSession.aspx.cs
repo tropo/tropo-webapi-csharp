@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.IO;
-using TropoCSharp.Tropo;
 using Newtonsoft.Json;
+using TropoCSharp.Tropo;
 
 namespace TropoSamples
 {
@@ -34,6 +30,7 @@ namespace TropoSamples
                     Response.Write("To-Channel: " + tropoSession.To.Channel+ "\n");
                     Response.Write("From-Channel: " + tropoSession.From.Channel+ "\n");
                     Response.Write("Initial Text: " + tropoSession.InitialText + "\n");
+                    Response.Write("Headers-From: " + tropoSession.Headers["From"]);
                 }
 
                 catch (JsonReaderException ex)

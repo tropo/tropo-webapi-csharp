@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System.Collections.Specialized;
 
 namespace TropoCSharp.Tropo
 {
@@ -20,17 +21,50 @@ namespace TropoCSharp.Tropo
             Timestamp = (string)session["session"]["timestamp"];
             UserType = (string)session["session"]["userType"];
 
-            string fromId = (string)session["session"]["from"]["id"];
-            string fromName = (string)session["session"]["from"]["name"];
-            string fromNetwork = (string)session["session"]["from"]["from"];
-            string fromChannel = (string)session["session"]["from"]["channel"];
-            From = new Endpoint(fromId, fromChannel, fromName, fromNetwork);
+            if (session["session"]["from"] != null)
+            {
+                string fromId = (string)session["session"]["from"]["id"];
+                string fromName = (string)session["session"]["from"]["name"];
+                string fromNetwork = (string)session["session"]["from"]["network"];
+                string fromChannel = (string)session["session"]["from"]["channel"];
+                From = new Endpoint(fromId, fromChannel, fromName, fromNetwork);
+            }
 
-            string toId = (string)session["session"]["to"]["id"];
-            string toName = (string)session["session"]["to"]["name"];
-            string toNetwork = (string)session["session"]["to"]["from"];
-            string toChannel = (string)session["session"]["to"]["channel"];
-            To = new Endpoint(toId, toChannel, toName, toNetwork);
+            if (session["session"]["to"] != null)
+            {
+                string toId = (string)session["session"]["to"]["id"];
+                string toName = (string)session["session"]["to"]["name"];
+                string toNetwork = (string)session["session"]["to"]["network"];
+                string toChannel = (string)session["session"]["to"]["channel"];
+                To = new Endpoint(toId, toChannel, toName, toNetwork);
+            }
+
+            if (session["session"]["parameters"] != null)
+            {
+                Parameters = new NameValueCollection();
+                JToken _parameter = session["session"]["parameters"].First;
+
+                while (_parameter != null)
+                {
+                    JProperty property = (JProperty)_parameter;
+                    Parameters.Add(property.Name, property.Value.ToString());
+                    _parameter = _parameter.Next;
+                }
+            }
+
+            if (session["session"]["headers"] != null)
+            {
+                Headers = new NameValueCollection();
+                JToken _header = session["session"]["headers"].First;
+
+                while (_header != null)
+                {
+                    JProperty property = (JProperty)_header;
+                    Headers.Add(property.Name, property.Value.ToString());
+                    _header = _header.Next;
+                }
+            }
+
         }
 
         /// <summary>
@@ -68,5 +102,15 @@ namespace TropoCSharp.Tropo
         /// Identifies the type of user that is on the other end of the session; it can be set to 'HUMAN', 'MACHINE' or 'FAX'.
         /// </summary>
         public string UserType { get; set; }
+
+        /// <summary> 
+        /// Identifies the parameters passed in to the session. 
+        /// </summary> 
+        public NameValueCollection Parameters { get; set; }
+
+        /// <summary> 
+        /// Identifies the SIP headers passed in to the session. 
+        /// </summary> 
+        public NameValueCollection Headers { get; set; } 
     }
 }
