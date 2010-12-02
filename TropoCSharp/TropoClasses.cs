@@ -297,6 +297,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "url")]
         public string Url { get; set; }
 
+        [JsonProperty(PropertyName = "voice")]
+        public string Voice { get; set; }
+
         public Record()
         {
         }

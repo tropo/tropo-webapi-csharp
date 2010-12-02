@@ -14,22 +14,22 @@ namespace TropoSample
             // Set the voice property.
             tropo.Voice = Voice.UsEnglishMale;
 
-            tropo.Say("Alert systems");
-            
-            // Create a new Choices object.
-            Choices choices = new Choices("[6 DIGITS]");
-            choices.Mode = "dtmf"; // only digits
+            Say say = new Say("Please record your 45 second message after the beep, press pound when complete.");
 
-            // Create a new Ask.
-            Ask ask = new Ask();
-            ask.Choices = choices;
-            ask.Attempts = 3;
-            ask.Bargein = true;
-            ask.Say = new Say("Please enter your six digit pass key");
+            tropo.Say(say);
 
-            // Add action items to Tropo object.
-            tropo.Ask(ask);
-            tropo.On("continue", "..../VerifyPasskey", new Say(""));
+            Record record = new Record()
+            {
+                Bargein = true,
+                Beep = true,
+                Say = new Say(""),
+                Format = "audio/mp3",
+                MaxTime = 45,
+                Choices = new Choices("", "dtmf", "#"),
+                Url = "../UploadRecording"
+            };
+
+            tropo.Record(record);
 
             // Render JSON for Tropo to consume.
             Response.Write(tropo.RenderJSON());

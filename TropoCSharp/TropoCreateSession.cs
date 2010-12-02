@@ -20,16 +20,16 @@ namespace TropoCSharp.Tropo
         public static Stream CreateSession(this Tropo tropo, String token, IDictionary<string, string> parameters)
         {
             // Format the session initiation URL.
-            string enpoint = String.Format(CREATE_SESSION_URL, CREATE_SESSION_ACTION, token);
+            string endpoint = String.Format(CREATE_SESSION_URL, CREATE_SESSION_ACTION, token);
 
             // Interate over parameters and append to endpoint URL.
             foreach (KeyValuePair<string, string> param in parameters)
             {
-                enpoint += param.Key + "=" + param.Value + "&";
+                endpoint += param.Key + "=" + param.Value + "&";
             }
 
             // Set up HTTP request.
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(enpoint);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endpoint);
             request.Method = "GET";
             
             // Get the response.

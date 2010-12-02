@@ -49,6 +49,7 @@
     <Content Include="SendMessage.aspx" />
     <Content Include="TropoResult.aspx" />
     <Content Include="TropoSession.aspx" />
+    <Content Include="TropoSessionCreate.aspx" />
     <Content Include="web.config" />
     <Content Include="HelloWorld.aspx" />
     <Content Include="CreateSession.aspx" />
@@ -91,6 +92,10 @@
     </Compile>
     <Compile Include="CreateSession.aspx.designer.cs">
       <DependentUpon>CreateSession.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TropoSessionCreate.aspx.cs">
+      <DependentUpon>TropoSessionCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

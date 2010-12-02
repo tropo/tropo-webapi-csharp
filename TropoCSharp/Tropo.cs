@@ -451,7 +451,7 @@ namespace TropoCSharp.Tropo
         /// <param name="say">A Say object.</param>
         public void Say(Say say)
         {
-            Say(say.Value, say.As, say.Name, (bool)say.Required);
+            Say(say.Value, say.As, say.Name, say.Required);
         }
 
         /// <summary>
