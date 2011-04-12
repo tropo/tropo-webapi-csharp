@@ -6,7 +6,7 @@ TropoCSharp is a set of C# classes for working with the [Tropo cloud communicati
 Usage
 =====
 
-Download the latest version of Json.NET from http://json.codeplex.com/
+Download the [Json.NET version 3.5](http://json.codeplex.com/releases/view/50552) - tested with Release 8.
 
 Extract the following two files from this download:
 
@@ -27,7 +27,7 @@ You can test samples in the TropoSamples solution by viewing them in a web brows
 
 Tests for various Tropo action classes are in the TropoClassesTests soltuon.
 
-Project with samples (ASP.NET web application) will use a directory called TropoSample (e.g., http://localhost/TropoSample)
+Project with samples (ASP.NET web application) will use a directory called TropoSample (e.g., http://localhost/TropoSample).
 
 Example
 =======
