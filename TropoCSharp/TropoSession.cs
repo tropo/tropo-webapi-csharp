@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections.Specialized;
+using System;
 
 namespace TropoCSharp.Tropo
 {
@@ -47,7 +48,7 @@ namespace TropoCSharp.Tropo
                 while (_parameter != null)
                 {
                     JProperty property = (JProperty)_parameter;
-                    Parameters.Add(property.Name, property.Value.ToString());
+                    Parameters.Add(property.Name, (String)property.Value);
                     _parameter = _parameter.Next;
                 }
             }

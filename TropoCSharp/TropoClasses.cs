@@ -59,7 +59,7 @@ namespace TropoCSharp.Tropo
         public IEnumerable<String> To { get; set; }
 
         [JsonProperty(PropertyName = "from")]
-        public Endpoint From { get; set; }
+        public string From { get; set; }
 
         [JsonProperty(PropertyName = "network")]
         public string Network { get; set; }
@@ -181,7 +181,7 @@ namespace TropoCSharp.Tropo
         public IEnumerable<String> To { get; set; }
 
         [JsonProperty(PropertyName = "from")]
-        public Endpoint From { get; set; }
+        public string From { get; set; }
 
         [JsonProperty(PropertyName = "network")]
         public string Network { get; set; }
@@ -437,7 +437,7 @@ namespace TropoCSharp.Tropo
         public IEnumerable<String> To { get; set; }
 
         [JsonProperty(PropertyName = "from")]
-        public Endpoint From { get; set; }
+        public string From { get; set; }
 
         [JsonProperty(PropertyName = "answerOnMedia")]
         public bool? AnswerOnMedia { get; set; }

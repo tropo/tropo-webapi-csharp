@@ -28,7 +28,7 @@ namespace TropoSample
             to.Add("3054445567");
 
             // Create an endpoint object to denote who the call is from.
-            Endpoint from = new Endpoint("7777777777", null, null, null);
+            string from = "7777777777";
 
             // Call the message method of the Tropo object and pass in values.
             tropo.Message(say, to, false, Channel.Voice, from, "reminder", Network.Pstn, true, 60);

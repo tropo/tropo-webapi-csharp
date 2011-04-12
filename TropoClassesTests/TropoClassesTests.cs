@@ -20,10 +20,10 @@ namespace TropoClassesTests
         private string recordJson = @"{""tropo"":[{ ""record"":{""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""}}}]}";
         private string recordJsonWithTranscription = @"{""tropo"":[{ ""record"":{""attempts"":1,""bargein"":false,""beep"":true,""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""maxSilence"":5.0,""maxTime"":30.0,""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""},""timeout"":5.0,""password"":""foo"",""transcription"":{""id"":""foo"",""uri"":""http://example.com/"",""emailFormat"":""encoded""},""username"":""bar"",""url"":""http://example.com/""}}]}";
         private string callJson = @"{""tropo"":[{ ""call"":{""to"":[""3055195825"",""3054445567""]}}]}";
-        private string callJsonAllOptions = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":{""id"":""3055551212""},""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""headers"":{""foo"":""bar"",""bling"":""baz""},""recording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""},""timeout"":10.0}}]}";
+        private string callJsonAllOptions = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""headers"":{""foo"":""bar"",""bling"":""baz""},""recording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""},""timeout"":10.0}}]}";
         private string conferenceJson = @"{""tropo"":[{ ""conference"":{""name"":""foo"",""id"":""1234"",""mute"":false,""playTones"":false,""terminator"":""#""}}]}";
-        private string messageJson = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":{""id"":""3055551212""},""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""timeout"":10.0,""voice"":""kate""}}]}";
-        private string messageJsonAllOptions = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":{""id"":""3055551212"",""channel"":""VOICE"",""name"":""unknown"",""network"":""PSTN""},""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""name"":""foo"",""required"":true,""timeout"":10.0,""voice"":""kate""}}]}";
+        private string messageJson = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""timeout"":10.0,""voice"":""kate""}}]}";
+        private string messageJsonAllOptions = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""name"":""foo"",""required"":true,""timeout"":10.0,""voice"":""kate""}}]}";
         private string startRecordingJson = @"{""tropo"":[{ ""startRecording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""}}]}";
 
         public TropoClassesTests()
@@ -157,7 +157,7 @@ namespace TropoClassesTests
             call.Channel = Channel.Text;
             call.Network = Network.SMS;
             call.To = to;
-            call.From = new Endpoint("3055551212", null, null, null);
+            call.From = "3055551212";
 
             tropo.Call(call);
             Assert.AreEqual(this.callJsonAllOptions, tropo.RenderJSON());
@@ -173,7 +173,7 @@ namespace TropoClassesTests
             Say say = new Say("This is an announcement");
             Tropo tropo = new Tropo();
             tropo.Voice = Voice.BritishEnglishFemale;
-            Endpoint from = new Endpoint("3055551212", null, null, null);
+            string from = "3055551212";
             List<String> to = new List<String>();
             to.Add("3055195825");
             tropo.Message(say, to, false, Channel.Text, from, null, Network.SMS, null, 10);
@@ -185,7 +185,7 @@ namespace TropoClassesTests
         public void testMessageFromObject()
         {
             Say say = new Say("This is an announcement");
-            Endpoint from = new Endpoint("3055551212", null, null, null);
+            string from = "3055551212";
             Message message = new Message();
             List<String> to = new List<String>();
             to.Add("3055195825");
@@ -210,7 +210,7 @@ namespace TropoClassesTests
             Say say = new Say("This is an announcement");
             Tropo tropo = new Tropo();
             tropo.Voice = Voice.BritishEnglishFemale;
-            Endpoint from = new Endpoint("3055551212", Channel.Voice, "unknown", Network.Pstn);
+            string from = "3055551212";
             List<String> to = new List<String>();
             to.Add("3055195825");
             tropo.Message(say, to, false, Channel.Text, from, "foo", Network.SMS, true, 10);

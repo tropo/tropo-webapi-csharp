@@ -109,7 +109,7 @@ namespace TropoCSharp.Tropo
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
         /// <param name="headers">This contains the Session Initiation Protocol (SIP) Headers for the current session.</param>
         /// <param name="recording">This is a shortcut to allow you to start call recording as soon as the call is answered. </param>      
-        public void Call(IEnumerable<String> to, Endpoint from, string network, string channel, bool? answerOnMedia, float? timeout, IDictionary<String, String> headers, StartRecording recording)
+        public void Call(IEnumerable<String> to, string from, string network, string channel, bool? answerOnMedia, float? timeout, IDictionary<String, String> headers, StartRecording recording)
         {
             Call call = new Call();
             call.To = to;
@@ -140,7 +140,7 @@ namespace TropoCSharp.Tropo
             Call call = new Call
             {
                 To = new List<String> { to },
-                From = new Endpoint(from, null, null, null),
+                From = from,
                 Network = network,
                 Channel = channel,
                 AnswerOnMedia = answerOnMedia,
@@ -235,7 +235,7 @@ namespace TropoCSharp.Tropo
         /// <param name="network">Network is used mainly by the text channels; values can be SMS when sending a text message, or a valid IM network name such as AIM, MSN, JABBER, YAHOO and GTALK.</param>
         /// <param name="required">Determines whether Tropo should move on to the next action.</param>
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
-        public void Message(Say say, IEnumerable<String> to, bool? answerOnMedia, string channel, Endpoint from, string name, string network, bool? required, float? timeout)
+        public void Message(Say say, IEnumerable<String> to, bool? answerOnMedia, string channel, string from, string name, string network, bool? required, float? timeout)
         {
             Message message = new Message();
             message.Say = say;
@@ -528,7 +528,7 @@ namespace TropoCSharp.Tropo
         /// <param name="ringRepeat">The number of rings to allow on the outbound call attempt.</param>
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
         /// <param name="to">The new destination for the incoming call as a URL.</param>
-        public void Transfer(bool? answerOnMedia, Choices choices, Endpoint from, On on, float? timeout,  IEnumerable<String> to)
+        public void Transfer(bool? answerOnMedia, Choices choices, string from, On on, float? timeout,  IEnumerable<String> to)
         {
             Transfer transfer = new Transfer();
             transfer.AnswerOnMedia = answerOnMedia;

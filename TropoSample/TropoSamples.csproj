@@ -45,6 +45,7 @@
     <Content Include="AskTest.aspx" />
     <Content Include="GetZipCode.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="OutboundSMS.aspx" />
     <Content Include="RecordWithTranscription.aspx" />
     <Content Include="SendMessage.aspx" />
     <Content Include="TropoResult.aspx" />
@@ -68,6 +69,10 @@
     </Compile>
     <Compile Include="HelloWorld.aspx.cs">
       <DependentUpon>HelloWorld.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OutboundSMS.aspx.cs">
+      <DependentUpon>OutboundSMS.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="RecordWithTranscription.aspx.cs">
