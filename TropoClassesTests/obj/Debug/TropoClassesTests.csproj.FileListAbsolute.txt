@@ -16,3 +16,12 @@ C:\TropoCSharp\TropoClassesTests\bin\Debug\Newtonsoft.Json.xml
 C:\TropoCSharp\TropoClassesTests\obj\Debug\ResolveAssemblyReference.cache
 C:\TropoCSharp\TropoClassesTests\obj\Debug\TropoClassesTests.dll
 C:\TropoCSharp\TropoClassesTests\obj\Debug\TropoClassesTests.pdb
+C:\GitStuff\tropo-webapi-csharp\TropoClassesTests\bin\Debug\TropoClassesTests.dll
+C:\GitStuff\tropo-webapi-csharp\TropoClassesTests\bin\Debug\TropoClassesTests.pdb
+C:\GitStuff\tropo-webapi-csharp\TropoClassesTests\bin\Debug\TropoCSharp.dll
+C:\GitStuff\tropo-webapi-csharp\TropoClassesTests\bin\Debug\Newtonsoft.Json.dll
+C:\GitStuff\tropo-webapi-csharp\TropoClassesTests\bin\Debug\TropoCSharp.pdb
+C:\GitStuff\tropo-webapi-csharp\TropoClassesTests\bin\Debug\Newtonsoft.Json.xml
+C:\GitStuff\tropo-webapi-csharp\TropoClassesTests\obj\Debug\ResolveAssemblyReference.cache
+C:\GitStuff\tropo-webapi-csharp\TropoClassesTests\obj\Debug\TropoClassesTests.dll
+C:\GitStuff\tropo-webapi-csharp\TropoClassesTests\obj\Debug\TropoClassesTests.pdb

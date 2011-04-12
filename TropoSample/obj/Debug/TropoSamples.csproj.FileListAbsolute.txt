@@ -14,3 +14,11 @@ C:\TropoCSharp\TropoSample\bin\Newtonsoft.Json.xml
 C:\TropoCSharp\TropoSample\obj\Debug\ResolveAssemblyReference.cache
 C:\TropoCSharp\TropoSample\obj\Debug\TropoSample.dll
 C:\TropoCSharp\TropoSample\obj\Debug\TropoSample.pdb
+C:\GitStuff\tropo-webapi-csharp\TropoSample\bin\TropoSample.dll
+C:\GitStuff\tropo-webapi-csharp\TropoSample\bin\TropoSample.pdb
+C:\GitStuff\tropo-webapi-csharp\TropoSample\bin\TropoCSharp.dll
+C:\GitStuff\tropo-webapi-csharp\TropoSample\bin\TropoCSharp.pdb
+C:\GitStuff\tropo-webapi-csharp\TropoSample\bin\Newtonsoft.Json.xml
+C:\GitStuff\tropo-webapi-csharp\TropoSample\obj\Debug\ResolveAssemblyReference.cache
+C:\GitStuff\tropo-webapi-csharp\TropoSample\obj\Debug\TropoSample.dll
+C:\GitStuff\tropo-webapi-csharp\TropoSample\obj\Debug\TropoSample.pdb
