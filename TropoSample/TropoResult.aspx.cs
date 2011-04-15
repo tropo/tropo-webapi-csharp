@@ -34,7 +34,7 @@ namespace TropoSamples
                     Response.Write("State:  " + tropoResult.State + "\n");
                     Response.Write("Sequence:  " + tropoResult.Sequence + "\n");
                     Response.Write("SessionId:  " + tropoResult.SessionId + "\n");
-                    Response.Write("Value:  " + tropoResult.Actions["value"] + "\n");
+                    Response.Write("Value: " + tropoResult.Actions["value"] + "\n");
                 }
 
                 catch (JsonReaderException ex)

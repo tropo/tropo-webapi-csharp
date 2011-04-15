@@ -3,14 +3,14 @@
 namespace TropoCSharp.Tropo
 {
     /// <summary>
-    /// Create an instance of the Tropo Result object.
+    /// Create an instance of the Tropo Result object
     /// </summary>
     public class Result
     {
         /// <summary>
         /// Class constructor.
         /// </summary>
-        /// <param name="json">Result JSON submitted from Tropo platform.</param>
+        /// <param name="json">Result JSON submitted from Tropo platform</param>
         public Result(string json)
         {
             JObject results = JObject.Parse(json);
