@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AskTest.aspx" />
+    <Content Include="Conference.aspx" />
     <Content Include="GetZipCode.aspx" />
     <Content Include="Global.asax" />
     <Content Include="OutboundSMS.aspx" />
@@ -58,6 +59,10 @@
   <ItemGroup>
     <Compile Include="AskTest.aspx.cs">
       <DependentUpon>AskTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Conference.aspx.cs">
+      <DependentUpon>Conference.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="GetZipCode.aspx.cs">
