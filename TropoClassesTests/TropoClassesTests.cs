@@ -16,15 +16,18 @@ namespace TropoClassesTests
     public class TropoClassesTests
     {
         private string askJson = @"{""tropo"":[{ ""ask"":{""name"":""foo"",""choices"":{""value"":""[5 DIGITS]""},""say"":{""value"":""Please enter your 5 digit zip code.""}}}]}";
+        private string askJsonWithEvents = @"{""tropo"":[{ ""ask"":{""attempts"":5,""allowSignals"":[""endCall"",""tooLong""],""bargein"":false,""name"":""test"",""required"":true,""choices"":{""value"":""1,2,3""},""say"":{""value"":""This is an Ask test with events. Please enter 1, 2 or 3.""},""timeout"":30.0}},{ ""hangup"":{}}]}";
         private string askJsonWithOptions = @"{""tropo"":[{ ""ask"":{""attempts"":1,""bargein"":false,""minConfidence"":30,""name"":""foo"",""required"":true,""choices"":{""value"":""[5 DIGITS]""},""say"":{""value"":""Please enter your 5 digit zip code.""},""timeout"":30.0}}]}";
         private string recordJson = @"{""tropo"":[{ ""record"":{""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""}}}]}";
         private string recordJsonWithTranscription = @"{""tropo"":[{ ""record"":{""attempts"":1,""bargein"":false,""beep"":true,""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""maxSilence"":5.0,""maxTime"":30.0,""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""},""timeout"":5.0,""password"":""foo"",""transcription"":{""id"":""foo"",""uri"":""http://example.com/"",""emailFormat"":""encoded""},""username"":""bar"",""url"":""http://example.com/""}}]}";
         private string callJson = @"{""tropo"":[{ ""call"":{""to"":[""3055195825"",""3054445567""]}}]}";
         private string callJsonAllOptions = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""headers"":{""foo"":""bar"",""bling"":""baz""},""recording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""},""timeout"":10.0}}]}";
-        private string conferenceJson = @"{""tropo"":[{ ""conference"":{""name"":""foo"",""id"":""1234"",""mute"":false,""playTones"":false,""terminator"":""#""}}]}";
+        private string callJsonWithEvents = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551414"",""network"":""PSTN"",""channel"":""VOICE"",""answerOnMedia"":true,""allowSignals"":[""tooLong"",""callOver""],""headers"":{""x-foo"":""bar"",""x-bling"":""baz""},""timeout"":60.0}}]}";
         private string messageJson = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""timeout"":10.0,""voice"":""kate""}}]}";
         private string messageJsonAllOptions = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""name"":""foo"",""required"":true,""timeout"":10.0,""voice"":""kate""}}]}";
         private string startRecordingJson = @"{""tropo"":[{ ""startRecording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""}}]}";
+        private string conferenceJson = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true}},{ ""say"":{""value"":""Thank you for joining the conference.""}}]}";
+        private string conferenceJsonWithEvents = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""allowSignals"":[""conferenceOver""],""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true}}]}";
 
         public TropoClassesTests()
         {
@@ -103,6 +106,18 @@ namespace TropoClassesTests
             Assert.AreEqual(this.askJsonWithOptions, tropo.RenderJSON());
         }
 
+        [TestMethod]
+        public void testAskWithEvents()
+        {
+            Tropo tropo = new Tropo();
+            string[] signals = new string[] { "endCall", "tooLong" };
+            Say say = new Say("This is an Ask test with events. Please enter 1, 2 or 3.");
+            Choices choices = new Choices("1,2,3");
+            tropo.Ask(5, signals, false, choices, null, "test", true, say, 30);
+            tropo.Hangup();
+            Assert.AreEqual(this.askJsonWithEvents, tropo.RenderJSON());
+        }
+
         #endregion
 
         #region Call Tests
@@ -161,6 +176,21 @@ namespace TropoClassesTests
 
             tropo.Call(call);
             Assert.AreEqual(this.callJsonAllOptions, tropo.RenderJSON());
+        }
+
+        [TestMethod]
+        public void testCallWithEvents()
+        {
+            Tropo tropo = new Tropo();
+
+            string[] signals = new string[] { "tooLong", "callOver" };
+
+            IDictionary<string, string> headers = new Dictionary<String, String>();
+            headers.Add("x-foo", "bar");
+            headers.Add("x-bling", "baz");
+
+            tropo.Call("3055195825", signals, "3055551414", Network.Pstn, Channel.Voice, true, 60, headers, null);
+            Assert.AreEqual(this.callJsonWithEvents, tropo.RenderJSON());
         }
 
         #endregion
@@ -313,5 +343,33 @@ namespace TropoClassesTests
 
         #endregion
 
+        #region Conference Tests
+
+        [TestMethod]
+        public void testConference()
+        {
+            Tropo tropo = new Tropo();
+            tropo.Call("3035551212");
+            tropo.Say("Welcome to the conference.");
+            tropo.Conference("123456789098765432", false, "testConference", false, true, "#");
+            tropo.Say("Thank you for joining the conference.");
+
+            Assert.AreEqual(this.conferenceJson, tropo.RenderJSON());
+
+        }
+
+        [TestMethod]
+        public void testConferenceWithEvents()
+        {
+            Tropo tropo = new Tropo();
+            string[] signals = new string[] { "conferenceOver" };
+            tropo.Call("3035551212");
+            tropo.Say("Welcome to the conference.");
+            tropo.Conference("123456789098765432", signals, false, "testConference", false, true, "#");
+
+            Assert.AreEqual(this.conferenceJsonWithEvents, tropo.RenderJSON());
+        }
+
+        #endregion
     }
 }

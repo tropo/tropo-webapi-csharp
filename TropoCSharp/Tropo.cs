@@ -60,7 +60,7 @@ namespace TropoCSharp.Tropo
         }
 
         /// <summary>
-        /// Overload method for Ask that allows an array of events to be used.
+        /// Overload method for Ask that allows events to be set via allowSignals.
         /// </summary>
         /// <param name="attempts">How many times the caller can attempt input before an error is thrown.</param>
         /// <param name="bargein">Should the user be allowed to barge in before TTS is complete?</param>
@@ -71,10 +71,11 @@ namespace TropoCSharp.Tropo
         /// <param name="say">This determines what is played or sent to the caller.</param>
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
         /// <param name="events">??</param>
-        public void Ask(int? attempts, bool? bargein, Choices choices, int? minConfidence, string name, bool? required, Say say, float? timeout, Array events)
+        public void Ask(int? attempts, Array allowSignals, bool? bargein, Choices choices, int? minConfidence, string name, bool? required, Say say, float? timeout)
         {
             Ask ask = new Ask();
             ask.Attempts = attempts;
+            ask.allowSignals = allowSignals;
             ask.Bargein = bargein;
             ask.Choices = choices;
             ask.MinConfidence = minConfidence;
@@ -85,8 +86,6 @@ namespace TropoCSharp.Tropo
             ask.Timeout = timeout;
 
             Serialize(ask, "ask");
-
-            // TODO: How is the events array supposed to be added to the Tropo object?
         }
 
         /// <summary>
@@ -153,6 +152,36 @@ namespace TropoCSharp.Tropo
         }
 
         /// <summary>
+        /// Overload for Call that allows events to be set via allowSignals.
+        /// </summary>
+        /// <param name="to"></param>
+        /// <param name="allowSignals"></param>
+        /// <param name="from"></param>
+        /// <param name="network"></param>
+        /// <param name="channel"></param>
+        /// <param name="answerOnMedia"></param>
+        /// <param name="timeout"></param>
+        /// <param name="headers"></param>
+        /// <param name="recording"></param>
+        public void Call(String to, Array allowSignals, string from, string network, string channel, bool? answerOnMedia, float? timeout, IDictionary<String, String> headers, StartRecording recording)
+        {
+            Call call = new Call
+            {
+                To = new List<String> { to },
+                allowSignals = allowSignals,
+                From = from,
+                Network = network,
+                Channel = channel,
+                AnswerOnMedia = answerOnMedia,
+                Timeout = timeout,
+                Headers = headers,
+                Recording = recording
+            };
+
+            Serialize(call, "call");
+        }
+
+        /// <summary>
         /// Overload for Call that allows one parameter.
         /// </summary>
         /// <param name="to">The number of the person to call.</param>
@@ -195,6 +224,30 @@ namespace TropoCSharp.Tropo
         {
             Conference conference = new Conference();
             conference.Id = id;
+            conference.Mute = mute;
+            conference.Name = name;
+            conference.PlayTones = playTones;
+            conference.Required = required;
+            conference.Terminator = terminator;
+
+            Serialize(conference, "conference");
+        }
+
+        /// <summary>
+        /// Overload for Conference that allows events to be set via allowSignals.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="allowSignals"></param>
+        /// <param name="mute"></param>
+        /// <param name="name"></param>
+        /// <param name="playTones"></param>
+        /// <param name="required"></param>
+        /// <param name="terminator"></param>
+        public void Conference(string id, Array allowSignals, bool? mute, string name, bool? playTones, bool? required, string terminator)
+        {
+            Conference conference = new Conference();
+            conference.Id = id;
+            conference.allowSignals = allowSignals;
             conference.Mute = mute;
             conference.Name = name;
             conference.PlayTones = playTones;
@@ -370,6 +423,48 @@ namespace TropoCSharp.Tropo
         }
 
         /// <summary>
+        /// Overload for Record that allows events to be set via allowSignals.
+        /// </summary>
+        /// <param name="attempts"></param>
+        /// <param name="allowSignals"></param>
+        /// <param name="bargein"></param>
+        /// <param name="beep"></param>
+        /// <param name="choices"></param>
+        /// <param name="format"></param>
+        /// <param name="maxSilence"></param>
+        /// <param name="maxTime"></param>
+        /// <param name="method"></param>
+        /// <param name="password"></param>
+        /// <param name="required"></param>
+        /// <param name="say"></param>
+        /// <param name="timeout"></param>
+        /// <param name="transcription"></param>
+        /// <param name="username"></param>
+        /// <param name="url"></param>
+        public void Record(int? attempts, Array allowSignals, bool? bargein, bool? beep, Choices choices, string format, float? maxSilence, float? maxTime, string method, string password, bool? required, Say say, float? timeout, Transcription transcription, string username, string url)
+        {
+            Record record = new Record();
+            record.Attempts = attempts;
+            record.allowSignals = allowSignals;
+            record.Bargein = bargein;
+            record.Beep = beep;
+            record.Choices = choices;
+            record.Format = format;
+            record.MaxSilence = maxSilence;
+            record.MaxTime = maxTime;
+            record.Method = method;
+            record.Password = password;
+            record.Required = required;
+            record.Say = say;
+            record.Timeout = timeout;
+            record.Transcription = transcription;
+            record.Url = url;
+            record.Username = username;
+
+            Serialize(record, "record");
+        }
+
+        /// <summary>
         /// Overload for Record that allows a Record object to be passed.
         /// </summary>
         /// <param name="record">A Record object.</param>
@@ -427,6 +522,27 @@ namespace TropoCSharp.Tropo
         public void Say(string @value, string @as, string name, bool? required)
         {
             Say say = new Say();
+            say.Value = @value;
+            say.As = @as;
+            say.Name = name;
+            say.Required = required;
+            say.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
+
+            Serialize(say, "say");
+        }
+
+        /// <summary>
+        /// Overload for say that allows events to be set via allowSignals.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="allowSignals"></param>
+        /// <param name="as"></param>
+        /// <param name="name"></param>
+        /// <param name="required"></param>
+        public void Say(string @value, Array allowSignals, string @as, string name, bool? required)
+        {
+            Say say = new Say();
+            say.allowSignals = allowSignals;
             say.Value = @value;
             say.As = @as;
             say.Name = name;
@@ -532,6 +648,29 @@ namespace TropoCSharp.Tropo
         {
             Transfer transfer = new Transfer();
             transfer.AnswerOnMedia = answerOnMedia;
+            transfer.Choices = choices;
+            transfer.From = from;
+            transfer.On = on;
+            transfer.Timeout = timeout;
+            transfer.To = to;
+
+            Serialize(transfer, "transfer");
+        }
+
+        /// <summary>
+        /// Overload for Transfer that allows events to be set via allowSignals.
+        /// </summary>
+        /// <param name="answerOnMedia"></param>
+        /// <param name="choices"></param>
+        /// <param name="from"></param>
+        /// <param name="on"></param>
+        /// <param name="timeout"></param>
+        /// <param name="to"></param>
+        public void Transfer(bool? answerOnMedia, Array allowSignals, Choices choices, string from, On on, float? timeout, IEnumerable<String> to)
+        {
+            Transfer transfer = new Transfer();
+            transfer.AnswerOnMedia = answerOnMedia;
+            transfer.allowSignals = allowSignals;
             transfer.Choices = choices;
             transfer.From = from;
             transfer.On = on;

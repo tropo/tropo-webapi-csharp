@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AskTest.aspx" />
+    <Content Include="RecordTest.aspx" />
     <Content Include="Conference.aspx" />
     <Content Include="GetZipCode.aspx" />
     <Content Include="Global.asax" />
@@ -59,6 +60,10 @@
   <ItemGroup>
     <Compile Include="AskTest.aspx.cs">
       <DependentUpon>AskTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecordTest.aspx.cs">
+      <DependentUpon>RecordTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Conference.aspx.cs">

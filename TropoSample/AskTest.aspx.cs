@@ -1,5 +1,4 @@
 ﻿using System;
-using TropoCSharp.Structs;
 using TropoCSharp.Tropo;
 
 namespace TropoSample
@@ -10,28 +9,21 @@ namespace TropoSample
         {
             // Create a new instance of the Tropo object.
             Tropo tropo = new Tropo();
+            
+            // Create an array of signals - used to interupt the Ask.
+            string[] signals = new string[] {"endCall", "tooLong"};
 
-            // Set the voice property.
-            tropo.Voice = Voice.UsEnglishMale;
+            // A prompt to use with the Ask.
+            Say say = new Say("This is an Ask test with events. Please enter 1, 2 or 3.");
 
-            Say say = new Say("Please record your 45 second message after the beep, press pound when complete.");
+            // Choices for the Ask.
+            Choices choices = new Choices("1,2,3");
 
-            tropo.Say(say);
+            // Set up the dialog.
+            tropo.Ask(5, signals, false, choices, null, "test", true, say, 30);
+            tropo.Hangup();
 
-            Record record = new Record()
-            {
-                Bargein = true,
-                Beep = true,
-                Say = new Say(""),
-                Format = "audio/mp3",
-                MaxTime = 45,
-                Choices = new Choices("", "dtmf", "#"),
-                Url = "../UploadRecording"
-            };
-
-            tropo.Record(record);
-
-            // Render JSON for Tropo to consume.
+            // Render the dialog JSON for Tropo to consume.
             Response.Write(tropo.RenderJSON());
         }
     }

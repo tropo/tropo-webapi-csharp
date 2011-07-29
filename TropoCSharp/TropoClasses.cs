@@ -14,6 +14,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "attempts")]
         public int? Attempts { get; set; }
 
+        [JsonProperty(PropertyName = "allowSignals")]
+        public Array allowSignals { get; set; }
+
         [JsonProperty(PropertyName = "bargein")]
         public bool? Bargein { get; set; }
 
@@ -69,6 +72,9 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "answerOnMedia")]
         public bool? AnswerOnMedia { get; set; }
+
+        [JsonProperty(PropertyName = "allowSignals")]
+        public Array allowSignals { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
@@ -138,6 +144,9 @@ namespace TropoCSharp.Tropo
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "allowSignals")]
+        public Array allowSignals { get; set; }
 
         [JsonProperty(PropertyName = "mute")]
         public bool? Mute { get; set; }
@@ -249,6 +258,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "attempts")]
         public int? Attempts { get; set; }
 
+        [JsonProperty(PropertyName = "allowSignals")]
+        public Array allowSignals { get; set; }
+
         [JsonProperty(PropertyName = "bargein")]
         public bool? Bargein { get; set; }
 
@@ -342,6 +354,9 @@ namespace TropoCSharp.Tropo
     {
         [JsonProperty(PropertyName = "value")]
         public string Value { get; set; }
+
+        [JsonProperty(PropertyName = "allowSignals")]
+        public Array allowSignals { get; set; }
 
         [JsonProperty(PropertyName = "as")]
         public string As { get; set; }
@@ -441,6 +456,9 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "answerOnMedia")]
         public bool? AnswerOnMedia { get; set; }
+
+        [JsonProperty(PropertyName = "allowSignals")]
+        public Array allowSignals { get; set; }
 
         [JsonProperty(PropertyName = "choices")]
         public Choices Choices { get; set; }
