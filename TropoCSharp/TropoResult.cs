@@ -20,7 +20,11 @@ namespace TropoCSharp.Tropo
             Sequence = (int)results["result"]["sequence"];
             Complete = (bool)results["result"]["complete"];
             Error = (string)results["result"]["error"];
-            Actions = (JObject)results["result"]["actions"];
+            JContainer container = (JContainer)results["result"]["actions"];
+            if (container.Type == JTokenType.Array)
+                Actions = (JArray)container;
+            else
+                Actions = new JArray(container);
         }
 
         /// <summary>
@@ -56,6 +60,6 @@ namespace TropoCSharp.Tropo
         /// <summary>
         /// The result of the actions requested in the previous payload.
         /// </summary>
-        public JObject Actions { get; set; }
+        public JArray Actions { get; set; }
     }
 }
