@@ -91,22 +91,97 @@
     /// </summary>
     public struct Voice
     {
-        public const string CastilianSpanishMale = "jorge";
-        public const string CastilianSpanishFemale = "carmen";
-        public const string FrenchMale = "bernard";
-        public const string FrenchFemale = "florence";
-        public const string UsEnglishMale = "dave";
-        public const string UsEnglishFemale = "jill";
-        public const string BritishEnglishMale = "dave";
-        public const string BritishEnglishFemale = "kate";
-        public const string GermanMale = "stefan";
-        public const string GermanFemale = "katrin";
-        public const string ItalianMale = "luca";
-        public const string ItalianFemale = "paola";
-        public const string DutchMale = "willem";
-        public const string DutchFemale = "saskia";
-        public const string MexicanSpanishMale = "carlos";
-        public const string MexicanSpanishFemale = "soledad";
+        public const string UsEnglishFemale_Allison = "Allison";
+        public const string UsEnglishFemale_Susan = "Susan";
+        public const string UsEnglishFemale_Vanessa = "Vanessa";
+        public const string UsEnglishFemale_Veronica = "Veronica";
+        public const string BritishEnglishFemale_Elizabeth = "Elizabeth";
+        public const string BritishEnglishFemale_Kate = "Kate";
+        public const string BritishEnglishMale = "Simon";
+        public const string AustralianEnglishFemale = "Grace";
+        public const string AustralianEnglishMale = "Alan";
+        public const string CatalanFemale = "Montserrat";
+        public const string CatalanMale = "Jordi";
+        public const string DanishFemale = "Frida";
+        public const string DanishMale = "Magnus";
+        public const string DutchFemale = "Saskia";
+        public const string DutchMale = "Willem";
+        public const string FinnishFemale = "Milla";
+        public const string FinnishMale = "Mikko";
+        public const string FrenchFemale_Florence = "Florence";
+        public const string FrenchFemale_Juliette = "Juliette";
+        public const string FrenchMale = "Bernard";
+        public const string FrenchCanadianFemale = "Charlotte";
+        public const string FrenchCanadianMale = "Olivier";
+        public const string GalacianFemale = "Carmela";
+        public const string GermanFemale = "Katrin";
+        public const string GermanMale = "Stefan";
+        public const string GreekFemale = "Afroditi";
+        public const string GreekMale = "Nikos";
+        public const string ItalianFemale_Giulia = "Giulia";
+        public const string ItalianFemale_Paola = "Paola";
+        public const string ItalianFemale_Silvana = "Silvana";
+        public const string ItalianFemale_Valentina = "Valentina";
+        public const string ItalianMale_Luca = "Luca";
+        public const string ItalianMale_Marcello = "Marcello";
+        public const string ItalianMale_Matteo = "Matteo";
+        public const string ItalianMale_Roberto = "Roberto";
+        public const string ChineseMandarinMale_Linlin = "Linlin";
+        public const string ChineseMandarinMale_Lisheng = "Lisheng";
+        public const string NorwegianFemale = "Vilde";
+        public const string NorwegianMale = "Henrik";
+        public const string PolishFemale = "Zosia";
+        public const string PolishMale = "Krzysztof";
+        public const string RussianFemale = "Olga";
+        public const string RussianMale = "Dmitri";
+        public const string SpanishCastilianFemale_Carmen = "Carmen";
+        public const string SpanishCastilianFemale_Leonor = "Leonor";
+        public const string SpanishCastilianMale_Jorge = "Jorge";
+        public const string SpanishCastilianMale_Juan = "Juan";
+        public const string SpanishArgentineMale = "Diego";
+        public const string SpanishChileanFemale = "Francisca";
+        public const string SpanishMexicanFemale_Soledad = "Soledad";
+        public const string SpanishMexicanFemale_Ximena = "Ximena";
+        public const string SpanishMexicanFemale_Esperanza = "Esperanza";
+        public const string SpanishMexicanMale_Carlos = "Carlos";
+        public const string PortugeseFemale = "Amalia";
+        public const string PortugeseMale = "Eusebio";
+        public const string PortugeseBrazilianFemale_Fernanda = "Fernanda";
+        public const string PortugeseBrazilianFemale_Gabriela = "Gabriela";
+        public const string PortugeseBrazilianMale = "Felipe";
+        public const string SwedishFemale = "Annika";
+        public const string SwedishMale = "Sven";
+        public const string ValencianMale = "Empar";
+
+    }
+
+    /// <summary>
+    /// Speech recognizer options.
+    /// </summary>
+    public struct Recognizer
+    {
+        public const string UsEnglish = "en-us";
+        public const string BritishEnglish =" en-bg";
+        public const string Catalan = "ca-es";
+        public const string Danish = "da-dk";
+        public const string Dutch = "nl-nl";
+        public const string Finnish = "fi-fi"; 
+        public const string French = "fr-fr";
+        public const string FrenchCanadian = "fr-ca";
+        public const string Galacian = "gl-es";
+        public const string German = "de-de";
+        public const string Greek = "el-gr";
+        public const string Italian = "it-it"; 
+        public const string Polish = "pl-pl";
+        public const string Russian = "ru-ru";
+        public const string SpanishCastilian = "es-es";
+        public const string SpanishArgentine = "es-ar";
+        public const string SpanishChilean = "es-cl";
+        public const string SpanishMexican = "es-mx";
+        public const string Portugese = "pt-pt";
+        public const string PortugeseBrazilian = "pt-br";
+        public const string Swedish = "sv-se";
+        public const string Valencian = "x-va";
     }
 
     /// <summary>
