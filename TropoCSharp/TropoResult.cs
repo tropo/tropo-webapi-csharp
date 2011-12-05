@@ -20,7 +20,7 @@ namespace TropoCSharp.Tropo
             Sequence = (int)results["result"]["sequence"];
             Complete = (bool)results["result"]["complete"];
             Error = (string)results["result"]["error"];
-            Actions = (JObject)results["result"]["actions"];
+            Actions = (JContainer)results["result"]["actions"];
         }
 
         /// <summary>
@@ -56,6 +56,6 @@ namespace TropoCSharp.Tropo
         /// <summary>
         /// The result of the actions requested in the previous payload.
         /// </summary>
-        public JObject Actions { get; set; }
+        public JContainer Actions { get; set; }
     }
 }

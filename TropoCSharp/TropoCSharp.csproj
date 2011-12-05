@@ -51,6 +51,7 @@
     <Compile Include="TropoJSON.cs" />
     <Compile Include="TropoResult.cs" />
     <Compile Include="TropoSession.cs" />
+    <Compile Include="TropoUtilities.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

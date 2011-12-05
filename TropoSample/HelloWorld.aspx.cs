@@ -1,11 +1,14 @@
 using System;
+using System.Web.UI;
 using TropoCSharp.Tropo;
 
 namespace TropoSamples
 {
-	public partial class HelloWorld : System.Web.UI.Page
+	/// <summary>
+	/// A simple example showing how to say Hello World to a user.
+	/// </summary>
+    public partial class HelloWorld : Page
 	{
-		
 		public void Page_Load (object sender, EventArgs args)
 		{
             // Create a new instance of the Tropo object.

@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Web.UI;
 using TropoCSharp.Structs;
 using TropoCSharp.Tropo;
 
 namespace TropoSample
 {
-    public partial class GetZipCode : System.Web.UI.Page
+    /// <summary>
+    /// An example showing how to collect input from a caller.
+    /// </summary>
+    public partial class GetZipCode : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -14,8 +18,8 @@ namespace TropoSample
             // Set the grammar to use when collecting input.
             Choices choices = new Choices("[5 DIGITS]");
             
-            // Create an event handler for when the input collection is finished.
-            On on = new On(Event.Continue, "http://thisisafakeurl.com/post", new Say("Please hold."));
+            // Create an event handler for when the input collection is finished. Tropo will POST Result object JSON.
+            On on = new On(Event.Continue, "http://my-web-application-url/post", new Say("Please hold."));
 
             // Call the ask method of the Tropo object and pass in values. 
             tropo.Ask(3, false, choices, null, "zip", true, new Say("Please enter your 5 digit zip code"), 5);

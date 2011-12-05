@@ -95,6 +95,9 @@
         public const string UsEnglishFemale_Susan = "Susan";
         public const string UsEnglishFemale_Vanessa = "Vanessa";
         public const string UsEnglishFemale_Veronica = "Veronica";
+        public const string UsEnglishMale_Dave = "Dave";
+        public const string UsEnglishMale_Steven = "Steven";
+        public const string UsEnglishMale_Victor = "Victor";
         public const string BritishEnglishFemale_Elizabeth = "Elizabeth";
         public const string BritishEnglishFemale_Kate = "Kate";
         public const string BritishEnglishMale = "Simon";

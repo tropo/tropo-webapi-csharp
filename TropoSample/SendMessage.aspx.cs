@@ -9,6 +9,9 @@ using System.Collections.Generic;
 
 namespace TropoSample
 {
+    /// <summary>
+    /// An example showing how to call multiple numbers at once and play a message to the user that answers first.
+    /// </summary>
     public partial class SendMessage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -17,10 +20,10 @@ namespace TropoSample
             Tropo tropo = new Tropo();
 
             // Set the voice to use when saying a prompt.
-            tropo.Voice = Voice.UsEnglishMale;
+            tropo.Voice = Voice.UsEnglishMale_Steven;
 
             // A prompt to give the say to the recipient.
-            Say say = new Say("Remember you have a meeting at 2 PM");
+            Say say = new Say("This is a reminder call. Remember, you have a meeting at 2 PM");
             
             // An ArrayList to hold the numbers to call (first call answered hears the prompt).
             List<String> to = new List<String>();

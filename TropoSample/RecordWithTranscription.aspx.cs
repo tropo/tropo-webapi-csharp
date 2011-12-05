@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Web.UI;
 using TropoCSharp.Structs;
 using TropoCSharp.Tropo;
 
 namespace TropoSample
 {
-    public partial class RecordWithTranscription : System.Web.UI.Page
+    /// <summary>
+    /// A simple example showing how to make a recording with transcription.
+    /// </summary>
+    public partial class RecordWithTranscription : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

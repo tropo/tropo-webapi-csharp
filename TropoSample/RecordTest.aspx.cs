@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Web.UI;
 using TropoCSharp.Structs;
 using TropoCSharp.Tropo;
 
 namespace TropoSample
 {
-    public partial class RecordTest : System.Web.UI.Page
+    /// <summary>
+    /// A simple example showing how to make a recording.
+    /// </summary>
+    public partial class RecordTest : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -12,7 +16,7 @@ namespace TropoSample
             Tropo tropo = new Tropo();
 
             // Set the voice property.
-            tropo.Voice = Voice.UsEnglishMale;
+            tropo.Voice = Voice.UsEnglishMale_Steven;
 
             Say say = new Say("Please record your 45 second message after the beep, press pound when complete.");
 

@@ -52,10 +52,8 @@
     <Content Include="SendMessage.aspx" />
     <Content Include="TropoResult.aspx" />
     <Content Include="TropoSession.aspx" />
-    <Content Include="TropoSessionCreate.aspx" />
     <Content Include="web.config" />
     <Content Include="HelloWorld.aspx" />
-    <Content Include="CreateSession.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AskTest.aspx.cs">
@@ -99,17 +97,6 @@
     </Compile>
     <Compile Include="TropoSession.aspx.cs">
       <DependentUpon>TropoSession.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CreateSession.aspx.cs">
-      <DependentUpon>CreateSession.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CreateSession.aspx.designer.cs">
-      <DependentUpon>CreateSession.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TropoSessionCreate.aspx.cs">
-      <DependentUpon>TropoSessionCreate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
   </ItemGroup>

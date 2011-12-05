@@ -7,6 +7,11 @@ using TropoCSharp.Tropo;
 
 namespace OutboundTest
 {
+    /// <summary>
+    /// A simple console appplication used to launch a Tropo Session and send an outbound SMS.
+    /// Note - use in conjnction withe the OutboundSMS.aspx example in the TropoSamples project.
+    /// For further information, see http://blog.tropo.com/2011/04/14/sending-outbound-sms-with-c/
+    /// </summary>
     class Program
     {
         static void Main(string[] args)

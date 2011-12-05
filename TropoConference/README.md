@@ -3,7 +3,7 @@
 
 This WebAPI conference example has three components.
 
-1. The conference dialog. This is the JSON dialog that holds instructions for Tropo to create the conference. You can use the CreateConference.aspx sample in the TropoSamples directory for this.
+1. The conference dialog. This is the JSON dialog that holds instructions for Tropo to create the conference. You can use the Conference.aspx sample in the TropoSamples directory for this.
 2. The Program.cs console application.
 3. A very simple JavaScript file containing a prompt to play to the conference attendees.
 

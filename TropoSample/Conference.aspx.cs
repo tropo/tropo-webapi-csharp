@@ -1,23 +1,21 @@
 ﻿using System;
-using TropoCSharp.Tropo;
 using System.IO;
+using System.Web.UI;
+using TropoCSharp.Tropo;
 
 namespace TropoSamples
 {
-    public partial class Conference : System.Web.UI.Page
+    /// <summary>
+    /// A simple example demonstrating how to place an outbound call and create a conference.
+    /// </summary>
+    public partial class Conference : Page
     {
-        // A helper method to get the JSON submitted from Tropo.
-        private string GetJSON(StreamReader reader)
-        {
-            return reader.ReadToEnd();
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            using (StreamReader sr = new StreamReader(Request.InputStream))
+            using (StreamReader reader = new StreamReader(Request.InputStream))
             {
                 // Get the JSON submitted from Tropo.
-                string sessionJSON = GetJSON(sr);
+                string sessionJSON = TropoUtilities.parseJSON(reader);
 
                 // Create a new Session object and pass in the JSON submitted from Tropo.
                 Session tropoSession = new Session(sessionJSON);

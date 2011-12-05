@@ -63,15 +63,17 @@ namespace TropoCSharp.Tropo
         /// Overload method for Ask that allows events to be set via allowSignals.
         /// </summary>
         /// <param name="attempts">How many times the caller can attempt input before an error is thrown.</param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
         /// <param name="bargein">Should the user be allowed to barge in before TTS is complete?</param>
+        /// <param name="interdigitTimeout">Defines how long to wait - in seconds - between key presses to determine the user has stopped entering input.</param>
         /// <param name="choices">The grammar to use in recognizing and validating input</param>
         /// <param name="minConfidence">How confident should Tropo be in a speech reco match?</param>
         /// <param name="name">Identifies the return value of an Ask, so you know the context for the returned information.</param>
+        /// <param name="recognizer">Tells Tropo what language to listen for</param>
         /// <param name="required">Is input required here?</param>
         /// <param name="say">This determines what is played or sent to the caller.</param>
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
-        /// <param name="events">??</param>
-        public void Ask(int? attempts, Array allowSignals, bool? bargein, Choices choices, int? minConfidence, string name, bool? required, Say say, float? timeout)
+        public void Ask(int? attempts, Array allowSignals, bool? bargein, int? interdigitTimeout, Choices choices, int? minConfidence, string name, string recognizer, bool? required, Say say, float? timeout)
         {
             Ask ask = new Ask();
             ask.Attempts = attempts;
@@ -101,7 +103,7 @@ namespace TropoCSharp.Tropo
         /// Places a call or sends an an IM, Twitter, or SMS message. To start a call, use the Session API to tell Tropo to launch your code.
         /// </summary>
         /// <param name="to">The party(ies)to call.</param>
-        /// <param name="from">An Endpoint object representing who the call is from.</param>
+        /// <param name="from">A string representing who the call is from.</param>
         /// <param name="network">Network is used mainly by the text channels; values can be SMS when sending a text message, or a valid IM network name such as AIM, MSN, JABBER, YAHOO and GTALK.</param>
         /// <param name="channel">This defines the channel used to place new calls.</param>
         /// <param name="answerOnMedia">If this is set to true, the call will be considered "answered" and audio will begin playing as soon as media is received from the far end </param>
@@ -127,7 +129,7 @@ namespace TropoCSharp.Tropo
         /// Overload for Call that allows the To parameter to be passed as a String.
         /// </summary>
         /// <param name="to">A String containing the recipient to call.</param>
-        /// <param name="from">An Endpoint object representing who the call is from.</param>
+        /// <param name="from">A string representing who the call is from.</param>
         /// <param name="network">Network is used mainly by the text channels; values can be SMS when sending a text message, or a valid IM network name such as AIM, MSN, JABBER, YAHOO and GTALK.</param>
         /// <param name="channel">This defines the channel used to place new calls.</param>
         /// <param name="answerOnMedia">If this is set to true, the call will be considered "answered" and audio will begin playing as soon as media is received from the far end.</param>
@@ -155,7 +157,7 @@ namespace TropoCSharp.Tropo
         /// Overload for Call that allows events to be set via allowSignals.
         /// </summary>
         /// <param name="to"></param>
-        /// <param name="allowSignals"></param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
         /// <param name="from"></param>
         /// <param name="network"></param>
         /// <param name="channel"></param>
@@ -237,7 +239,7 @@ namespace TropoCSharp.Tropo
         /// Overload for Conference that allows events to be set via allowSignals.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="allowSignals"></param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
         /// <param name="mute"></param>
         /// <param name="name"></param>
         /// <param name="playTones"></param>
@@ -283,7 +285,7 @@ namespace TropoCSharp.Tropo
         /// <param name="to">The destination to make a call to or send a message to.</param>
         /// <param name="answerOnMedia">If this is set to true, the call will be considered "answered" and audio will begin playing as soon as media is received from the far end.</param>
         /// <param name="channel">This defines the channel used to place new calls.</param>
-        /// <param name="from">An Endpoint object representing who the call is from.</param>
+        /// <param name="from">A string representing who the call is from.</param>
         /// <param name="name">Identifies the return value of a Message, so you know the context for the returned information.</param>
         /// <param name="network">Network is used mainly by the text channels; values can be SMS when sending a text message, or a valid IM network name such as AIM, MSN, JABBER, YAHOO and GTALK.</param>
         /// <param name="required">Determines whether Tropo should move on to the next action.</param>
@@ -426,7 +428,7 @@ namespace TropoCSharp.Tropo
         /// Overload for Record that allows events to be set via allowSignals.
         /// </summary>
         /// <param name="attempts"></param>
-        /// <param name="allowSignals"></param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
         /// <param name="bargein"></param>
         /// <param name="beep"></param>
         /// <param name="choices"></param>
@@ -535,7 +537,7 @@ namespace TropoCSharp.Tropo
         /// Overload for say that allows events to be set via allowSignals.
         /// </summary>
         /// <param name="value"></param>
-        /// <param name="allowSignals"></param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
         /// <param name="as"></param>
         /// <param name="name"></param>
         /// <param name="required"></param>
@@ -639,7 +641,7 @@ namespace TropoCSharp.Tropo
         /// </summary>
         /// <param name="answerOnMedia">If this is set to true, the call will be considered "answered" and audio will begin playing as soon as media is received from the far end.</param>
         /// <param name="choices">The grammar to use in recognizing and validating input.</param>
-        /// <param name="from">An Endpoint object representing who the call is from.</param>
+        /// <param name="from">A string representing who the call is from.</param>
         /// <param name="on">An On object.</param>
         /// <param name="ringRepeat">The number of rings to allow on the outbound call attempt.</param>
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
@@ -661,6 +663,7 @@ namespace TropoCSharp.Tropo
         /// Overload for Transfer that allows events to be set via allowSignals.
         /// </summary>
         /// <param name="answerOnMedia"></param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
         /// <param name="choices"></param>
         /// <param name="from"></param>
         /// <param name="on"></param>

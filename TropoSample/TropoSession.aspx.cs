@@ -2,45 +2,50 @@
 using System.IO;
 using Newtonsoft.Json;
 using TropoCSharp.Tropo;
+using System.Web.UI;
 
 namespace TropoSamples
 {
-    public partial class TropoSession : System.Web.UI.Page
+    /// <summary>
+    /// A simple example showing how to access properties of the Session object.
+    /// </summary>
+    public partial class TropoSession : Page
     {
-        // A helper method to get the JSON submitted from Tropo.
-        private string GetJSON(StreamReader reader)
-        {
-            return reader.ReadToEnd();
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            using (StreamReader sr = new StreamReader(Request.InputStream))
+            using (StreamReader reader = new StreamReader(Request.InputStream))
             {
                 // Get the JSON submitted from Tropo.
-                string sessionJSON = GetJSON(sr);
+                string sessionJSON = TropoUtilities.parseJSON(reader);
+
+                // Create a new instance of the Tropo class.
+                Tropo tropo = new Tropo();
 
                 try
                 {
                     // Create a new Session object and pass in the JSON submitted from Tropo.
                     Session tropoSession = new Session(sessionJSON);
 
-                    // A simple example showing how to access properties of the Session object.
-                    Response.Write("ID:  " + tropoSession.Id + "\n");
-                    Response.Write("To-Channel: " + tropoSession.To.Channel+ "\n");
-                    Response.Write("From-Channel: " + tropoSession.From.Channel+ "\n");
-                    Response.Write("Initial Text: " + tropoSession.InitialText + "\n");
-                    Response.Write("Headers-From: " + tropoSession.Headers["From"]);
+                    tropo.Say("The Tropo Session ID is " + tropoSession.Id);
+                    tropo.Say("The channnel of the called party is " + tropoSession.To.Channel);
+                    tropo.Say("The channel of the calling party is " + tropoSession.From.Channel);
+                    tropo.Say("This initial text sent with the call is " + tropoSession.InitialText);
+                    tropo.Say("The From SIP header on the call is " + TropoUtilities.removeQuotes(tropoSession.Headers["From"]));
                 }
 
-                catch (JsonReaderException ex)
+                catch (JsonReaderException)
                 {
-                    Response.Write("An error occured. " + ex.Message);
+                    tropo.Say("Sorry, an error occured. I choked on some JSON");
                 }
 
                 catch (Exception ex)
                 {
-                    Response.Write("An error occured. " + ex.Message);
+                    tropo.Say("Sorry, an error occured. " + ex.Message);
+                }
+
+                finally
+                {
+                    Response.Write(tropo.RenderJSON());
                 }
             }
         }

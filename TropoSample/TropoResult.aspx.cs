@@ -1,50 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.IO;
-using TropoCSharp.Tropo;
+using System.Web.UI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using TropoCSharp.Tropo;
 
 namespace TropoSamples
 {
-    public partial class TropoResult : System.Web.UI.Page
+    /// <summary>
+    /// An example of how to receive and process the Tropo Result object.
+    /// </summary>
+    public partial class TropoResult : Page
     {
-        // A helper method to get the JSON submitted from Tropo.
-        private string GetJSON(StreamReader reader)
-        {
-            return reader.ReadToEnd();
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            using (StreamReader sr = new StreamReader(Request.InputStream))
+            using (StreamReader reader = new StreamReader(Request.InputStream))
             {               
                 // Get the JSON submitted from Tropo. 
-                string resultJSON = GetJSON(sr);
+                string resultJSON = TropoUtilities.parseJSON(reader);
+
+                // Create a new instance of the Tropo class.
+                Tropo tropo = new Tropo();
 
                 try
                 {
                     // Create a new Result object and pass in the JSON submitted from Tropo.
                     Result tropoResult = new Result(resultJSON);
 
+                    // Get Actions container and parse.
+                    JContainer Actions = TropoUtilities.parseActions(tropoResult.Actions);
+
                     // A simple example showing how to access properties of the Result object.
-                    Response.Write("State:  " + tropoResult.State + "\n");
-                    Response.Write("Sequence:  " + tropoResult.Sequence + "\n");
-                    Response.Write("SessionId:  " + tropoResult.SessionId + "\n");
-                    Response.Write("Value: " + tropoResult.Actions["value"] + "\n");
+                    tropo.Say("The State of the current session is " + tropoResult.State);
+                    tropo.Say("The Sequence of this Result payload is " + tropoResult.Sequence);
+                    tropo.Say("The session ID for the current session is is " + TropoUtilities.addSpaces(tropoResult.SessionId));
+                    tropo.Say("The value selected by the caller is " + TropoUtilities.removeQuotes(Actions["value"].ToString()));
                 }
 
-                catch (JsonReaderException ex)
+                catch (JsonReaderException)
                 {
-                    Response.Write("An error occured. " + ex.Message);
+                    tropo.Say("Sorry, an error occured. I choked on some JSON");
                 }
 
                 catch (Exception ex)
                 {
-                    Response.Write("An error occured. " + ex.Message);
+                    tropo.Say("Sorry, an error occured. " + ex.Message);
+                }
+
+                finally
+                {
+                    Response.Write(tropo.RenderJSON());
                 }
             }
         }
