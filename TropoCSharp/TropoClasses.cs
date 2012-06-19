@@ -21,7 +21,7 @@ namespace TropoCSharp.Tropo
         public bool? Bargein { get; set; }
 
         [JsonProperty(PropertyName = "interdigitTimeout")]
-        public bool? InterdigitTimeout { get; set; }
+        public int? InterdigitTimeout { get; set; }
 
         [JsonProperty(PropertyName = "minConfidence")]
         public int? MinConfidence { get; set; }
