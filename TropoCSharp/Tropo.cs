@@ -80,11 +80,51 @@ namespace TropoCSharp.Tropo
             ask.allowSignals = allowSignals;
             ask.Bargein = bargein;
             ask.Choices = choices;
+            ask.InterdigitTimeout = interdigitTimeout;
             ask.MinConfidence = minConfidence;
             ask.Name = name;
             ask.Required = required;
             ask.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
             ask.Say = say;
+            ask.Timeout = timeout;
+
+            Serialize(ask, "ask");
+        }
+        
+        /// <summary>
+        /// Overload method for Ask that allows all events.
+        /// </summary>
+        /// <param name="attempts">How many times the caller can attempt input before an error is thrown.</param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
+        /// <param name="bargein">Should the user be allowed to barge in before TTS is complete?</param>
+        /// <param name="interdigitTimeout">Defines how long to wait - in seconds - between key presses to determine the user has stopped entering input.</param>
+        /// <param name="choices">The grammar to use in recognizing and validating input</param>
+        /// <param name="minConfidence">How confident should Tropo be in a speech reco match?</param>
+        /// <param name="name">Identifies the return value of an Ask, so you know the context for the returned information.</param>
+        /// <param name="recognizer">Tells Tropo what language to listen for</param>
+        /// <param name="required">Is input required here?</param>
+        /// <param name="say">This determines what is played or sent to the caller.</param>
+        /// <param name="sensitivity">Set the sensitivity for the ask's input</param>
+        /// <param name="speechCompleteTimeout">Set a timeout to wait for input after an input has been accepted</param>
+        /// <param name="speechIncompleteTimeout">Set a timeout to wait for input after an incomplete input has been accepted</param>
+        /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
+        public void Ask(int? attempts, Array allowSignals, bool? bargein, int? interdigitTimeout, Choices choices, int? minConfidence, string name, string recognizer, bool? required, Say say, int? sensitivity, float? speechCompleteTimeout, float? speechIncompleteTimeout, float? timeout)
+        {
+            Ask ask = new Ask();
+            ask.Attempts = attempts;
+            ask.allowSignals = allowSignals;
+            ask.Bargein = bargein;
+            ask.Choices = choices;
+            ask.InterdigitTimeout = interdigitTimeout;
+            ask.MinConfidence = minConfidence;
+            ask.Name = name;
+            ask.Recognizer = recognizer;
+            ask.Required = required;
+            ask.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
+            ask.Say = say;
+            ask.Sensitivity = sensitivity;
+            ask.SpeechCompleteTimeout = speechCompleteTimeout;
+            ask.SpeechIncompleteTimeout = speechIncompleteTimeout;
             ask.Timeout = timeout;
 
             Serialize(ask, "ask");

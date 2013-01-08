@@ -40,6 +40,15 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "say")]
         public Say Say { get; set; }
+        
+        [JsonProperty(PropertyName = "sensitivity")]
+        public int? Sensitivity { get; set; }
+
+        [JsonProperty(PropertyName = "speechCompleteTimeout")]
+        public float? SpeechCompleteTimeout { get; set; }
+
+        [JsonProperty(PropertyName = "speechIncompleteTimeout")]
+        public float? SpeechIncompleteTimeout { get; set; }
 
         [JsonProperty(PropertyName = "timeout")]
         public float? Timeout { get; set; }
