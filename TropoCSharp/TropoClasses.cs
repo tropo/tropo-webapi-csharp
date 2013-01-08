@@ -40,6 +40,15 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "say")]
         public Say Say { get; set; }
+        
+        [JsonProperty(PropertyName = "sensitivity")]
+        public int? Sensitivity { get; set; }
+
+        [JsonProperty(PropertyName = "speechCompleteTimeout")]
+        public float? SpeechCompleteTimeout { get; set; }
+
+        [JsonProperty(PropertyName = "speechIncompleteTimeout")]
+        public float? SpeechIncompleteTimeout { get; set; }
 
         [JsonProperty(PropertyName = "timeout")]
         public float? Timeout { get; set; }
@@ -153,6 +162,9 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "allowSignals")]
         public Array allowSignals { get; set; }
+        
+        [JsonProperty(PropertyName = "interdigitTimeout")]
+        public int? InterdigitTimeout { get; set; }
 
         [JsonProperty(PropertyName = "mute")]
         public bool? Mute { get; set; }
@@ -278,6 +290,9 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "format")]
         public string Format { get; set; }
+        
+        [JsonProperty(PropertyName = "interdigitTimeout")]
+        public int? InterdigitTimeout { get; set; }
 
         [JsonProperty(PropertyName = "maxSilence")]
         public float? MaxSilence { get; set; }
@@ -405,6 +420,15 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "password")]
         public string Password { get; set; }
+        
+        [JsonProperty(PropertyName = "transcriptionID")]
+        public string TranscriptionID { get; set; }
+        
+        [JsonProperty(PropertyName = "transcriptionEmailFormat")]
+        public string TranscriptionEmailFormat { get; set; }
+        
+        [JsonProperty(PropertyName = "transcriptionOutURI")]
+        public string TranscriptionOutURI { get; set; }
 
         public StartRecording()
         {
@@ -449,7 +473,7 @@ namespace TropoCSharp.Tropo
         }
     }
 
-    /// <summary>
+   /// <summary>
     /// This will transfer an already answered call to another destination / phone number. 
     /// </summary>
     public class Transfer : TropoBase
@@ -471,6 +495,9 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "headers")]
         public IDictionary<String, String> Headers { get; set; }
+        
+        [JsonProperty(PropertyName = "interdigitTimeout")]
+        public int? InterdigitTimeout { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
@@ -491,6 +518,22 @@ namespace TropoCSharp.Tropo
         {
         }
     }
+    
+    /// <summary>
+     /// This will make the thread sleep in milliseconds 
+     /// </summary>
+     public class Wait : TropoBase
+     {
+         [JsonProperty(PropertyName = "milliseconds")]
+         public int? Milliseconds { get; set; }
+
+         [JsonProperty(PropertyName = "allowSignals")]
+         public Array AllowSignals { get; set; }
+
+         public Wait()
+         {
+         }
+     }
 
     /// <summary>
     /// Defnies an endoint for transfer and redirects.
