@@ -83,6 +83,7 @@ namespace TropoCSharp.Tropo
             ask.InterdigitTimeout = interdigitTimeout;
             ask.MinConfidence = minConfidence;
             ask.Name = name;
+            ask.Recognizer = recognizer;
             ask.Required = required;
             ask.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
             ask.Say = say;
