@@ -290,6 +290,9 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "format")]
         public string Format { get; set; }
+        
+        [JsonProperty(PropertyName = "interdigitTimeout")]
+        public int? InterdigitTimeout { get; set; }
 
         [JsonProperty(PropertyName = "maxSilence")]
         public float? MaxSilence { get; set; }

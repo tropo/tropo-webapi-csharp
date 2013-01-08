@@ -531,6 +531,49 @@ namespace TropoCSharp.Tropo
 
             Serialize(record, "record");
         }
+        
+        /// <summary>
+        /// Overload for Record that allows all events
+        /// </summary>
+        /// <param name="attempts">How many times the caller can attempt input before an error is thrown.</param>
+        /// <param name="bargein">Should the user be allowed to barge in before TTS is complete?</param>
+        /// <param name="beep">When set to true, callers will hear a tone indicating the recording has begun.</param>
+        /// <param name="choices">The grammar to use in recognizing and validating input.</param>
+        /// <param name="format">This specifies the format for the audio recording.</param>
+        /// <param name="interdigitTimeout">Defines how long to wait - in seconds - between key presses to determine the user has stopped entering input.</param>
+        /// <param name="maxSilence">The maximum amount of time, in seconds, to wait for silence after a user stops speaking.</param>
+        /// <param name="maxTime">The maximum amount of time, in seconds, the user is allotted for input.</param>
+        /// <param name="method">This defines how you want to send the audio file.</param>
+        /// <param name="password">This identifies the FTP account password.</param>
+        /// <param name="required">Determines whether Tropo should move on to the next action.</param>
+        /// <param name="say">This determines what is played or sent to the caller.</param>
+        /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
+        /// <param name="transcription">This allows you to submit a recording to be transcribed and specifies where to send the transcription.</param>
+        /// <param name="username">This identifies the FTP account username.</param>
+        /// <param name="url">This is the destination URL to send the recording.</param>
+        public void Record(int? attempts, Array allowSignals, bool? bargein, bool? beep, Choices choices, string format, int? interdigitTimeout, float? maxSilence, float? maxTime, string method, string password, bool? required, Say say, float? timeout, Transcription transcription, string username, string url)
+        {
+            Record record = new Record();
+            record.Attempts = attempts;
+            record.allowSignals = allowSignals;
+            record.Bargein = bargein;
+            record.Beep = beep;
+            record.Choices = choices;
+            record.Format = format;
+            record.InterdigitTimeout = interdigitTimeout;
+            record.MaxSilence = maxSilence;
+            record.MaxTime = maxTime;
+            record.Method = method;
+            record.Password = password;
+            record.Required = required;
+            record.Say = say;
+            record.Timeout = timeout;
+            record.Transcription = transcription;
+            record.Url = url;
+            record.Username = username;
+
+            Serialize(record, "record");
+        }
 
         /// <summary>
         /// Overload for Record that allows a Record object to be passed.
