@@ -495,6 +495,9 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "headers")]
         public IDictionary<String, String> Headers { get; set; }
+        
+        [JsonProperty(PropertyName = "interdigitTimeout")]
+        public int? InterdigitTimeout { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }

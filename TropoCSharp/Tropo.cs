@@ -818,6 +818,31 @@ namespace TropoCSharp.Tropo
 
             Serialize(transfer, "transfer");
         }
+        
+        /// <summary>
+        /// Overload for Transfer that allows events to be set via allowSignals.
+        /// </summary>
+        /// <param name="answerOnMedia"></param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
+        /// <param name="choices"></param>
+        /// <param name="from"></param>
+        /// <param name="on"></param>
+        /// <param name="timeout"></param>
+        /// <param name="to"></param>
+        public void Transfer(bool? answerOnMedia, Array allowSignals, Choices choices, string from, int? interdigitTimeout,  On on, float? timeout, IEnumerable<String> to)
+        {
+            Transfer transfer = new Transfer();
+            transfer.AnswerOnMedia = answerOnMedia;
+            transfer.allowSignals = allowSignals;
+            transfer.Choices = choices;
+            transfer.From = from;
+            transfer.InterdigitTimeout = interdigitTimeout;
+            transfer.On = on;
+            transfer.Timeout = timeout;
+            transfer.To = to;
+
+            Serialize(transfer, "transfer");
+        }
 
         /// <summary>
         /// Overload for Transfer that allows a Transfer object to be passed directly.
