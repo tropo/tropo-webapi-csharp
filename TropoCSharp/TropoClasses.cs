@@ -162,6 +162,9 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "allowSignals")]
         public Array allowSignals { get; set; }
+        
+        [JsonProperty(PropertyName = "interdigitTimeout")]
+        public int? InterdigitTimeout { get; set; }
 
         [JsonProperty(PropertyName = "mute")]
         public bool? Mute { get; set; }
