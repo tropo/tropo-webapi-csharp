@@ -420,6 +420,15 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "password")]
         public string Password { get; set; }
+        
+        [JsonProperty(PropertyName = "transcriptionID")]
+        public string TranscriptionID { get; set; }
+        
+        [JsonProperty(PropertyName = "transcriptionEmailFormat")]
+        public string TranscriptionEmailFormat { get; set; }
+        
+        [JsonProperty(PropertyName = "transcriptionOutURI")]
+        public string TranscriptionOutURI { get; set; }
 
         public StartRecording()
         {
