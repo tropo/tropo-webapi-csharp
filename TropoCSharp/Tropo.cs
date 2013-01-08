@@ -861,7 +861,7 @@ namespace TropoCSharp.Tropo
         public void Wait(int? milliseconds)
         {
             Wait wait = new Wait();
-            wait.milliseconds = millseconds;
+            wait.Milliseconds = milliseconds;
           
             Serialize(wait, "wait");
         }
@@ -874,7 +874,7 @@ namespace TropoCSharp.Tropo
         public void Wait(int? milliseconds, Array allowSignals)
         {
             Wait wait = new Wait();
-            wait.Milliseconds = millseconds;
+            wait.Milliseconds = milliseconds;
             wait.AllowSignals = allowSignals;
           
             Serialize(wait, "wait");
@@ -886,17 +886,9 @@ namespace TropoCSharp.Tropo
         /// <param name="transfer">Sleep in milliseconds</param>
         public void Wait(Wait wait)
         {
-            Transfer(wait.Milliseconds, wait.AllowSignals);
+            Wait(wait.Milliseconds, wait.AllowSignals);
         }
 
-        /// <summary>
-        /// Overload for Wait that allows a Wait object to be passed directly.
-        /// </summary>
-        /// <param name="transfer">Sleep in milliseconds</param>
-        public void Wait(Wait wait)
-        {
-            Transfer(wait.Milliseconds, wait.AllowSignals);
-        }
         /// <summary>
         /// Method to serialize Tropo action objects and add to the base Tropo object.
         /// </summary>
