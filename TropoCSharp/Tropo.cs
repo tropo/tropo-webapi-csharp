@@ -853,6 +853,50 @@ namespace TropoCSharp.Tropo
             Transfer(transfer.AnswerOnMedia, transfer.Choices, transfer.From, transfer.On, transfer.Timeout, transfer.To);
         }
 
+
+        /// <summary>
+        /// Overload for Wait that allows the thread to sleep in milliseconds
+        /// </summary>
+        /// <param name="milliseconds">Sleep in milliseconds</param>
+        public void Wait(int? milliseconds)
+        {
+            Wait wait = new Wait();
+            wait.milliseconds = millseconds;
+          
+            Serialize(wait, "wait");
+        }
+        
+        /// <summary>
+        /// Overload for Wait that allows the thread to sleep in milliseconds
+        /// </summary>
+        /// <param name="milliseconds">Sleep in milliseconds</param>
+        /// <param name="milliseconds">Allows for the assignment of an interruptable signal for this Tropo function</param>
+        public void Wait(int? milliseconds, Array allowSignals)
+        {
+            Wait wait = new Wait();
+            wait.Milliseconds = millseconds;
+            wait.AllowSignals = allowSignals;
+          
+            Serialize(wait, "wait");
+        }
+        
+        /// <summary>
+        /// Overload for Wait that allows a Wait object to be passed directly.
+        /// </summary>
+        /// <param name="transfer">Sleep in milliseconds</param>
+        public void Wait(Wait wait)
+        {
+            Transfer(wait.Milliseconds, wait.AllowSignals);
+        }
+
+        /// <summary>
+        /// Overload for Wait that allows a Wait object to be passed directly.
+        /// </summary>
+        /// <param name="transfer">Sleep in milliseconds</param>
+        public void Wait(Wait wait)
+        {
+            Transfer(wait.Milliseconds, wait.AllowSignals);
+        }
         /// <summary>
         /// Method to serialize Tropo action objects and add to the base Tropo object.
         /// </summary>

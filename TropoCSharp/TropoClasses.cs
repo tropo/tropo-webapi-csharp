@@ -473,7 +473,7 @@ namespace TropoCSharp.Tropo
         }
     }
 
-    /// <summary>
+   /// <summary>
     /// This will transfer an already answered call to another destination / phone number. 
     /// </summary>
     public class Transfer : TropoBase
@@ -518,6 +518,22 @@ namespace TropoCSharp.Tropo
         {
         }
     }
+    
+    /// <summary>
+     /// This will make the thread sleep in milliseconds 
+     /// </summary>
+     public class Wait : TropoBase
+     {
+         [JsonProperty(PropertyName = "milliseconds")]
+         public int? Milliseconds { get; set; }
+
+         [JsonProperty(PropertyName = "allowSignals")]
+         public Array AllowSignals { get; set; }
+
+         public Wait()
+         {
+         }
+     }
 
     /// <summary>
     /// Defnies an endoint for transfer and redirects.
