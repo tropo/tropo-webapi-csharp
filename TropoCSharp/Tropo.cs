@@ -80,11 +80,52 @@ namespace TropoCSharp.Tropo
             ask.allowSignals = allowSignals;
             ask.Bargein = bargein;
             ask.Choices = choices;
+            ask.InterdigitTimeout = interdigitTimeout;
             ask.MinConfidence = minConfidence;
             ask.Name = name;
+            ask.Recognizer = recognizer;
             ask.Required = required;
             ask.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
             ask.Say = say;
+            ask.Timeout = timeout;
+
+            Serialize(ask, "ask");
+        }
+        
+        /// <summary>
+        /// Overload method for Ask that allows all events.
+        /// </summary>
+        /// <param name="attempts">How many times the caller can attempt input before an error is thrown.</param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
+        /// <param name="bargein">Should the user be allowed to barge in before TTS is complete?</param>
+        /// <param name="interdigitTimeout">Defines how long to wait - in seconds - between key presses to determine the user has stopped entering input.</param>
+        /// <param name="choices">The grammar to use in recognizing and validating input</param>
+        /// <param name="minConfidence">How confident should Tropo be in a speech reco match?</param>
+        /// <param name="name">Identifies the return value of an Ask, so you know the context for the returned information.</param>
+        /// <param name="recognizer">Tells Tropo what language to listen for</param>
+        /// <param name="required">Is input required here?</param>
+        /// <param name="say">This determines what is played or sent to the caller.</param>
+        /// <param name="sensitivity">Set the sensitivity for the ask's input</param>
+        /// <param name="speechCompleteTimeout">Set a timeout to wait for input after an input has been accepted</param>
+        /// <param name="speechIncompleteTimeout">Set a timeout to wait for input after an incomplete input has been accepted</param>
+        /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
+        public void Ask(int? attempts, Array allowSignals, bool? bargein, int? interdigitTimeout, Choices choices, int? minConfidence, string name, string recognizer, bool? required, Say say, int? sensitivity, float? speechCompleteTimeout, float? speechIncompleteTimeout, float? timeout)
+        {
+            Ask ask = new Ask();
+            ask.Attempts = attempts;
+            ask.allowSignals = allowSignals;
+            ask.Bargein = bargein;
+            ask.Choices = choices;
+            ask.InterdigitTimeout = interdigitTimeout;
+            ask.MinConfidence = minConfidence;
+            ask.Name = name;
+            ask.Recognizer = recognizer;
+            ask.Required = required;
+            ask.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
+            ask.Say = say;
+            ask.Sensitivity = sensitivity;
+            ask.SpeechCompleteTimeout = speechCompleteTimeout;
+            ask.SpeechIncompleteTimeout = speechIncompleteTimeout;
             ask.Timeout = timeout;
 
             Serialize(ask, "ask");
@@ -250,6 +291,32 @@ namespace TropoCSharp.Tropo
             Conference conference = new Conference();
             conference.Id = id;
             conference.allowSignals = allowSignals;
+            conference.Mute = mute;
+            conference.Name = name;
+            conference.PlayTones = playTones;
+            conference.Required = required;
+            conference.Terminator = terminator;
+
+            Serialize(conference, "conference");
+        }
+        
+        /// <summary>
+        /// Overload for Conference that allows all events
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
+        /// <param name="interdigitTimeout">Defines how long to wait - in seconds - between key presses to determine the user has stopped entering input.</param>
+        /// <param name="mute"></param>
+        /// <param name="name"></param>
+        /// <param name="playTones"></param>
+        /// <param name="required"></param>
+        /// <param name="terminator"></param>
+        public void Conference(string id, Array allowSignals, int? interdigitTimeout, bool? mute, string name, bool? playTones, bool? required, string terminator)
+        {
+            Conference conference = new Conference();
+            conference.Id = id;
+            conference.allowSignals = allowSignals;
+            conference.InterdigitTimeout = interdigitTimeout;
             conference.Mute = mute;
             conference.Name = name;
             conference.PlayTones = playTones;
@@ -465,6 +532,49 @@ namespace TropoCSharp.Tropo
 
             Serialize(record, "record");
         }
+        
+        /// <summary>
+        /// Overload for Record that allows all events
+        /// </summary>
+        /// <param name="attempts">How many times the caller can attempt input before an error is thrown.</param>
+        /// <param name="bargein">Should the user be allowed to barge in before TTS is complete?</param>
+        /// <param name="beep">When set to true, callers will hear a tone indicating the recording has begun.</param>
+        /// <param name="choices">The grammar to use in recognizing and validating input.</param>
+        /// <param name="format">This specifies the format for the audio recording.</param>
+        /// <param name="interdigitTimeout">Defines how long to wait - in seconds - between key presses to determine the user has stopped entering input.</param>
+        /// <param name="maxSilence">The maximum amount of time, in seconds, to wait for silence after a user stops speaking.</param>
+        /// <param name="maxTime">The maximum amount of time, in seconds, the user is allotted for input.</param>
+        /// <param name="method">This defines how you want to send the audio file.</param>
+        /// <param name="password">This identifies the FTP account password.</param>
+        /// <param name="required">Determines whether Tropo should move on to the next action.</param>
+        /// <param name="say">This determines what is played or sent to the caller.</param>
+        /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
+        /// <param name="transcription">This allows you to submit a recording to be transcribed and specifies where to send the transcription.</param>
+        /// <param name="username">This identifies the FTP account username.</param>
+        /// <param name="url">This is the destination URL to send the recording.</param>
+        public void Record(int? attempts, Array allowSignals, bool? bargein, bool? beep, Choices choices, string format, int? interdigitTimeout, float? maxSilence, float? maxTime, string method, string password, bool? required, Say say, float? timeout, Transcription transcription, string username, string url)
+        {
+            Record record = new Record();
+            record.Attempts = attempts;
+            record.allowSignals = allowSignals;
+            record.Bargein = bargein;
+            record.Beep = beep;
+            record.Choices = choices;
+            record.Format = format;
+            record.InterdigitTimeout = interdigitTimeout;
+            record.MaxSilence = maxSilence;
+            record.MaxTime = maxTime;
+            record.Method = method;
+            record.Password = password;
+            record.Required = required;
+            record.Say = say;
+            record.Timeout = timeout;
+            record.Transcription = transcription;
+            record.Url = url;
+            record.Username = username;
+
+            Serialize(record, "record");
+        }
 
         /// <summary>
         /// Overload for Record that allows a Record object to be passed.
@@ -616,6 +726,33 @@ namespace TropoCSharp.Tropo
 
             Serialize(startRecording, "startRecording");
         }
+        
+        /// <summary>
+        /// Allows Tropo applications to begin recording the current session.
+        /// The transcription of this recording is then sent via HTTP POST/Multipart Form.
+        /// </summary>
+        /// <param name="format">This specifies the format for the audio recording; it can be 'audio/wav' or 'audio/mp3'.</param>
+        /// <param name="method">This defines how you want to send the audio file.</param>
+        /// <param name="url">This is the destination URL to send the recording.</param>
+        /// <param name="username">This identifies the FTP account username.</param>
+        /// <param name="password">This identifies the FTP account password.</param>
+        /// <param name="transcriptionID">The value that's included with your transcription when it's sent to your URL. This allows you to keep track of transcriptions; accepts a string..</param>
+        /// <param name="transcriptionEmailFormat">The format of the email. Setting it as "encoded" will include a chunk of JSON in the email body or you can set it as "omit" to send as a human-readable message. It defaults to "omit", so unless you want JSON, this can be left out.</param>
+        /// <param name="transcriptionOutURI">The address this transcription will be POSTed to; use a mailto: url to have the transcription emailed.</param>
+        public void StartRecording(string format, string method, string url, string username, string password, string transcriptionID, string transcriptionEmailFormat, string transcriptionOutURI)
+        {
+            StartRecording startRecording = new StartRecording();
+            startRecording.Format = format;
+            startRecording.Method = method;
+            startRecording.Url = url;
+            startRecording.Username = username;
+            startRecording.Password = password;
+            startRecording.TranscriptionID = transcriptionID;
+            startRecording.TranscriptionEmailFormat = transcriptionEmailFormat;
+            startRecording.TranscriptionOutURI = transcriptionOutURI;
+
+            Serialize(startRecording, "startRecording");
+        }
 
         /// <summary>
         /// Overload for StartRecording that allows a a StartRecording object to be passed directly. 
@@ -682,6 +819,31 @@ namespace TropoCSharp.Tropo
 
             Serialize(transfer, "transfer");
         }
+        
+        /// <summary>
+        /// Overload for Transfer that allows events to be set via allowSignals.
+        /// </summary>
+        /// <param name="answerOnMedia"></param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
+        /// <param name="choices"></param>
+        /// <param name="from"></param>
+        /// <param name="on"></param>
+        /// <param name="timeout"></param>
+        /// <param name="to"></param>
+        public void Transfer(bool? answerOnMedia, Array allowSignals, Choices choices, string from, int? interdigitTimeout,  On on, float? timeout, IEnumerable<String> to)
+        {
+            Transfer transfer = new Transfer();
+            transfer.AnswerOnMedia = answerOnMedia;
+            transfer.allowSignals = allowSignals;
+            transfer.Choices = choices;
+            transfer.From = from;
+            transfer.InterdigitTimeout = interdigitTimeout;
+            transfer.On = on;
+            transfer.Timeout = timeout;
+            transfer.To = to;
+
+            Serialize(transfer, "transfer");
+        }
 
         /// <summary>
         /// Overload for Transfer that allows a Transfer object to be passed directly.
@@ -690,6 +852,42 @@ namespace TropoCSharp.Tropo
         public void Transfer(Transfer transfer)
         {
             Transfer(transfer.AnswerOnMedia, transfer.Choices, transfer.From, transfer.On, transfer.Timeout, transfer.To);
+        }
+
+
+        /// <summary>
+        /// Overload for Wait that allows the thread to sleep in milliseconds
+        /// </summary>
+        /// <param name="milliseconds">Sleep in milliseconds</param>
+        public void Wait(int? milliseconds)
+        {
+            Wait wait = new Wait();
+            wait.Milliseconds = milliseconds;
+          
+            Serialize(wait, "wait");
+        }
+        
+        /// <summary>
+        /// Overload for Wait that allows the thread to sleep in milliseconds
+        /// </summary>
+        /// <param name="milliseconds">Sleep in milliseconds</param>
+        /// <param name="milliseconds">Allows for the assignment of an interruptable signal for this Tropo function</param>
+        public void Wait(int? milliseconds, Array allowSignals)
+        {
+            Wait wait = new Wait();
+            wait.Milliseconds = milliseconds;
+            wait.AllowSignals = allowSignals;
+          
+            Serialize(wait, "wait");
+        }
+        
+        /// <summary>
+        /// Overload for Wait that allows a Wait object to be passed directly.
+        /// </summary>
+        /// <param name="transfer">Sleep in milliseconds</param>
+        public void Wait(Wait wait)
+        {
+            Wait(wait.Milliseconds, wait.AllowSignals);
         }
 
         /// <summary>
