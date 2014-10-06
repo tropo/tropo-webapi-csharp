@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,9 +16,10 @@ namespace TropoClassesTests
     [TestClass]
     public class TropoClassesTests
     {
-        private string askJson = @"{""tropo"":[{ ""ask"":{""name"":""foo"",""choices"":{""value"":""[5 DIGITS]""},""say"":{""value"":""Please enter your 5 digit zip code.""}}}]}";
-        private string askJsonWithEvents = @"{""tropo"":[{ ""ask"":{""attempts"":5,""allowSignals"":[""endCall"",""tooLong""],""bargein"":false,""name"":""test"",""required"":true,""choices"":{""value"":""1,2,3""},""say"":{""value"":""This is an Ask test with events. Please enter 1, 2 or 3.""},""timeout"":30.0}},{ ""hangup"":{}}]}";
-        private string askJsonWithOptions = @"{""tropo"":[{ ""ask"":{""attempts"":1,""bargein"":false,""minConfidence"":30,""name"":""foo"",""required"":true,""choices"":{""value"":""[5 DIGITS]""},""say"":{""value"":""Please enter your 5 digit zip code.""},""timeout"":30.0}}]}";
+        private string askJson = @"{""tropo"":[{ ""ask"":{""name"":""foo"",""choices"":{""value"":""[5 DIGITS]""},""say"":[{""value"":""Please enter your 5 digit zip code.""}]}}]}";
+        private string askJsonWithEvents = @"{""tropo"":[{ ""ask"":{""attempts"":5,""allowSignals"":[""endCall"",""tooLong""],""bargein"":false,""name"":""test"",""recognizer"":""en-us"",""required"":true,""choices"":{""value"":""1,2,3""},""say"":[{""value"":""This is an Ask test with events. Please enter 1, 2 or 3.""}],""timeout"":30.0}},{ ""hangup"":{}}]}";
+        private string askJsonWithOptions = @"{""tropo"":[{ ""ask"":{""attempts"":1,""bargein"":false,""minConfidence"":30,""name"":""foo"",""required"":true,""choices"":{""value"":""[5 DIGITS]""},""say"":[{""value"":""Please enter your 5 digit zip code.""}],""timeout"":30.0}}]}";
+        private string askJsonWithSayEvents = @"{""tropo"":[{ ""ask"":{""name"":""foo"",""choices"":{""value"":""[5 DIGITS]""},""say"":[{""value"":""Are you still there?"",""event"":""timeout""},{""value"":""Please enter your 5 digit zip code.""}]}}]}";
         private string recordJson = @"{""tropo"":[{ ""record"":{""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""}}}]}";
         private string recordJsonWithTranscription = @"{""tropo"":[{ ""record"":{""attempts"":1,""bargein"":false,""beep"":true,""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""maxSilence"":5.0,""maxTime"":30.0,""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""},""timeout"":5.0,""password"":""foo"",""transcription"":{""id"":""foo"",""uri"":""http://example.com/"",""emailFormat"":""encoded""},""username"":""bar"",""url"":""http://example.com/""}}]}";
         private string callJson = @"{""tropo"":[{ ""call"":{""to"":[""3055195825"",""3054445567""]}}]}";
@@ -43,7 +45,27 @@ namespace TropoClassesTests
 
             Tropo tropo = new Tropo();
             tropo.Ask(null, null, choices, null, "foo", null, say, null);
-            Assert.AreEqual(this.askJson, tropo.RenderJSON());
+
+            var rendered = tropo.RenderJSON();
+
+            Assert.AreEqual(this.askJson, rendered);
+        }
+
+        [TestMethod]
+        public void testAskWithSayEvents()
+        {
+            var says = new Collection<Say>();
+            says.Add(new Say("Are you still there?", "timeout"));
+            says.Add(new Say("Please enter your 5 digit zip code."));
+
+            Choices choices = new Choices("[5 DIGITS]");
+
+            Tropo tropo = new Tropo();
+            tropo.Ask(null, null, choices, null, "foo", null, says, null);
+
+            var rendered = tropo.RenderJSON();
+
+            Assert.AreEqual(this.askJsonWithSayEvents, rendered);
         }
         
         [TestMethod]
@@ -115,7 +137,9 @@ namespace TropoClassesTests
             Choices choices = new Choices("1,2,3");
             tropo.Ask(5, signals, false, null, choices, null, "test", Recognizer.UsEnglish, true, say, 30);
             tropo.Hangup();
-            Assert.AreEqual(this.askJsonWithEvents, tropo.RenderJSON());
+            var rendered = tropo.RenderJSON();
+
+            Assert.AreEqual(this.askJsonWithEvents, rendered);
         }
 
         #endregion
