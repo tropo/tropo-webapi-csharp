@@ -1,8 +1,0 @@
-C:\GitStuff\tropo-webapi-csharp\TropoCollectDigits\bin\TropoCollectDigits.dll
-C:\GitStuff\tropo-webapi-csharp\TropoCollectDigits\bin\TropoCollectDigits.pdb
-C:\GitStuff\tropo-webapi-csharp\TropoCollectDigits\bin\Newtonsoft.Json.dll
-C:\GitStuff\tropo-webapi-csharp\TropoCollectDigits\bin\TropoCSharp.dll
-C:\GitStuff\tropo-webapi-csharp\TropoCollectDigits\bin\TropoCSharp.pdb
-C:\GitStuff\tropo-webapi-csharp\TropoCollectDigits\obj\Debug\ResolveAssemblyReference.cache
-C:\GitStuff\tropo-webapi-csharp\TropoCollectDigits\obj\Debug\TropoCollectDigits.dll
-C:\GitStuff\tropo-webapi-csharp\TropoCollectDigits\obj\Debug\TropoCollectDigits.pdb
