@@ -60,6 +60,34 @@ namespace TropoCSharp.Tropo
         }
 
         /// <summary>
+        /// Overload for Ask that allows Say events to be fired if the user doesn't response with an allowed choice.
+        /// </summary>
+        /// <param name="attempts"></param>
+        /// <param name="bargein"></param>
+        /// <param name="choices"></param>
+        /// <param name="minConfidence"></param>
+        /// <param name="name"></param>
+        /// <param name="required"></param>
+        /// <param name="says">Collection of Say used for sending events</param>
+        /// <param name="timeout"></param>
+        public void Ask(int? attempts, bool? bargein, int? interdigitTimeout, Choices choices, int? minConfidence, string name, bool? required, ICollection<Say> says, float? timeout)
+        {
+            Ask ask = new Ask();
+            ask.Attempts = attempts;
+            ask.Bargein = bargein;
+            ask.InterdigitTimeout = interdigitTimeout;
+            ask.Choices = choices;
+            ask.MinConfidence = minConfidence;
+            ask.Name = name;
+            ask.Required = required;
+            ask.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
+            ask.Says = says;
+            ask.Timeout = timeout;
+
+            Serialize(ask, "ask");
+        }
+
+        /// <summary>
         /// Overload method for Ask that allows events to be set via allowSignals.
         /// </summary>
         /// <param name="attempts">How many times the caller can attempt input before an error is thrown.</param>
@@ -137,7 +165,7 @@ namespace TropoCSharp.Tropo
         /// <param name="ask">An Ask object.</param>
         public void Ask(Ask ask)
         {
-            Ask(ask.Attempts, ask.Bargein, ask.Choices, ask.MinConfidence, ask.Name, ask.Required, ask.Say, ask.Timeout);
+            Ask(ask.Attempts, ask.Bargein, ask.InterdigitTimeout, ask.Choices, ask.MinConfidence, ask.Name, ask.Required, ask.Says, ask.Timeout);
         }
 
         /// <summary>
@@ -639,6 +667,18 @@ namespace TropoCSharp.Tropo
             say.Name = name;
             say.Required = required;
             say.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
+
+            Serialize(say, "say");
+        }
+
+        /// <summary>
+        /// This Say should only be used in an Ask to determin what happens in the given event.
+        /// </summary>
+        /// <param name="value">This defines what the user will hear when the given event occurs</param>
+        /// <param name="event">The event triggers; timeout or nomatch.</param>
+        public void Say(string @value, string @event)
+        {
+            var say = new Say { Value = @value, Event = @event };
 
             Serialize(say, "say");
         }
