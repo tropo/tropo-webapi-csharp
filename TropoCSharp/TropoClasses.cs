@@ -462,8 +462,8 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "uri")]
-        public string Uri { get; set; }
+        [JsonProperty(PropertyName = "url")]
+        public string Url { get; set; }
 
         [JsonProperty(PropertyName = "emailFormat")]
         public string EmailFormat { get; set; }
