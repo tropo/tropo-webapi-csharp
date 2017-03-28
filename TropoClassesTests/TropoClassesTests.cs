@@ -61,7 +61,7 @@ namespace TropoClassesTests
             Choices choices = new Choices("[5 DIGITS]");
 
             Tropo tropo = new Tropo();
-            tropo.Ask(null, null, choices, null, "foo", null, says, null);
+            tropo.Ask(null, null, 1, choices, null, "foo", null, says, null);
 
             var rendered = tropo.RenderJSON();
 
