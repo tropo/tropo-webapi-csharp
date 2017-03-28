@@ -360,7 +360,7 @@ namespace TropoCSharp.Tropo
         /// <param name="conference">A Conference object.</param>
         public void Conference(Conference conference)
         {
-            Conference(conference.Id, conference.Mute, conference.Name, conference.PlayTones, conference.Required, conference.Terminator);
+            Conference(conference.Id, conference.allowSignals, conference.Mute, conference.Name, conference.PlayTones, conference.Required, conference.Terminator);
         }
 
         /// <summary>
