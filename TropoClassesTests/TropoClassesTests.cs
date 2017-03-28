@@ -327,7 +327,7 @@ namespace TropoClassesTests
             Choices choices = new Choices("[5 DIGITS]", null, "#");
             Transcription transcription = new Transcription();
 
-            transcription.Uri = "http://example.com/";
+            transcription.Url = "http://example.com/";
             transcription.Id = "foo";
             transcription.EmailFormat = "encoded";
 

@@ -17,7 +17,7 @@ namespace TropoSample
 
             // Create a transcription object to use with recording.
             Transcription trancription = new Transcription();
-            trancription.Uri = "mailto:homer@simpsons.com";
+            trancription.Url = "mailto:homer@simpsons.com";
             trancription.EmailFormat = "omit";
 
             // Set up grammar for recording.
