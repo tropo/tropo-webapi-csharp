@@ -66,6 +66,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AskTestpull6.aspx" />
+    <Content Include="FailAge.aspx" />
+    <Content Include="YourAge.aspx" />
     <Content Include="AskTest.aspx" />
     <Content Include="index.html" />
     <Content Include="RecordTest.aspx" />
@@ -81,6 +84,18 @@
     <Content Include="HelloWorld.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AskTestpull6.aspx.cs">
+      <DependentUpon>AskTestpull6.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FailAge.aspx.cs">
+      <DependentUpon>FailAge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YourAge.aspx.cs">
+      <DependentUpon>YourAge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="AskTest.aspx.cs">
       <DependentUpon>AskTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -127,6 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="M28.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
