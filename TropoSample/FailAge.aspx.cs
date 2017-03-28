@@ -44,7 +44,7 @@ namespace TropoSamples
 
                 catch (Exception ex)
                 {
-                    tropo.Say("Sorry, an error occured. " + ex.Message);
+                    tropo.Say("Sorry, an error occured. " + TropoUtilities.removeQuotes(ex.Message));
                 }
 
                 finally
