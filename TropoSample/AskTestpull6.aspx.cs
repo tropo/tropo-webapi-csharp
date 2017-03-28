@@ -36,9 +36,9 @@ namespace TropoSample
             Choices choices = new Choices("[4 DIGITS]");
 
             // Set up the dialog.
-            tropo.Ask(4, true, 1, choices, null, "year", true, says, 60);
+            tropo.Ask(1, true, 3, choices, null, "year", true, says, 7);
             tropo.On(Event.Continue, "YourAge.aspx", null);  // Fires when the user provides valid input.
-            tropo.On(Event.Incomplete, "AgeFail.aspx", null);  // Fires when the user provides valid input.
+            tropo.On(Event.Incomplete, "FailAge.aspx", null);  // Fires when the user provides valid input.
 
             //tropo.Hangup();
 
