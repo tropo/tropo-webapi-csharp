@@ -70,11 +70,12 @@ namespace TropoCSharp.Tropo
         /// <param name="required"></param>
         /// <param name="says">Collection of Say used for sending events</param>
         /// <param name="timeout"></param>
-        public void Ask(int? attempts, bool? bargein, Choices choices, int? minConfidence, string name, bool? required, ICollection<Say> says, float? timeout)
+        public void Ask(int? attempts, bool? bargein, int? interdigitTimeout, Choices choices, int? minConfidence, string name, bool? required, ICollection<Say> says, float? timeout)
         {
             Ask ask = new Ask();
             ask.Attempts = attempts;
             ask.Bargein = bargein;
+            ask.InterdigitTimeout = interdigitTimeout;
             ask.Choices = choices;
             ask.MinConfidence = minConfidence;
             ask.Name = name;
@@ -164,7 +165,7 @@ namespace TropoCSharp.Tropo
         /// <param name="ask">An Ask object.</param>
         public void Ask(Ask ask)
         {
-            Ask(ask.Attempts, ask.Bargein, ask.Choices, ask.MinConfidence, ask.Name, ask.Required, ask.Says, ask.Timeout);
+            Ask(ask.Attempts, ask.Bargein, ask.InterdigitTimeout, ask.Choices, ask.MinConfidence, ask.Name, ask.Required, ask.Says, ask.Timeout);
         }
 
         /// <summary>
