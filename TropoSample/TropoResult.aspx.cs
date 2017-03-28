@@ -28,13 +28,17 @@ namespace TropoSamples
                     Result tropoResult = new Result(resultJSON);
 
                     // Get Actions container and parse.
-                    JContainer Actions = TropoUtilities.parseActions(tropoResult.Actions);
+                    JArray Actions = tropoResult.Actions;
 
                     // A simple example showing how to access properties of the Result object.
-                    tropo.Say("The State of the current session is " + tropoResult.State);
-                    tropo.Say("The Sequence of this Result payload is " + tropoResult.Sequence);
-                    tropo.Say("The session ID for the current session is is " + TropoUtilities.addSpaces(tropoResult.SessionId));
-                    tropo.Say("The value selected by the caller is " + TropoUtilities.removeQuotes(Actions["value"].ToString()));
+                    //tropo.Say("The State of the current session is " + tropoResult.State);
+                    //tropo.Say("The Sequence of this Result payload is " + tropoResult.Sequence);
+                    //tropo.Say("The session ID for the current session is is " + TropoUtilities.addSpaces(tropoResult.SessionId));
+
+                    tropo.Say("The test is " + TropoUtilities.removeQuotes(Actions.First["value"].ToString()));
+                    tropo.Say("The frank test is " + TropoUtilities.removeQuotes(Actions.Last["value"].ToString()));
+
+                    //tropo.Say("The value selected by the caller is " + TropoUtilities.removeQuotes(Actions["value"].ToString()));
                 }
 
                 catch (JsonReaderException)

@@ -5,6 +5,7 @@ namespace TropoCSharp.Tropo
     /// <summary>
     /// Create an instance of the Tropo Result object
     /// </summary>
+
     public class Result
     {
         /// <summary>
@@ -20,7 +21,20 @@ namespace TropoCSharp.Tropo
             Sequence = (int)results["result"]["sequence"];
             Complete = (bool)results["result"]["complete"];
             Error = (string)results["result"]["error"];
-            Actions = (JContainer)results["result"]["actions"];
+
+            //actions is either an Object or an Array.
+            JContainer ActionsObject = (JContainer)results["result"]["actions"];
+
+            JTokenType type = ActionsObject.Type;
+            if (type == JTokenType.Array)
+            {
+                Actions = (JArray)ActionsObject;
+            }
+            else
+            {
+                Actions = new JArray();
+                Actions.Add((JToken)ActionsObject);
+            }
         }
 
         /// <summary>
@@ -56,6 +70,6 @@ namespace TropoCSharp.Tropo
         /// <summary>
         /// The result of the actions requested in the previous payload.
         /// </summary>
-        public JContainer Actions { get; set; }
+        public JArray Actions { get; set; }
     }
 }
