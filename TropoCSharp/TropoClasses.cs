@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
@@ -38,8 +39,16 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "choices")]
         public Choices Choices { get; set; }
 
+        public Say Say
+        {
+            set
+            {
+                Says.Add(value);
+            }
+        }
+
         [JsonProperty(PropertyName = "say")]
-        public Say Say { get; set; }
+        public ICollection<Say> Says { get; set; }
         
         [JsonProperty(PropertyName = "sensitivity")]
         public int? Sensitivity { get; set; }
@@ -58,10 +67,12 @@ namespace TropoCSharp.Tropo
 
         public Ask()
         {
+            Says = new Collection<Say>();
         }
 
         public Ask(Choices choices, string name, Say say)
         {
+            Says = new Collection<Say>();
             Choices = choices;
             Name = name;
             Say = say;
@@ -391,6 +402,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "voice")]
         public string Voice { get; set; }
 
+        [JsonProperty(PropertyName = "event")]
+        public string Event { get; set; }
+
         public Say()
         {
         }
@@ -398,6 +412,12 @@ namespace TropoCSharp.Tropo
         public Say(string @value)
         {
             Value = @value;
+        }
+
+        public Say(string @value, string @event)
+        {
+            Value = @value;
+            Event = @event;
         }
     }
 
