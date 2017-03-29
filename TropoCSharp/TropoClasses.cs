@@ -556,6 +556,20 @@ namespace TropoCSharp.Tropo
      }
 
     /// <summary>
+    /// This will turn logging on/off
+    /// </summary>
+    public class GeneralLogSecurity : TropoBase
+    {
+        [JsonProperty(PropertyName = "generalLogSecurity")]
+        public string State { get; set; }
+
+        public GeneralLogSecurity()
+        {
+        }
+    }
+
+
+    /// <summary>
     /// Defnies an endoint for transfer and redirects.
     /// </summary>
     public class Endpoint
