@@ -930,6 +930,29 @@ namespace TropoCSharp.Tropo
             Wait(wait.Milliseconds, wait.AllowSignals);
         }
 
+
+        /// <summary>
+        /// Overload for GeneralLogSecurity
+        /// </summary>
+        /// <param name="state">Set to "suppress" to disable all logging in Tropo. Set to "none" to turn off log suppression and begin logging again.</param>
+        public void GeneralLogSecurity(string state)
+         {
+             GeneralLogSecurity generalLogSecurity = new GeneralLogSecurity();
+             generalLogSecurity.State = state;
+
+             Serialize(generalLogSecurity, "");
+         }
+
+         /// <summary>
+         /// Overload for GeneralLogSecurity that allows a GeneralLogSecurity object to be passed directly.
+         /// </summary>
+         /// <param name="generalLogSecurity"></param>
+         public void GeneralLogSecurity(GeneralLogSecurity generalLogSecurity)
+         {
+             GeneralLogSecurity(generalLogSecurity.State);
+         }
+
+
         /// <summary>
         /// Method to serialize Tropo action objects and add to the base Tropo object.
         /// </summary>
@@ -941,7 +964,15 @@ namespace TropoCSharp.Tropo
             {
                 DefaultValueHandling = DefaultValueHandling.Ignore
             };
-            ActionElements.Add("{ \"" + prefix + "\":" + JsonConvert.SerializeObject(action, Formatting.None, settings) + "}");
+            if (String.IsNullOrEmpty(prefix))
+            {
+                ActionElements.Add(JsonConvert.SerializeObject(action, Formatting.None, settings));
+            }
+            else
+            {
+                ActionElements.Add("{ \"" + prefix + "\":" + JsonConvert.SerializeObject(action, Formatting.None, settings) + "}");
+             }
+
         }
     }
 }
