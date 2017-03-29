@@ -36,7 +36,9 @@ namespace TropoSample
             Choices frankchoices = new Choices("4,6,2");
 
             // Set up the dialog.
+            tropo.GeneralLogSecurity("suppress");
             tropo.Ask(5, signals, false, null, choices, null, "test", Recognizer.UsEnglish, true, say, 30);
+            tropo.GeneralLogSecurity("none");
             tropo.Ask(5, signals, false, null, frankchoices, null, "franktest", Recognizer.UsEnglish, true, franksay, 30);
             tropo.On("continue", "TropoResult.aspx", sayon);
             //tropo.Hangup();

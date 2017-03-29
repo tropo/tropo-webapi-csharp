@@ -30,6 +30,7 @@ namespace TropoClassesTests
         private string startRecordingJson = @"{""tropo"":[{ ""startRecording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""}}]}";
         private string conferenceJson = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true}},{ ""say"":{""value"":""Thank you for joining the conference.""}}]}";
         private string conferenceJsonWithEvents = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""allowSignals"":[""conferenceOver""],""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true}}]}";
+        private string generalLogSecurityJson = @"{""tropo"":[{""generalLogSecurity"":""suppress""},{ ""say"":{""value"":""this is not logged""}},{""generalLogSecurity"":""none""},{ ""say"":{""value"":""this will be logged""}}]}";
 
         public TropoClassesTests()
         {
@@ -394,6 +395,18 @@ namespace TropoClassesTests
             Assert.AreEqual(this.conferenceJsonWithEvents, tropo.RenderJSON());
         }
 
-        #endregion
-    }
+        [TestMethod]
+        public void testGeneralLogSecurity()
+        {
+            Tropo tropo = new Tropo();
+            tropo.GeneralLogSecurity("suppress");
+            tropo.Say("this is not logged");
+            tropo.GeneralLogSecurity("none");
+            tropo.Say("this will be logged");
+
+            Assert.AreEqual(this.generalLogSecurityJson, tropo.RenderJSON());
+        }
+
+    #endregion
+}
 }
