@@ -65,6 +65,15 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "voice")]
         public string Voice { get; set; }
 
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
+
+        [JsonProperty(PropertyName = "asrLogSecurity")]
+        public string AsrLogSecurity { get; set; }
+
+        [JsonProperty(PropertyName = "maskTemplate")]
+        public string MaskTemplate { get; set; }
+
         public Ask()
         {
             Says = new Collection<Say>();

@@ -136,6 +136,7 @@ namespace TropoClassesTests
             string[] signals = new string[] { "endCall", "tooLong" };
             Say say = new Say("This is an Ask test with events. Please enter 1, 2 or 3.");
             Choices choices = new Choices("1,2,3");
+            //tropo.Ask(5, signals, false, null, choices, null, "test", Recognizer.UsEnglish, "suppress", "mask", "XXDD-", true, say, 30);
             tropo.Ask(5, signals, false, null, choices, null, "test", Recognizer.UsEnglish, true, say, 30);
             tropo.Hangup();
             var rendered = tropo.RenderJSON();
