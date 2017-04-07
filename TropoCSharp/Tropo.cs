@@ -134,7 +134,10 @@ namespace TropoCSharp.Tropo
         /// <param name="required">Is input required here?</param>
         /// <param name="say">This determines what is played or sent to the caller.</param>
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
-        public void Ask(int? attempts, Array allowSignals, bool? bargein, int? interdigitTimeout, Choices choices, int? minConfidence, string name, string recognizer, string promptLogSecurity, string asrLogSecurity, string maskTemplate, bool? required, Say say, float? timeout)
+        /// <param name="promptLogSecurity">Controls whether Tropo logs the text to speech string used by the method.</param>
+        /// <param name="asrLogSecurity">Control whether Tropo should log the input from the user in response to the ask method.</param>
+        /// <param name="maskTemplate">defines the pattern that should be masked</param>
+        public void Ask(int? attempts, Array allowSignals, bool? bargein, int? interdigitTimeout, Choices choices, int? minConfidence, string name, string recognizer, bool? required, Say say, float? timeout, string promptLogSecurity, string asrLogSecurity, string maskTemplate)
         {
             Ask ask = new Ask();
             ask.Attempts = attempts;
@@ -145,17 +148,18 @@ namespace TropoCSharp.Tropo
             ask.MinConfidence = minConfidence;
             ask.Name = name;
             ask.Recognizer = recognizer;
-            ask.PromptLogSecurity = promptLogSecurity;
-            ask.AsrLogSecurity = asrLogSecurity;
-            ask.MaskTemplate = maskTemplate;
             ask.Required = required;
             ask.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
             ask.Say = say;
             ask.Timeout = timeout;
+            ask.PromptLogSecurity = promptLogSecurity;
+            ask.AsrLogSecurity = asrLogSecurity;
+            ask.MaskTemplate = maskTemplate;
+
 
             Serialize(ask, "ask");
         }
-        
+
         /// <summary>
         /// Overload method for Ask that allows all events.
         /// </summary>
@@ -173,7 +177,7 @@ namespace TropoCSharp.Tropo
         /// <param name="speechCompleteTimeout">Set a timeout to wait for input after an input has been accepted</param>
         /// <param name="speechIncompleteTimeout">Set a timeout to wait for input after an incomplete input has been accepted</param>
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
-        public void Ask(int? attempts, Array allowSignals, bool? bargein, int? interdigitTimeout, Choices choices, int? minConfidence, string name, string recognizer, string promptLogSecurity, string asrLogSecurity, string maskTemplate, bool? required, Say say, int? sensitivity, float? speechCompleteTimeout, float? speechIncompleteTimeout, float? timeout)
+        public void Ask(int? attempts, Array allowSignals, bool? bargein, int? interdigitTimeout, Choices choices, int? minConfidence, string name, string recognizer, bool? required, Say say, int? sensitivity, float? speechCompleteTimeout, float? speechIncompleteTimeout, float? timeout)
         {
             Ask ask = new Ask();
             ask.Attempts = attempts;
@@ -184,9 +188,6 @@ namespace TropoCSharp.Tropo
             ask.MinConfidence = minConfidence;
             ask.Name = name;
             ask.Recognizer = recognizer;
-            ask.PromptLogSecurity = promptLogSecurity;
-            ask.AsrLogSecurity = asrLogSecurity;
-            ask.MaskTemplate = maskTemplate;
             ask.Required = required;
             ask.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
             ask.Say = say;
@@ -199,9 +200,54 @@ namespace TropoCSharp.Tropo
         }
 
         /// <summary>
-        /// Overload for Ask that allows an Ask object to be passed.
+        /// Overload method for Ask that allows all events.
         /// </summary>
-        /// <param name="ask">An Ask object.</param>
+        /// <param name="attempts">How many times the caller can attempt input before an error is thrown.</param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
+        /// <param name="bargein">Should the user be allowed to barge in before TTS is complete?</param>
+        /// <param name="interdigitTimeout">Defines how long to wait - in seconds - between key presses to determine the user has stopped entering input.</param>
+        /// <param name="choices">The grammar to use in recognizing and validating input</param>
+        /// <param name="minConfidence">How confident should Tropo be in a speech reco match?</param>
+        /// <param name="name">Identifies the return value of an Ask, so you know the context for the returned information.</param>
+        /// <param name="recognizer">Tells Tropo what language to listen for</param>
+        /// <param name="required">Is input required here?</param>
+        /// <param name="say">This determines what is played or sent to the caller.</param>
+        /// <param name="sensitivity">Set the sensitivity for the ask's input</param>
+        /// <param name="speechCompleteTimeout">Set a timeout to wait for input after an input has been accepted</param>
+        /// <param name="speechIncompleteTimeout">Set a timeout to wait for input after an incomplete input has been accepted</param>
+        /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
+        /// <param name="promptLogSecurity">Controls whether Tropo logs the text to speech string used by the method.</param>
+        /// <param name="asrLogSecurity">Control whether Tropo should log the input from the user in response to the ask method.</param>
+        /// <param name="maskTemplate">defines the pattern that should be masked</param>
+        public void Ask(int? attempts, Array allowSignals, bool? bargein, int? interdigitTimeout, Choices choices, int? minConfidence, string name, string recognizer, bool? required, Say say, int? sensitivity, float? speechCompleteTimeout, float? speechIncompleteTimeout, float? timeout, string promptLogSecurity, string asrLogSecurity, string maskTemplate)
+        {
+            Ask ask = new Ask();
+            ask.Attempts = attempts;
+            ask.allowSignals = allowSignals;
+            ask.Bargein = bargein;
+            ask.Choices = choices;
+            ask.InterdigitTimeout = interdigitTimeout;
+            ask.MinConfidence = minConfidence;
+            ask.Name = name;
+            ask.Recognizer = recognizer;
+            ask.Required = required;
+            ask.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
+            ask.Say = say;
+            ask.Sensitivity = sensitivity;
+            ask.SpeechCompleteTimeout = speechCompleteTimeout;
+            ask.SpeechIncompleteTimeout = speechIncompleteTimeout;
+            ask.Timeout = timeout;
+            ask.PromptLogSecurity = promptLogSecurity;
+            ask.AsrLogSecurity = asrLogSecurity;
+            ask.MaskTemplate = maskTemplate;
+
+            Serialize(ask, "ask");
+        }
+
+        /// <summary>
+         /// Overload for Ask that allows an Ask object to be passed.
+         /// </summary>
+         /// <param name="ask">An Ask object.</param>
         public void Ask(Ask ask)
         {
             Ask(ask.Attempts, ask.Bargein, ask.InterdigitTimeout, ask.Choices, ask.MinConfidence, ask.Name, ask.Required, ask.Says, ask.Timeout);
@@ -229,6 +275,37 @@ namespace TropoCSharp.Tropo
             call.Timeout = timeout;
             call.Headers = headers;
             call.Recording = recording;
+
+            Serialize(call, "call");
+        }
+
+        /// <summary>
+        /// Places a call or sends an an IM, Twitter, or SMS message. To start a call, use the Session API to tell Tropo to launch your code.
+        /// </summary>
+        /// <param name="to">The party(ies)to call.</param>
+        /// <param name="from">A string representing who the call is from.</param>
+        /// <param name="network">Network is used mainly by the text channels; values can be SMS when sending a text message, or a valid IM network name such as AIM, MSN, JABBER, YAHOO and GTALK.</param>
+        /// <param name="channel">This defines the channel used to place new calls.</param>
+        /// <param name="answerOnMedia">If this is set to true, the call will be considered "answered" and audio will begin playing as soon as media is received from the far end </param>
+        /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
+        /// <param name="headers">This contains the Session Initiation Protocol (SIP) Headers for the current session.</param>
+        /// <param name="recording">This is a shortcut to allow you to start call recording as soon as the call is answered. </param>      
+        public void Call(IEnumerable<String> to, string from, string network, string channel, bool? answerOnMedia, float? timeout, IDictionary<String, String> headers, StartRecording recording, MachineDetection machineDetection, string voice, string callbackUrl, string promptLogSecurity, string label)
+        {
+            Call call = new Call();
+            call.To = to;
+            call.From = from;
+            call.Network = network;
+            call.Channel = channel;
+            call.AnswerOnMedia = answerOnMedia;
+            call.Timeout = timeout;
+            call.Headers = headers;
+            call.Recording = recording;
+            call.MachineDetection = machineDetection;
+            call.Voice = voice;
+            call.CallbackUrl = callbackUrl;
+            call.PromptLogSecurity = promptLogSecurity;
+            call.Label = label;
 
             Serialize(call, "call");
         }
@@ -317,7 +394,8 @@ namespace TropoCSharp.Tropo
         /// <param name="call">A Call object.</param>
         public void Call(Call call)
         {
-            Call(call.To, call.From, call.Network, call.Channel, call.AnswerOnMedia, call.Timeout, call.Headers, call.Recording);
+            //Call(call.To, call.From, call.Network, call.Channel, call.AnswerOnMedia, call.Timeout, call.Headers, call.Recording);
+            Call(call.To, call.From, call.Network, call.Channel, call.AnswerOnMedia, call.Timeout, call.Headers, call.Recording, call.MachineDetection, call.Voice, call.CallbackUrl, call.PromptLogSecurity, call.Label);
         }
 
         /// <summary>
