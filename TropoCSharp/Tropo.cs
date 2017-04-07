@@ -177,7 +177,7 @@ namespace TropoCSharp.Tropo
         /// <param name="speechCompleteTimeout">Set a timeout to wait for input after an input has been accepted</param>
         /// <param name="speechIncompleteTimeout">Set a timeout to wait for input after an incomplete input has been accepted</param>
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
-        public void Ask(int? attempts, Array allowSignals, bool? bargein, int? interdigitTimeout, Choices choices, int? minConfidence, string name, string recognizer, bool? required, Say say, int? sensitivity, float? speechCompleteTimeout, float? speechIncompleteTimeout, float? timeout)
+        public void Ask(int? attempts, Array allowSignals, bool? bargein, int? interdigitTimeout, Choices choices, int? minConfidence, string name, string recognizer, string promptLogSecurity, string asrLogSecurity, string maskTemplate, bool? required, Say say, int? sensitivity, float? speechCompleteTimeout, float? speechIncompleteTimeout, float? timeout)
         {
             Ask ask = new Ask();
             ask.Attempts = attempts;
@@ -188,6 +188,9 @@ namespace TropoCSharp.Tropo
             ask.MinConfidence = minConfidence;
             ask.Name = name;
             ask.Recognizer = recognizer;
+            ask.PromptLogSecurity = promptLogSecurity;
+            ask.AsrLogSecurity = asrLogSecurity;
+            ask.MaskTemplate = maskTemplate;
             ask.Required = required;
             ask.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
             ask.Say = say;
