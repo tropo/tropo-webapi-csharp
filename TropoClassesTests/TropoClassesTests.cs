@@ -19,11 +19,14 @@ namespace TropoClassesTests
         private string askJson = @"{""tropo"":[{ ""ask"":{""name"":""foo"",""choices"":{""value"":""[5 DIGITS]""},""say"":[{""value"":""Please enter your 5 digit zip code.""}]}}]}";
         private string askJsonWithEvents = @"{""tropo"":[{ ""ask"":{""attempts"":5,""allowSignals"":[""endCall"",""tooLong""],""bargein"":false,""name"":""test"",""recognizer"":""en-us"",""required"":true,""choices"":{""value"":""1,2,3""},""say"":[{""value"":""This is an Ask test with events. Please enter 1, 2 or 3.""}],""timeout"":30.0}},{ ""hangup"":{}}]}";
         private string askJsonWithOptions = @"{""tropo"":[{ ""ask"":{""attempts"":1,""bargein"":false,""minConfidence"":30,""name"":""foo"",""required"":true,""choices"":{""value"":""[5 DIGITS]""},""say"":[{""value"":""Please enter your 5 digit zip code.""}],""timeout"":30.0}}]}";
-        private string askJsonWithSayEvents = @"{""tropo"":[{ ""ask"":{""name"":""foo"",""choices"":{""value"":""[5 DIGITS]""},""say"":[{""value"":""Are you still there?"",""event"":""timeout""},{""value"":""Please enter your 5 digit zip code.""}]}}]}";
+        private string askJsonWithLogArguements = @"{""tropo"":[{ ""ask"":{""attempts"":5,""allowSignals"":[""endCall"",""tooLong""],""bargein"":false,""minConfidence"":30,""name"":""foo"",""recognizer"":""en-us"",""required"":true,""choices"":{""value"":""[5 DIGITS]""},""say"":[{""value"":""Please enter your 5 digit zip code.""}],""timeout"":30.0,""promptLogSecurity"":""suppress"",""asrLogSecurity"":""mask"",""maskTemplate"":""XXDD-""}}]}";
+        private string askJsonWithLogArguements2 = @"{""tropo"":[{ ""ask"":{""attempts"":5,""allowSignals"":[""endCall"",""tooLong""],""bargein"":false,""minConfidence"":30,""name"":""foo"",""recognizer"":""en-us"",""required"":true,""choices"":{""value"":""[5 DIGITS]""},""say"":[{""value"":""Please enter your 5 digit zip code.""}],""sensitivity"":2,""speechCompleteTimeout"":3.0,""speechIncompleteTimeout"":4.0,""timeout"":30.0,""promptLogSecurity"":""suppress"",""asrLogSecurity"":""mask"",""maskTemplate"":""XXDD-""}}]}";
+        private string askJsonWithSayEvents = @"{""tropo"":[{ ""ask"":{""interdigitTimeout"":1,""name"":""foo"",""choices"":{""value"":""[5 DIGITS]""},""say"":[{""value"":""Are you still there?"",""event"":""timeout""},{""value"":""Please enter your 5 digit zip code.""}]}}]}";
         private string recordJson = @"{""tropo"":[{ ""record"":{""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""}}}]}";
-        private string recordJsonWithTranscription = @"{""tropo"":[{ ""record"":{""attempts"":1,""bargein"":false,""beep"":true,""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""maxSilence"":5.0,""maxTime"":30.0,""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""},""timeout"":5.0,""password"":""foo"",""transcription"":{""id"":""foo"",""uri"":""http://example.com/"",""emailFormat"":""encoded""},""username"":""bar"",""url"":""http://example.com/""}}]}";
+        private string recordJsonWithTranscription = @"{""tropo"":[{ ""record"":{""attempts"":1,""bargein"":false,""beep"":true,""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""maxSilence"":5.0,""maxTime"":30.0,""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""},""timeout"":5.0,""password"":""foo"",""transcription"":{""id"":""foo"",""url"":""http://example.com/"",""emailFormat"":""encoded""},""username"":""bar"",""url"":""http://example.com/""}}]}";
         private string callJson = @"{""tropo"":[{ ""call"":{""to"":[""3055195825"",""3054445567""]}}]}";
         private string callJsonAllOptions = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""headers"":{""foo"":""bar"",""bling"":""baz""},""recording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""},""timeout"":10.0}}]}";
+        private string callJsonCallObject = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""headers"":{""foo"":""bar"",""bling"":""baz""},""recording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""},""timeout"":10.0,""machineDetection"":{""introduction"":""It is rather for us to be here dedicated to the great task remaining before us—that from these honored dead we take increased devotion to that cause for which they here gave the last full measure of devotion—that we here highly resolve that these dead shall not have died in vain—that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.""},""voice"":""voicefoo"",""callbackUrl"":""samplecallbackurl"",""label"":""appidIdAsLabel""}}]}";
         private string callJsonWithEvents = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551414"",""network"":""PSTN"",""channel"":""VOICE"",""answerOnMedia"":true,""allowSignals"":[""tooLong"",""callOver""],""headers"":{""x-foo"":""bar"",""x-bling"":""baz""},""timeout"":60.0}}]}";
         private string messageJson = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""timeout"":10.0,""voice"":""Kate""}}]}";
         private string messageJsonAllOptions = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""name"":""foo"",""required"":true,""timeout"":10.0,""voice"":""Kate""}}]}";
@@ -130,6 +133,26 @@ namespace TropoClassesTests
         }
 
         [TestMethod]
+        public void testAskMethodWithLogArguements()
+        {
+            Tropo tropo = new Tropo();
+            // Create an array of signals - used to interupt the Ask.
+            string[] signals = new string[] { "endCall", "tooLong" };
+            tropo.Ask(5, signals, false, null, new Choices("[5 DIGITS]"), 30, "foo", Recognizer.UsEnglish, true, new Say("Please enter your 5 digit zip code."), 30, "suppress", "mask", "XXDD-");
+            Assert.AreEqual(this.askJsonWithLogArguements, tropo.RenderJSON());
+        }
+
+        [TestMethod]
+        public void testAskMethodWithLogArguements2()
+        {
+            Tropo tropo = new Tropo();
+            // Create an array of signals - used to interupt the Ask.
+            string[] signals = new string[] { "endCall", "tooLong" };
+            tropo.Ask(5, signals, false, null, new Choices("[5 DIGITS]"), 30, "foo", Recognizer.UsEnglish, true, new Say("Please enter your 5 digit zip code."), 2, 3.0f, 4.0f, 30, "suppress", "mask", "XXDD-");
+            Assert.AreEqual(this.askJsonWithLogArguements2, tropo.RenderJSON());
+        }
+
+        [TestMethod]
         public void testAskWithEvents()
         {
             Tropo tropo = new Tropo();
@@ -199,9 +222,13 @@ namespace TropoClassesTests
             call.Network = Network.SMS;
             call.To = to;
             call.From = "3055551212";
+            call.MachineDetection = new MachineDetection("It is rather for us to be here dedicated to the great task remaining before us—that from these honored dead we take increased devotion to that cause for which they here gave the last full measure of devotion—that we here highly resolve that these dead shall not have died in vain—that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.");
+            call.CallbackUrl = "samplecallbackurl";
+            call.Voice = "voicefoo";
+            call.Label = "appidIdAsLabel";
 
             tropo.Call(call);
-            Assert.AreEqual(this.callJsonAllOptions, tropo.RenderJSON());
+            Assert.AreEqual(this.callJsonCallObject, tropo.RenderJSON());
         }
 
         [TestMethod]

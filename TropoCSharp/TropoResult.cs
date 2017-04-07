@@ -21,19 +21,32 @@ namespace TropoCSharp.Tropo
             Sequence = (int)results["result"]["sequence"];
             Complete = (bool)results["result"]["complete"];
             Error = (string)results["result"]["error"];
-
-            //actions is either an Object or an Array.
-            JContainer ActionsObject = (JContainer)results["result"]["actions"];
-
-            JTokenType type = ActionsObject.Type;
-            if (type == JTokenType.Array)
+            if (null != results["result"]["userType"])
             {
-                Actions = (JArray)ActionsObject;
+                MachineDetection = (string)results["result"]["userType"];
             }
-            else
+
+
+            if (null != results["result"])
             {
-                Actions = new JArray();
-                Actions.Add((JToken)ActionsObject);
+
+                if (null != results["result"]["actions"])
+                {
+
+                    //actions is either an Object or an Array.
+                    JContainer ActionsObject = (JContainer)results["result"]["actions"];
+
+                    JTokenType type = ActionsObject.Type;
+                    if (type == JTokenType.Array)
+                    {
+                        Actions = (JArray)ActionsObject;
+                    }
+                    else
+                    {
+                        Actions = new JArray();
+                        Actions.Add((JToken)ActionsObject);
+                    }
+                }
             }
         }
 
@@ -66,6 +79,11 @@ namespace TropoCSharp.Tropo
         /// If the state of the result is an error, refer to this field for the error message.
         /// </summary>
         public string Error { get; set; }
+
+        /// <summary>
+        /// identify whether your call reached a live human or not
+        /// </summary>
+        public string MachineDetection { get; set; }
 
         /// <summary>
         /// The result of the actions requested in the previous payload.

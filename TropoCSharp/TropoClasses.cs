@@ -126,6 +126,21 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "timeout")]
         public float? Timeout { get; set; }
 
+        [JsonProperty(PropertyName = "machineDetection")]
+        public MachineDetection MachineDetection { get; set; }
+
+        [JsonProperty(PropertyName = "voice")]
+        public string Voice { get; set; }
+
+        [JsonProperty(PropertyName = "callbackUrl")]
+        public string CallbackUrl { get; set; }
+
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
+
+        [JsonProperty(PropertyName = "label")]
+        public string Label { get; set; }
+
         public Call()
         {
         }
@@ -169,6 +184,33 @@ namespace TropoCSharp.Tropo
             Value = @value;
             Mode = mode;
             Terminator = terminator;
+        }
+    }
+
+    /// <summary>
+    /// The grammar for outbound call could use the ability to identify whether your call reached a live human or not.
+    /// </summary>
+    public class MachineDetection : TropoBase
+    {
+        [JsonProperty(PropertyName = "introduction")]
+        public string Introduction { get; set; }
+
+        [JsonProperty(PropertyName = "voice")]
+        public string Voice { get; set; }
+
+        public MachineDetection()
+        {
+        }
+
+        public MachineDetection(string introduction)
+        {
+            Introduction = introduction;
+        }
+
+        public MachineDetection(string introduction, string voice)
+        {
+            Introduction = introduction;
+            Voice = voice;
         }
     }
 

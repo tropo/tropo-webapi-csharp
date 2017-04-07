@@ -35,8 +35,13 @@ namespace TropoSamples
                     //tropo.Say("The Sequence of this Result payload is " + tropoResult.Sequence);
                     //tropo.Say("The session ID for the current session is is " + TropoUtilities.addSpaces(tropoResult.SessionId));
 
-                    tropo.Say("The test is " + TropoUtilities.removeQuotes(Actions.First["value"].ToString()));
-                    tropo.Say("The frank test is " + TropoUtilities.removeQuotes(Actions.Last["value"].ToString()));
+                    if (null != Actions)
+                    {
+                        tropo.Say("The test is " + TropoUtilities.removeQuotes(Actions.First["value"].ToString()));
+                        tropo.Say("The frank test is " + TropoUtilities.removeQuotes(Actions.Last["value"].ToString()));
+
+                    }
+                    tropo.Say("user type is " + tropoResult.MachineDetection);
 
                     //tropo.Say("The value selected by the caller is " + TropoUtilities.removeQuotes(Actions["value"].ToString()));
                 }

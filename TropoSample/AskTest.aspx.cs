@@ -39,7 +39,7 @@ namespace TropoSample
             //tropo.GeneralLogSecurity("suppress");
             //tropo.Ask(5, signals, false, null, choices, null, "test", Recognizer.UsEnglish, "suppress", "mask", "XXDD-", true, say, 30);
             //tropo.GeneralLogSecurity("none");
-            tropo.Ask(5, signals, false, null, frankchoices, null, "franktest", Recognizer.UsEnglish, "suppress", "mask", "XXDD-", true, franksay, 30);
+            tropo.Ask(5, signals, false, null, frankchoices, null, "franktest", Recognizer.UsEnglish, true, franksay, 30, "suppress", "mask", "XXDD-");
             tropo.On("continue", "TropoResult.aspx", sayon);
             //tropo.Hangup();
 
