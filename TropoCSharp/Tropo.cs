@@ -475,6 +475,38 @@ namespace TropoCSharp.Tropo
         }
 
         /// <summary>
+        /// Overload for Conference that allows all events
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
+        /// <param name="interdigitTimeout">Defines how long to wait - in seconds - between key presses to determine the user has stopped entering input.</param>
+        /// <param name="mute"></param>
+        /// <param name="name"></param>
+        /// <param name="playTones"></param>
+        /// <param name="required"></param>
+        /// <param name="terminator"></param>
+        /// <param name="joinPrompt"></param>
+        /// <param name="leavePrompt"></param>
+        /// <param name="promptLogSecurity"></param> 
+        public void Conference(string id, Array allowSignals, int? interdigitTimeout, bool? mute, string name, bool? playTones, bool? required, string terminator, JoinPrompt joinPrompt, LeavePrompt leavePrompt, string promptLogSecurity)
+        {
+            Conference conference = new Conference();
+            conference.Id = id;
+            conference.allowSignals = allowSignals;
+            conference.InterdigitTimeout = interdigitTimeout;
+            conference.Mute = mute;
+            conference.Name = name;
+            conference.PlayTones = playTones;
+            conference.Required = required;
+            conference.Terminator = terminator;
+            conference.JoinPrompt = joinPrompt;
+            conference.LeavePrompt = leavePrompt;
+            conference.PromptLogSecurity = promptLogSecurity;
+
+            Serialize(conference, "conference");
+        }
+
+        /// <summary>
         /// Overload for Conference that allows a Conference object to be passed.
         /// </summary>
         /// <param name="conference">A Conference object.</param>

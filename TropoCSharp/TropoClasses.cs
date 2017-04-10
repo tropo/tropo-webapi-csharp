@@ -243,8 +243,71 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "required")]
         public bool? Required { get; set; }
 
+        [JsonProperty(PropertyName = "joinPrompt")]
+        public JoinPrompt JoinPrompt { get; set; }
+
+        [JsonProperty(PropertyName = "leavePrompt")]
+        public LeavePrompt LeavePrompt { get; set; }
+
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
+
         public Conference()
         {
+        }
+    }
+
+    /// <summary>
+    /// Defines a prompt that plays to all participants of a conference when someone joins the conference.
+    /// </summary>
+    public class JoinPrompt : TropoBase
+    {
+        [JsonProperty(PropertyName = "value")]
+        public string Value { get; set; }
+
+        [JsonProperty(PropertyName = "voice")]
+        public string Voice { get; set; }
+
+        public JoinPrompt()
+        {
+        }
+
+        public JoinPrompt(string value)
+        {
+            Value = value;
+        }
+
+        public JoinPrompt(string value, string voice)
+        {
+            Value = value;
+            Voice = voice;
+        }
+    }
+
+    /// <summary>
+    /// Defines a prompt that plays to all participants of a conference when someone leaves the conference.
+    /// </summary>
+    public class LeavePrompt : TropoBase
+    {
+        [JsonProperty(PropertyName = "value")]
+        public string Value { get; set; }
+
+        [JsonProperty(PropertyName = "voice")]
+        public string Voice { get; set; }
+
+        public LeavePrompt()
+        {
+        }
+
+        public LeavePrompt(string value)
+        {
+            Value = value;
+        }
+
+        public LeavePrompt(string value, string voice)
+        {
+            Value = value;
+            Voice = voice;
         }
     }
 
