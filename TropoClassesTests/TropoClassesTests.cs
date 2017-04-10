@@ -33,6 +33,7 @@ namespace TropoClassesTests
         private string startRecordingJson = @"{""tropo"":[{ ""startRecording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""}}]}";
         private string conferenceJson = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true}},{ ""say"":{""value"":""Thank you for joining the conference.""}}]}";
         private string conferenceJsonWithEvents = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""allowSignals"":[""conferenceOver""],""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true}}]}";
+        private string conferenceJsonWithWithPromptsAndpromptLogSecurity = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""allowSignals"":[""conferenceOver""],""interdigitTimeout"":4,""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true,""joinPrompt"":{""value"":""somebody join the conference""},""leavePrompt"":{""value"":""some one leave the conference""},""promptLogSecurity"":""none""}}]}";
         private string generalLogSecurityJson = @"{""tropo"":[{""generalLogSecurity"":""suppress""},{ ""say"":{""value"":""this is not logged""}},{""generalLogSecurity"":""none""},{ ""say"":{""value"":""this will be logged""}}]}";
 
         public TropoClassesTests()
@@ -421,6 +422,20 @@ namespace TropoClassesTests
             tropo.Conference("123456789098765432", signals, false, "testConference", false, true, "#");
 
             Assert.AreEqual(this.conferenceJsonWithEvents, tropo.RenderJSON());
+        }
+
+        [TestMethod]
+        public void testConferenceWithPromptsAndpromptLogSecurity()
+        {
+            Tropo tropo = new Tropo();
+            string[] signals = new string[] { "conferenceOver" };
+            tropo.Call("3035551212");
+            tropo.Say("Welcome to the conference.");
+            JoinPrompt joinPrompt = new JoinPrompt("somebody join the conference");
+            LeavePrompt leavePrompt = new LeavePrompt("some one leave the conference");
+            tropo.Conference("123456789098765432", signals, 4, false, "testConference", false, true, "#", joinPrompt, leavePrompt, "none");
+
+            Assert.AreEqual(this.conferenceJsonWithWithPromptsAndpromptLogSecurity, tropo.RenderJSON());
         }
 
         [TestMethod]

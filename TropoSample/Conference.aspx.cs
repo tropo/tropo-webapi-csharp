@@ -45,10 +45,14 @@ namespace TropoSamples
                     // Create a signal to end the conference.
                     string[] signals = new string[] { "interruptConference", "endCall" };
 
+
                     // Call an outbound number and create a conference.
                     tropo.Call(tropoSession.Parameters["callToNumber"]);
                     tropo.Say("Welcome to the conference.");
-                    tropo.Conference(tropoSession.Parameters["conferenceID"], signals, false, "testConference", false, true, "#");
+                    //tropo.Conference(tropoSession.Parameters["conferenceID"], signals, false, "testConference", false, true, "#");
+                    JoinPrompt joinPrompt = new JoinPrompt("somebody join the conference");
+                    LeavePrompt leavePrompt = new LeavePrompt("some one leave the conference");
+                    tropo.Conference(tropoSession.Parameters["conferenceID"], signals, 3, false, "testConference", false, true, "#", joinPrompt, leavePrompt, "none");
                     tropo.On("interruptConference", "Conference.aspx?signal=interruptConference&confid=" + tropoSession.Parameters["conferenceID"], new Say("You have left the conference."));
                     tropo.On("endCall", "Conference.aspx?signal=endCall", new Say("You have left the conference."));
                 }
