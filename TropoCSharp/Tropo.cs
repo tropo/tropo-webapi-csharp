@@ -267,7 +267,7 @@ namespace TropoCSharp.Tropo
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
         /// <param name="headers">This contains the Session Initiation Protocol (SIP) Headers for the current session.</param>
         /// <param name="recording">This is a shortcut to allow you to start call recording as soon as the call is answered. </param>      
-        public void Call(IEnumerable<String> to, string from, string network, string channel, bool? answerOnMedia, float? timeout, IDictionary<String, String> headers, StartRecording recording)
+        public void Call(IEnumerable<String> to, string from, string network, string channel, bool? answerOnMedia, float? timeout, IDictionary<String, String> headers)
         {
             Call call = new Call();
             call.To = to;
@@ -277,7 +277,6 @@ namespace TropoCSharp.Tropo
             call.AnswerOnMedia = answerOnMedia;
             call.Timeout = timeout;
             call.Headers = headers;
-            call.Recording = recording;
 
             Serialize(call, "call");
         }
@@ -293,7 +292,7 @@ namespace TropoCSharp.Tropo
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
         /// <param name="headers">This contains the Session Initiation Protocol (SIP) Headers for the current session.</param>
         /// <param name="recording">This is a shortcut to allow you to start call recording as soon as the call is answered. </param>      
-        public void Call(IEnumerable<String> to, string from, string network, string channel, bool? answerOnMedia, float? timeout, IDictionary<String, String> headers, StartRecording recording, MachineDetection machineDetection, string voice, string callbackUrl, string promptLogSecurity, string label)
+        public void Call(IEnumerable<String> to, string from, string network, string channel, bool? answerOnMedia, float? timeout, IDictionary<String, String> headers, MachineDetection machineDetection, string voice, string callbackUrl, string promptLogSecurity, string label)
         {
             Call call = new Call();
             call.To = to;
@@ -303,7 +302,6 @@ namespace TropoCSharp.Tropo
             call.AnswerOnMedia = answerOnMedia;
             call.Timeout = timeout;
             call.Headers = headers;
-            call.Recording = recording;
             call.MachineDetection = machineDetection;
             call.Voice = voice;
             call.CallbackUrl = callbackUrl;
@@ -324,7 +322,7 @@ namespace TropoCSharp.Tropo
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
         /// <param name="headers">This contains the Session Initiation Protocol (SIP) Headers for the current session.</param>
         /// <param name="recording">This is a shortcut to allow you to start call recording as soon as the call is answered. </param>      
-        public void Call(String to, string from, string network, string channel, bool? answerOnMedia, float? timeout, IDictionary<String, String> headers, StartRecording recording)
+        public void Call(String to, string from, string network, string channel, bool? answerOnMedia, float? timeout, IDictionary<String, String> headers)
         {
             Call call = new Call
             {
@@ -335,7 +333,6 @@ namespace TropoCSharp.Tropo
                 AnswerOnMedia = answerOnMedia,
                 Timeout = timeout,
                 Headers = headers,
-                Recording = recording
             };
 
             Serialize(call, "call");
@@ -353,7 +350,7 @@ namespace TropoCSharp.Tropo
         /// <param name="timeout"></param>
         /// <param name="headers"></param>
         /// <param name="recording"></param>
-        public void Call(String to, Array allowSignals, string from, string network, string channel, bool? answerOnMedia, float? timeout, IDictionary<String, String> headers, StartRecording recording)
+        public void Call(String to, Array allowSignals, string from, string network, string channel, bool? answerOnMedia, float? timeout, IDictionary<String, String> headers)
         {
             Call call = new Call
             {
@@ -365,7 +362,6 @@ namespace TropoCSharp.Tropo
                 AnswerOnMedia = answerOnMedia,
                 Timeout = timeout,
                 Headers = headers,
-                Recording = recording
             };
 
             Serialize(call, "call");
@@ -398,7 +394,7 @@ namespace TropoCSharp.Tropo
         public void Call(Call call)
         {
             //Call(call.To, call.From, call.Network, call.Channel, call.AnswerOnMedia, call.Timeout, call.Headers, call.Recording);
-            Call(call.To, call.From, call.Network, call.Channel, call.AnswerOnMedia, call.Timeout, call.Headers, call.Recording, call.MachineDetection, call.Voice, call.CallbackUrl, call.PromptLogSecurity, call.Label);
+            Call(call.To, call.From, call.Network, call.Channel, call.AnswerOnMedia, call.Timeout, call.Headers, call.MachineDetection, call.Voice, call.CallbackUrl, call.PromptLogSecurity, call.Label);
         }
 
         /// <summary>
@@ -537,7 +533,8 @@ namespace TropoCSharp.Tropo
         /// <param name="network">Network is used mainly by the text channels; values can be SMS when sending a text message, or a valid IM network name such as AIM, MSN, JABBER, YAHOO and GTALK.</param>
         /// <param name="required">Determines whether Tropo should move on to the next action.</param>
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
-        public void Message(Say say, IEnumerable<String> to, bool? answerOnMedia, string channel, string from, string name, string network, bool? required, float? timeout)
+        /// <param name="promptLogSecurity">Controls whether Tropo logs the text to speech string used by the method.</param>
+        public void Message(Say say, IEnumerable<String> to, bool? answerOnMedia, string channel, string from, string name, string network, bool? required, float? timeout,string voice, string promptLogSecurity)
         {
             Message message = new Message();
             message.Say = say;
@@ -549,7 +546,9 @@ namespace TropoCSharp.Tropo
             message.Network = network;
             message.Required = required;
             message.Timeout = timeout;
-            message.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
+            //message.Voice = String.IsNullOrEmpty(this.Voice) ? null : this.Voice;
+            message.Voice = String.IsNullOrEmpty(voice) ? this.Voice : voice;
+            message.PromptLogSecurity = promptLogSecurity;
 
             Serialize(message, "message");
         }
@@ -560,7 +559,7 @@ namespace TropoCSharp.Tropo
         /// <param name="message">A Message object.</param>
         public void Message(Message message)
         {
-            Message(message.Say, message.To, message.AnswerOnMedia, message.Channel, message.From, message.Name, message.Network, message.Required, message.Timeout);
+            Message(message.Say, message.To, message.AnswerOnMedia, message.Channel, message.From, message.Name, message.Network, message.Required, message.Timeout,message.Voice, message.PromptLogSecurity);
         }
 
         /// <summary>

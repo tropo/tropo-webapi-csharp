@@ -356,6 +356,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "voice")]
         public string Voice { get; set; }
 
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
+
         public Message()
         {
         }
