@@ -568,6 +568,7 @@ namespace TropoCSharp.Tropo
         /// <param name="event">This defines which event the on action handles.</param>
         /// <param name="next">When an associated event occurs, Tropo will post to the URL defined here. If left blank, Tropo will simply hangup.</param>
         /// <param name="say">This determines what is played or sent to the caller.</param>      
+        [System.Obsolete("Method is deprecated.")]
         public void On(string @event, string next, Say say)
         {
             On on = new On();
@@ -579,12 +580,31 @@ namespace TropoCSharp.Tropo
         }
 
         /// <summary>
+        /// Adds an event callback so that your application may be notified when a particular event occurs.
+        /// </summary>
+        /// <param name="event">This defines which event the on action handles.</param>
+        /// <param name="next">When an associated event occurs, Tropo will post to the URL defined here. If left blank, Tropo will simply hangup.</param>
+        /// <param name="say">This determines what is played or sent to the caller.</param>      
+        /// <param name="post">This parameter is only available in the 'connect' event of transfer.</param>      
+        public void On(string @event, string next, Say say, string post)
+        {
+            On on = new On();
+            on.Event = @event;
+            on.Next = next;
+            on.Say = say;
+            on.Post = post;
+
+            Serialize(on, "on");
+        }
+
+        /// <summary>
         /// Overload for On that allows an On object to be passed.
         /// </summary>
         /// <param name="on">An On object.</param>
         public void On(On on)
         {
-            On(on.Event, on.Next, on.Say);
+            //On(on.Event, on.Next, on.Say);
+            On(on.Event, on.Next, on.Say, on.Post);
         }
 
         /// <summary>
