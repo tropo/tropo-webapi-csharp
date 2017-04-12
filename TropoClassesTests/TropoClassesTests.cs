@@ -25,11 +25,11 @@ namespace TropoClassesTests
         private string recordJson = @"{""tropo"":[{ ""record"":{""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""}}}]}";
         private string recordJsonWithTranscription = @"{""tropo"":[{ ""record"":{""attempts"":1,""bargein"":false,""beep"":true,""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""maxSilence"":5.0,""maxTime"":30.0,""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""},""timeout"":5.0,""password"":""foo"",""transcription"":{""id"":""foo"",""url"":""http://example.com/"",""emailFormat"":""encoded""},""username"":""bar"",""url"":""http://example.com/""}}]}";
         private string callJson = @"{""tropo"":[{ ""call"":{""to"":[""3055195825"",""3054445567""]}}]}";
-        private string callJsonAllOptions = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""headers"":{""foo"":""bar"",""bling"":""baz""},""recording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""},""timeout"":10.0}}]}";
-        private string callJsonCallObject = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""headers"":{""foo"":""bar"",""bling"":""baz""},""recording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""},""timeout"":10.0,""machineDetection"":{""introduction"":""It is rather for us to be here dedicated to the great task remaining before us—that from these honored dead we take increased devotion to that cause for which they here gave the last full measure of devotion—that we here highly resolve that these dead shall not have died in vain—that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.""},""voice"":""voicefoo"",""callbackUrl"":""samplecallbackurl"",""label"":""appidIdAsLabel""}}]}";
+        private string callJsonAllOptions = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""headers"":{""foo"":""bar"",""bling"":""baz""},""timeout"":10.0}}]}";
+        private string callJsonCallObject = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""headers"":{""foo"":""bar"",""bling"":""baz""},""timeout"":10.0,""machineDetection"":{""introduction"":""It is rather for us to be here dedicated to the great task remaining before us—that from these honored dead we take increased devotion to that cause for which they here gave the last full measure of devotion—that we here highly resolve that these dead shall not have died in vain—that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.""},""voice"":""voicefoo"",""callbackUrl"":""samplecallbackurl"",""label"":""appidIdAsLabel""}}]}";
         private string callJsonWithEvents = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551414"",""network"":""PSTN"",""channel"":""VOICE"",""answerOnMedia"":true,""allowSignals"":[""tooLong"",""callOver""],""headers"":{""x-foo"":""bar"",""x-bling"":""baz""},""timeout"":60.0}}]}";
-        private string messageJson = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""timeout"":10.0,""voice"":""Kate""}}]}";
-        private string messageJsonAllOptions = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""name"":""foo"",""required"":true,""timeout"":10.0,""voice"":""Kate""}}]}";
+        private string messageJson = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""timeout"":10.0,""voice"":""Kate"",""promptLogSecurity"":""none""}}]}";
+        private string messageJsonAllOptions = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""name"":""foo"",""required"":true,""timeout"":10.0,""voice"":""voicee"",""promptLogSecurity"":""none""}}]}";
         private string startRecordingJson = @"{""tropo"":[{ ""startRecording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""}}]}";
         private string conferenceJson = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true}},{ ""say"":{""value"":""Thank you for joining the conference.""}}]}";
         private string conferenceJsonWithEvents = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""allowSignals"":[""conferenceOver""],""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true}}]}";
@@ -193,9 +193,8 @@ namespace TropoClassesTests
             headers.Add("foo", "bar");
             headers.Add("bling", "baz");
 
-            StartRecording recording = new StartRecording(AudioFormat.Mp3, Method.Post, "http://blah.com/recordings/1234.wav", "jose", "password");
 
-            tropo.Call("3055195825", "3055551212", Network.SMS, Channel.Text, false, 10, headers, recording);
+            tropo.Call("3055195825", "3055551212", Network.SMS, Channel.Text, false, 10, headers);
             Assert.AreEqual(this.callJsonAllOptions, tropo.RenderJSON());
         }
 
@@ -209,13 +208,11 @@ namespace TropoClassesTests
             headers.Add("foo", "bar");
             headers.Add("bling", "baz");
 
-            StartRecording recording = new StartRecording(AudioFormat.Mp3, Method.Post, "http://blah.com/recordings/1234.wav", "jose", "password");
 
             List<String> to = new List<String>(1);
             to.Add("3055195825");
 
             Call call = new Call();
-            call.Recording = recording;
             call.Headers = headers;
             call.Timeout = 10;
             call.AnswerOnMedia = false;
@@ -243,7 +240,7 @@ namespace TropoClassesTests
             headers.Add("x-foo", "bar");
             headers.Add("x-bling", "baz");
 
-            tropo.Call("3055195825", signals, "3055551414", Network.Pstn, Channel.Voice, true, 60, headers, null);
+            tropo.Call("3055195825", signals, "3055551414", Network.Pstn, Channel.Voice, true, 60, headers);
             Assert.AreEqual(this.callJsonWithEvents, tropo.RenderJSON());
         }
 
@@ -260,7 +257,7 @@ namespace TropoClassesTests
             string from = "3055551212";
             List<String> to = new List<String>();
             to.Add("3055195825");
-            tropo.Message(say, to, false, Channel.Text, from, null, Network.SMS, null, 10);
+            tropo.Message(say, to, false, Channel.Text, from, null, Network.SMS, null, 10, Voice.BritishEnglishFemale_Kate, "none");
 
             Assert.AreEqual(this.messageJson, tropo.RenderJSON());
         }
@@ -280,6 +277,7 @@ namespace TropoClassesTests
             message.Channel = Channel.Text;
             message.Network = Network.SMS;
             message.Timeout = 10;
+            message.PromptLogSecurity = "none";
 
             Tropo tropo = new Tropo();
             tropo.Voice = Voice.BritishEnglishFemale_Kate;
@@ -297,7 +295,7 @@ namespace TropoClassesTests
             string from = "3055551212";
             List<String> to = new List<String>();
             to.Add("3055195825");
-            tropo.Message(say, to, false, Channel.Text, from, "foo", Network.SMS, true, 10);
+            tropo.Message(say, to, false, Channel.Text, from, "foo", Network.SMS, true, 10, "voicee", "none");
 
             Assert.AreEqual(this.messageJsonAllOptions, tropo.RenderJSON());
         }
