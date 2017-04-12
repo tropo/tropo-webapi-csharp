@@ -375,14 +375,11 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "next")]
         public string Next { get; set; }
 
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
-
-        [JsonProperty(PropertyName = "required")]
-        public bool? Required { get; set; }
-
         [JsonProperty(PropertyName = "say")]
         public Say Say { get; set; }
+
+        [JsonProperty(PropertyName = "post")]
+        public string Post { get; set; }
 
         public On()
         {
