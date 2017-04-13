@@ -671,6 +671,58 @@ namespace TropoCSharp.Tropo
         }
 
         /// <summary>
+        /// All options.
+        /// </summary>
+        /// <param name="attempts">How many times the caller can attempt input before an error is thrown.</param>
+        /// <param name="asyncUpload">Instruct Tropo to upload the recording file in the background or not.</param>
+        /// <param name="allowSignals">This parameter allows you to assign a signal to this function.</param>
+        /// <param name="bargein">Should the user be allowed to barge in before TTS is complete?</param>
+        /// <param name="beep">When set to true, callers will hear a tone indicating the recording has begun.</param>
+        /// <param name="choices">The grammar to use in recognizing and validating input.</param>
+        /// <param name="say">This determines what is played or sent to the caller.</param>
+        /// <param name="format">This specifies the format for the audio recording.</param>
+        /// <param name="maxSilence">The maximum amount of time, in seconds, to wait for silence after a user stops speaking.</param>
+        /// <param name="maxTime">The maximum amount of time, in seconds, the user is allotted for input.</param>
+        /// <param name="method">This defines how you want to send the audio file.</param>
+        /// <param name="name">This is the key used to identify the result of an operation, so you can differentiate between multiple results.</param>
+        /// <param name="required">Determines whether Tropo should move on to the next action.</param>
+        /// <param name="transcription">This allows you to submit a recording to be transcribed and specifies where to send the transcription.</param>
+        /// <param name="url">This is the destination URL to send the recording.</param>
+        /// <param name="password">Defines the password for uploading a file.</param>
+        /// <param name="username">Defines the username for uploading a file.</param>
+        /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
+        /// <param name="interdigitTimeout">How long does Tropo wait between key presses to determine the user is done with their input.</param>
+        /// <param name="voice">Specifies the default voice to be used when speaking text back to a user.</param>
+        /// <param name="promptLogSecurity">Controls whether Tropo logs the text to speech string used by the method.</param>
+        public void Record(int? attempts, bool? asyncUpload, Array allowSignals, bool? bargein, bool? beep, Choices choices, Say say, string format, float? maxSilence, float? maxTime, string method, string name, bool? required, Transcription transcription, string url, string password, string username, float? timeout, int? interdigitTimeout, string voice, string promptLogSecurity)
+        {
+            Record record = new Record();
+            record.Attempts = attempts;
+            record.AsyncUpload = asyncUpload;
+            record.allowSignals = allowSignals;
+            record.Bargein = bargein;
+            record.Beep = beep;
+            record.Choices = choices;
+            record.Say = say;
+            record.Format = format;
+            record.MaxSilence = maxSilence;
+            record.MaxTime = maxTime;
+            record.Method = method;
+            record.Name = name;
+            record.Required = required;
+            record.Transcription = transcription;
+            record.Url = url;
+            record.Password = password;
+            record.Username = username;
+            record.Timeout = timeout;
+            record.InterdigitTimeout = interdigitTimeout;
+            record.Voice = voice;
+            record.PromptLogSecurity = promptLogSecurity;
+
+            Serialize(record, "record");
+        }
+
+        /// <summary>
         /// Overload for Record that allows events to be set via allowSignals.
         /// </summary>
         /// <param name="attempts"></param>
@@ -711,7 +763,7 @@ namespace TropoCSharp.Tropo
 
             Serialize(record, "record");
         }
-        
+
         /// <summary>
         /// Overload for Record that allows all events
         /// </summary>

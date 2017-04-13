@@ -4,6 +4,7 @@ using System.Web.UI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TropoCSharp.Tropo;
+using System.Web;
 
 namespace TropoSamples
 {
@@ -18,6 +19,8 @@ namespace TropoSamples
             {               
                 // Get the JSON submitted from Tropo. 
                 string resultJSON = TropoUtilities.parseJSON(reader);
+                Console.WriteLine("resultJSONis:" + resultJSON);
+                HttpContext.Current.Trace.Warn(DateTime.Now.ToString() + " I Made It HerresultJSONis" + resultJSON);
 
                 // Create a new instance of the Tropo class.
                 Tropo tropo = new Tropo();
@@ -42,6 +45,7 @@ namespace TropoSamples
 
                     }
                     tropo.Say("user type is " + tropoResult.MachineDetection);
+                    tropo.Say("uploadStatus is " + resultJSON);
 
                     //tropo.Say("The value selected by the caller is " + TropoUtilities.removeQuotes(Actions["value"].ToString()));
                 }

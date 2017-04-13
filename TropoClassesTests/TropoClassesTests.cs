@@ -24,6 +24,7 @@ namespace TropoClassesTests
         private string askJsonWithSayEvents = @"{""tropo"":[{ ""ask"":{""interdigitTimeout"":1,""name"":""foo"",""choices"":{""value"":""[5 DIGITS]""},""say"":[{""value"":""Are you still there?"",""event"":""timeout""},{""value"":""Please enter your 5 digit zip code.""}]}}]}";
         private string recordJson = @"{""tropo"":[{ ""record"":{""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""}}}]}";
         private string recordJsonWithTranscription = @"{""tropo"":[{ ""record"":{""attempts"":1,""bargein"":false,""beep"":true,""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""maxSilence"":5.0,""maxTime"":30.0,""method"":""POST"",""required"":true,""say"":{""value"":""Please say your account number""},""timeout"":5.0,""password"":""foo"",""transcription"":{""id"":""foo"",""url"":""http://example.com/"",""emailFormat"":""encoded""},""username"":""bar"",""url"":""http://example.com/""}}]}";
+        private string recordJsonAllOptions = @"{""tropo"":[{ ""record"":{""attempts"":1,""bargein"":false,""beep"":true,""choices"":{""value"":""[5 DIGITS]"",""terminator"":""#""},""format"":""audio/wav"",""interdigitTimeout"":5,""maxSilence"":10.0,""maxTime"":600.0,""method"":""POST"",""name"":""whname"",""required"":true,""say"":{""value"":""Please say your account number""},""timeout"":15.0,""transcription"":{""id"":""foo"",""url"":""http://example.com/"",""emailFormat"":""encoded""},""url"":""http://example.com/"",""asyncUpload"":true,""promptLogSecurity"":""none""}}]}";
         private string callJson = @"{""tropo"":[{ ""call"":{""to"":[""3055195825"",""3054445567""]}}]}";
         private string callJsonAllOptions = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""headers"":{""foo"":""bar"",""bling"":""baz""},""timeout"":10.0}}]}";
         private string callJsonCallObject = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""headers"":{""foo"":""bar"",""bling"":""baz""},""timeout"":10.0,""machineDetection"":{""introduction"":""It is rather for us to be here dedicated to the great task remaining before us—that from these honored dead we take increased devotion to that cause for which they here gave the last full measure of devotion—that we here highly resolve that these dead shall not have died in vain—that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.""},""voice"":""voicefoo"",""callbackUrl"":""samplecallbackurl"",""label"":""appidIdAsLabel""}}]}";
@@ -347,7 +348,7 @@ namespace TropoClassesTests
             tropo.Record(record);
             Assert.AreEqual(this.recordJson, tropo.RenderJSON());
         }
-        
+
         [TestMethod]
         public void testRecordTranscription()
         {
@@ -360,8 +361,25 @@ namespace TropoClassesTests
             transcription.EmailFormat = "encoded";
 
             Tropo tropo = new Tropo();
-            tropo.Record(1, false, true, choices, AudioFormat.Wav, 5, 30, Method.Post, "foo", true, say, 5, transcription, "bar", "http://example.com/"); 
+            tropo.Record(1, false, true, choices, AudioFormat.Wav, 5, 30, Method.Post, "foo", true, say, 5, transcription, "bar", "http://example.com/");
             Assert.AreEqual(this.recordJsonWithTranscription, tropo.RenderJSON());
+        }
+
+        [TestMethod]
+        public void testRecordAllOptions()
+        {
+            Say say = new Say("Please say your account number");
+            Choices choices = new Choices("[5 DIGITS]", null, "#");
+            Transcription transcription = new Transcription();
+
+            transcription.Url = "http://example.com/";
+            transcription.Id = "foo";
+            transcription.EmailFormat = "encoded";
+
+            Tropo tropo = new Tropo();
+            //tropo.Record(1, false, true, choices, AudioFormat.Wav, 5, 30, Method.Post, "foo", true, say, 5, transcription, "bar", "http://example.com/");
+            tropo.Record(1, true, null, false, true, choices, say, AudioFormat.Wav, 10, 600, Method.Post, "whname", true, transcription, "http://example.com/", null, null, 15, 5, null, "none");
+            Assert.AreEqual(this.recordJsonAllOptions, tropo.RenderJSON());
         }
 
         #endregion
