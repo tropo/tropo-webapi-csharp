@@ -428,9 +428,6 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "method")]
         public string Method { get; set; }
 
-        [JsonProperty(PropertyName = "minConfidence")]
-        public int? MinConfidence { get; set; }
-
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
@@ -457,6 +454,12 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "voice")]
         public string Voice { get; set; }
+
+        [JsonProperty(PropertyName = "asyncUpload")]
+        public bool? AsyncUpload { get; set; }
+
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
 
         public Record()
         {
