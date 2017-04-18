@@ -24,7 +24,7 @@ namespace OutboundTest
             IDictionary<string, string> parameters = new Dictionary<String, String>();
 
             // Enter a phone number to send a call or SMS message to here.
-            parameters.Add("sendToNumber", "15551112222");
+            parameters.Add("numberToDial", "15551112222");
 
             // Enter a phone number to use as the caller ID.
             parameters.Add("sendFromNumber", "15551113333");
@@ -37,7 +37,7 @@ namespace OutboundTest
             parameters.Add("network", network);
 
             // Message is sent as a query string parameter, make sure it is properly encoded.
-            parameters.Add("msg", HttpUtility.UrlEncode("This is a test message from C#."));
+            parameters.Add("textMessageBody", HttpUtility.UrlEncode("This is a test message from C#."));
 
             // Instantiate a new instance of the Tropo object.
             Tropo tropo = new Tropo();
