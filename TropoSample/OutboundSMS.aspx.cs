@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Web.UI;
@@ -30,15 +30,15 @@ namespace TropoSamples
                     Session tropoSession = new Session(sessionJSON);
 
                     // Get parameters submitted with Session API call.
-                    string sendToNumber = tropoSession.Parameters.Get("sendToNumber");
+                    string numberToDial = tropoSession.Parameters.Get("numberToDial");
                     string sendFromNumber = tropoSession.Parameters.Get("sendFromNumber");
                     string channel = tropoSession.Parameters.Get("channel");
                     string network = tropoSession.Parameters.Get("network");
-                    string msg = tropoSession.Parameters.Get("msg");
+                    string textMessageBody = tropoSession.Parameters.Get("textMessageBody");
 
                     // Send an outbound message.
-                    tropo.Call(sendToNumber, sendFromNumber, network, channel, true, 60, null, null);
-                    tropo.Say(msg);
+                    tropo.Call(numberToDial, sendFromNumber, network, channel, true, 60, null, null);
+                    tropo.Say(textMessageBody);
 
                     // Render the JSON for Tropo to consume.
                     Response.Write(tropo.RenderJSON());
