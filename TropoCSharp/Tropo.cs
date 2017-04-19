@@ -869,7 +869,7 @@ namespace TropoCSharp.Tropo
         /// </summary>
         public void Reject()
         {
-            Reject reject = new Reject();
+            Reject reject = null;
             Serialize(reject, "reject");
 
         }
