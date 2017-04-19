@@ -844,7 +844,7 @@ namespace TropoCSharp.Tropo
         /// <param name="to">The SIP destination for the incoming call, as a URL.</param>
         /// <param name="name">Identifies the return value of a Redirect, so you know the context for the returned information.</param>
         /// <param name="required">Determines whether Tropo should move on to the next action.</param>
-        public void Redirect( IEnumerable<String> to, string name, bool? required)
+        public void Redirect( string to, string name, bool? required)
         {
             Redirect redirect = new Redirect();
             redirect.To = to;
