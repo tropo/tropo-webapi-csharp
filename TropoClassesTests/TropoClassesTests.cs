@@ -36,6 +36,7 @@ namespace TropoClassesTests
         private string conferenceJsonWithEvents = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""allowSignals"":[""conferenceOver""],""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true}}]}";
         private string conferenceJsonWithWithPromptsAndpromptLogSecurity = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""allowSignals"":[""conferenceOver""],""interdigitTimeout"":4,""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true,""joinPrompt"":{""value"":""somebody join the conference""},""leavePrompt"":{""value"":""some one leave the conference""},""promptLogSecurity"":""none""}}]}";
         private string generalLogSecurityJson = @"{""tropo"":[{""generalLogSecurity"":""suppress""},{ ""say"":{""value"":""this is not logged""}},{""generalLogSecurity"":""none""},{ ""say"":{""value"":""this will be logged""}}]}";
+        private string redirectJson = @"{""tropo"":[{ ""redirect"":{""name"":""redirectTest"",""required"":true,""to"":""sip:9995844724@10.140.254.62:5678""}}]}";
 
         public TropoClassesTests()
         {
@@ -466,6 +467,22 @@ namespace TropoClassesTests
             Assert.AreEqual(this.generalLogSecurityJson, tropo.RenderJSON());
         }
 
-    #endregion
-}
+        #endregion
+
+
+        #region Redirect Tests
+
+        [TestMethod]
+        public void testRedirect()
+        {
+            Tropo tropo = new Tropo();
+            tropo.Redirect("sip:9995844724@10.140.254.62:5678", "redirectTest", true);
+
+            Assert.AreEqual(this.redirectJson, tropo.RenderJSON());
+        }
+
+        #endregion
+
+
+    }
 }

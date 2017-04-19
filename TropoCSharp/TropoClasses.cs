@@ -478,7 +478,7 @@ namespace TropoCSharp.Tropo
         public bool? Required { get; set; }
 
         [JsonProperty(PropertyName = "to")]
-        public IEnumerable<String> To { get; set; }
+        public string To { get; set; }
 
         public Redirect()
         {
