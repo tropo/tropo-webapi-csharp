@@ -17,6 +17,7 @@ namespace TropoCSharp.Tropo
         {
             JObject session = JObject.Parse(json);
             AccountId = (string)session["session"]["accountId"];
+            CallId = (string)session["session"]["callId"];
             Id = (string)session["session"]["id"];
             InitialText = (string)session["session"]["initialText"];
             Timestamp = (string)session["session"]["timestamp"];
@@ -28,7 +29,8 @@ namespace TropoCSharp.Tropo
                 string fromName = (string)session["session"]["from"]["name"];
                 string fromNetwork = (string)session["session"]["from"]["network"];
                 string fromChannel = (string)session["session"]["from"]["channel"];
-                From = new Endpoint(fromId, fromChannel, fromName, fromNetwork);
+                string fromE164Id = (string)session["session"]["from"]["e164Id"];
+                From = new Endpoint(fromId, fromE164Id, fromChannel, fromName, fromNetwork);
             }
 
             if (session["session"]["to"] != null)
@@ -37,7 +39,8 @@ namespace TropoCSharp.Tropo
                 string toName = (string)session["session"]["to"]["name"];
                 string toNetwork = (string)session["session"]["to"]["network"];
                 string toChannel = (string)session["session"]["to"]["channel"];
-                To = new Endpoint(toId, toChannel, toName, toNetwork);
+                string toE164Id = (string)session["session"]["to"]["e164Id"];
+                To = new Endpoint(toId, toE164Id, toChannel, toName, toNetwork);
             }
 
             if (session["session"]["parameters"] != null)
@@ -72,6 +75,11 @@ namespace TropoCSharp.Tropo
         /// Contains the user account ID that started this session.
         /// </summary>
         public string AccountId { get; set; }
+
+        /// <summary>
+        /// This contains the ID of the call itself; this is not the caller ID or called ID, this is a value that identifies the actual call.
+        /// </summary>
+        public string CallId { get; set; }
 
         /// <summary>
         /// Contains the elements that identify the origination of the session.

@@ -37,6 +37,19 @@ namespace TropoSamples
                     string fromName = tropoSession.From.Name;
                     string fromChannel = tropoSession.From.Channel;
                     string toName = tropoSession.To.Name;
+                    string toE164Id = tropoSession.To.E164Id;
+                    string fromE164Id = tropoSession.From.E164Id;
+
+                    string accountId = tropoSession.AccountId;
+                    string callId = tropoSession.CallId;
+
+                    tropo.Say("from Name is " + fromName);
+                    tropo.Say("to E164 Id is " + toE164Id);
+                    tropo.Say("fro mE164Id is " + fromE164Id);
+
+                    tropo.Say("account Id is " + accountId);
+                    tropo.Say("call Id is " + callId);
+
 
                     if (fromName.Contains("xiang"))
                     {
