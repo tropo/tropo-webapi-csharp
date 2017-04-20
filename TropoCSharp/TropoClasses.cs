@@ -519,8 +519,14 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "voice")]
         public string Voice { get; set; }
 
+        /// <summary>
+        /// say in ask has event property
+        /// </summary>
         [JsonProperty(PropertyName = "event")]
         public string Event { get; set; }
+
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
 
         public Say()
         {

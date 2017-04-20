@@ -928,6 +928,28 @@ namespace TropoCSharp.Tropo
         }
 
         /// <summary>
+        /// Overload for say that allows events to be set via allowSignals.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
+        /// <param name="as"></param>
+        /// <param name="name"></param>
+        /// <param name="required"></param>
+        public void Say(string @value, Array allowSignals, string @as, string name, bool? required, string voice, string promptLogSecurity)
+        {
+            Say say = new Say();
+            say.allowSignals = allowSignals;
+            say.Value = @value;
+            say.As = @as;
+            say.Name = name;
+            say.Required = required;
+            say.Voice = String.IsNullOrEmpty(voice) ? String.IsNullOrEmpty(this.Voice) ? null : this.Voice : voice;
+            say.PromptLogSecurity = promptLogSecurity;
+
+            Serialize(say, "say");
+        }
+
+        /// <summary>
         /// Overload method for Say that allows only a string value to be passed.
         /// </summary>
         /// <param name="value">The prompt to say or send to the user.</param>
