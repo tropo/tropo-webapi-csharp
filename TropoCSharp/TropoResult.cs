@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace TropoCSharp.Tropo
 {
@@ -8,46 +9,16 @@ namespace TropoCSharp.Tropo
 
     public class Result
     {
+
+
         /// <summary>
         /// Class constructor.
         /// </summary>
         /// <param name="json">Result JSON submitted from Tropo platform</param>
-        public Result(string json)
+        public static Result getResult(string json)
         {
-            JObject results = JObject.Parse(json);
-            SessionId = (string)results["result"]["sessionId"];
-            State = (string)results["result"]["state"];
-            SessionDuration = (int)results["result"]["sessionDuration"];
-            Sequence = (int)results["result"]["sequence"];
-            Complete = (bool)results["result"]["complete"];
-            Error = (string)results["result"]["error"];
-            if (null != results["result"]["userType"])
-            {
-                MachineDetection = (string)results["result"]["userType"];
-            }
-
-
-            if (null != results["result"])
-            {
-
-                if (null != results["result"]["actions"])
-                {
-
-                    //actions is either an Object or an Array.
-                    JContainer ActionsObject = (JContainer)results["result"]["actions"];
-
-                    JTokenType type = ActionsObject.Type;
-                    if (type == JTokenType.Array)
-                    {
-                        Actions = (JArray)ActionsObject;
-                    }
-                    else
-                    {
-                        Actions = new JArray();
-                        Actions.Add((JToken)ActionsObject);
-                    }
-                }
-            }
+            RootObject jobject = JsonConvert.DeserializeObject<RootObject>(json);
+            return jobject.result;
         }
 
         /// <summary>
@@ -66,6 +37,16 @@ namespace TropoCSharp.Tropo
         public int SessionDuration { get; set; }
 
         /// <summary>
+        /// Set on a transfer only, the duration in seconds of a transferred call, starting from when the destination leg answers.
+        /// </summary>
+        public int ConnectedDuration { get; set; }
+
+        /// <summary>
+        /// Set on a transfer only, the total duration in seconds of a transferred call, including the time spent ringing before the call was answered.
+        /// </summary>
+        public int Duration { get; set; }
+
+        /// <summary>
         /// Represents the number of Tropo payloads returned from your application.
         /// </summary>
         public int Sequence { get; set; }
@@ -81,6 +62,16 @@ namespace TropoCSharp.Tropo
         public string Error { get; set; }
 
         /// <summary>
+        /// On outgoing calls (either with a call or transfer), the calledID will be set to the number called. In the case of multiple numbers called at once, calledID will indicate which number answered.
+        /// </summary>
+        public string CalledID { get; set; }
+
+        /// <summary>
+        /// This contains the ID of the call itself; this is not the caller ID or called ID, this is a value that identifies the actual call.
+        /// </summary>
+        public string CallId { get; set; }
+
+        /// <summary>
         /// identify whether your call reached a live human or not
         /// </summary>
         public string MachineDetection { get; set; }
@@ -88,6 +79,72 @@ namespace TropoCSharp.Tropo
         /// <summary>
         /// The result of the actions requested in the previous payload.
         /// </summary>
-        public JArray Actions { get; set; }
+        //public List<ActionResult> Actions { get; set; }
+        public List<Action> Actions { get; set; }
+
+    }
+
+
+    public class Action
+    {
+
+        /// <summary>
+        /// The name provided for this action result in the request.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// The number of attempts it took to obtain the result.
+        /// </summary>
+        public int Attempts { get; set; }
+
+        /// <summary>
+        /// The total length of time, in seconds, the current session has been running.
+        /// </summary>
+        public int SessionDuration { get; set; }
+
+        /// <summary>
+        /// The final result of the request, values may be SUCCESS, FAILED, EXTERNAL_EVENT, TIMEOUT, BUSY, or REJECTED.
+        /// </summary>
+        public string Disposition { get; set; }
+
+        /// <summary>
+        /// The result returned by the confidence engine that the result is correct.
+        /// </summary>
+        public int Confidence { get; set; }
+
+        /// <summary>
+        /// What the recognition engine believes what was said.
+        /// </summary>
+        public string Interpretation { get; set; }
+
+        /// <summary>
+        /// The specific utterance returned by the speech recognition engine.
+        /// </summary>
+        public string Utterance { get; set; }
+
+        /// <summary>
+        /// For speech recognition actions, this is the result of the grammar.
+        /// </summary>
+        public string Value { get; set; }
+
+        /// <summary>
+        /// The result of a Simple Grammar recognition. If you have a grammar that says "BBQ (BBQ, Bar Bee Que)" and someone says "Bar Bee Que", concept would be "BBQ".
+        public string Concept { get; set; }
+
+        /// <summary>
+        /// Contains the raw NLSML output from the speech recognition engine. This is mostly useful when asking Tropo to troubleshoot recognition issues.
+        /// </summary>
+        public string Xml { get; set; }
+
+        /// <summary>
+        /// If the action is a Tropo "record" or a "stopCallRecording" this field will be present. 
+        /// </summary>
+        public string UploadStatus { get; set; }
+    }
+
+    public class RootObject
+    {
+        public Result result { get; set; }
     }
 }

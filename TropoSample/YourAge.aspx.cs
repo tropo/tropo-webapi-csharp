@@ -25,26 +25,18 @@ namespace TropoSamples
                 try
                 {
                     // Create a new Result object and pass in the JSON submitted from Tropo.
-                    Result tropoResult = new Result(resultJSON);
+                    Result tropoResult = Result.getResult(resultJSON);
 
                     // Get Actions container and parse.
                     // JContainer Actions = TropoUtilities.parseActions(tropoResult.Actions);
 
-                    // A simple example showing how to access properties of the Result object.
-                    //tropo.Say("The State of the current session is " + tropoResult.State);
-                    //tropo.Say("The Sequence of this Result payload is " + tropoResult.Sequence);
-                    //tropo.Say("The session ID for the current session is is " + TropoUtilities.addSpaces(tropoResult.SessionId));
+                    //A simple example showing how to access properties of the Result object.
+                    tropo.Say("The State of the current session is " + tropoResult.State);
+                    tropo.Say("The Sequence of this Result payload is " + tropoResult.Sequence);
+                    tropo.Say("The session ID for the current session is is " + TropoUtilities.addSpaces(tropoResult.SessionId));
                     //tropo.Say("The value selected by the caller is " + TropoUtilities.removeQuotes(Actions["value"].ToString()));
 
-                    JTokenType type = tropoResult.Actions.Type;
-                    if (type == JTokenType.Array)
-                    {
-                        tropo.Say("line 1, Your age is " + TropoUtilities.removeQuotes(tropoResult.Actions.First["value"].ToString()));
-                    }
-                    else
-                    {
-                        tropo.Say("line 2, Your age is " + TropoUtilities.removeQuotes(tropoResult.Actions["value"].ToString()));
-                    }    
+
                 }
 
                 catch (JsonReaderException)
