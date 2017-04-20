@@ -704,6 +704,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
+        [JsonProperty(PropertyName = "e164Id")]
+        public string E164Id { get; set; }
+
         [JsonProperty(PropertyName = "channel")]
         public string Channel { get; set; }
 
@@ -720,6 +723,15 @@ namespace TropoCSharp.Tropo
         public Endpoint(string id, string channel, string name, string network)
         {
             Id = id;
+            Channel = channel;
+            Name = name;
+            Network = network;
+        }
+
+        public Endpoint(string id, string e164Id, string channel, string name, string network)
+        {
+            Id = id;
+            E164Id = e164Id;
             Channel = channel;
             Name = name;
             Network = network;
