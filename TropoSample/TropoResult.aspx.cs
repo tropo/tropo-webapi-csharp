@@ -45,7 +45,7 @@ namespace TropoSamples
 
                     }
                     tropo.Say("user type is " + tropoResult.MachineDetection);
-                    tropo.Say("uploadStatus is " + resultJSON);
+                    tropo.Say("uploadStatus is " + tropoResult.MachineDetection);
 
                     //tropo.Say("The value selected by the caller is " + TropoUtilities.removeQuotes(Actions["value"].ToString()));
                 }

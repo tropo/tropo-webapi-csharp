@@ -627,6 +627,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "allowSignals")]
         public Array allowSignals { get; set; }
 
+        [JsonProperty(PropertyName = "machineDetection")]
+        public MachineDetection MachineDetection { get; set; }
+
         [JsonProperty(PropertyName = "choices")]
         public Choices Choices { get; set; }
 
@@ -634,7 +637,13 @@ namespace TropoCSharp.Tropo
         public IDictionary<String, String> Headers { get; set; }
         
         [JsonProperty(PropertyName = "interdigitTimeout")]
-        public int? InterdigitTimeout { get; set; }
+        public float? InterdigitTimeout { get; set; }
+
+        [JsonProperty(PropertyName = "ringRepeat")]
+        public int? RingRepeat { get; set; }
+
+        [JsonProperty(PropertyName = "playTones")]
+        public bool? PlayTones { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
@@ -650,6 +659,18 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "timeout")]
         public float? Timeout { get; set; }
+
+        [JsonProperty(PropertyName = "voice")]
+        public string Voice { get; set; }
+
+        [JsonProperty(PropertyName = "callbackUrl")]
+        public string CallbackUrl { get; set; }
+
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
+
+        [JsonProperty(PropertyName = "label")]
+        public string Label { get; set; }
 
         public Transfer()
         {
