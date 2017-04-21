@@ -31,6 +31,7 @@ namespace TropoClassesTests
         private string callJsonWithEvents = @"{""tropo"":[{ ""call"":{""to"":[""3055195825""],""from"":""3055551414"",""network"":""PSTN"",""channel"":""VOICE"",""answerOnMedia"":true,""allowSignals"":[""tooLong"",""callOver""],""headers"":{""x-foo"":""bar"",""x-bling"":""baz""},""timeout"":60.0}}]}";
         private string messageJson = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""timeout"":10.0,""voice"":""Kate"",""promptLogSecurity"":""none""}}]}";
         private string messageJsonAllOptions = @"{""tropo"":[{ ""message"":{""say"":{""value"":""This is an announcement""},""to"":[""3055195825""],""from"":""3055551212"",""network"":""SMS"",""channel"":""TEXT"",""answerOnMedia"":false,""name"":""foo"",""required"":true,""timeout"":10.0,""voice"":""voicee"",""promptLogSecurity"":""none""}}]}";
+        private string startRecordingAsyncUploadJson = @"{""tropo"":[{ ""startRecording"":{""asyncUpload"":true,""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password"",""transcriptionID"":"""",""transcriptionEmailFormat"":""plain"",""transcriptionOutURI"":""""}}]}";
         private string startRecordingJson = @"{""tropo"":[{ ""startRecording"":{""format"":""audio/mp3"",""method"":""POST"",""url"":""http://blah.com/recordings/1234.wav"",""username"":""jose"",""password"":""password""}}]}";
         private string conferenceJson = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true}},{ ""say"":{""value"":""Thank you for joining the conference.""}}]}";
         private string conferenceJsonWithEvents = @"{""tropo"":[{ ""call"":{""to"":[""3035551212""]}},{ ""say"":{""value"":""Welcome to the conference.""}},{ ""conference"":{""id"":""123456789098765432"",""allowSignals"":[""conferenceOver""],""mute"":false,""name"":""testConference"",""playTones"":false,""terminator"":""#"",""required"":true}}]}";
@@ -386,6 +387,18 @@ namespace TropoClassesTests
         #endregion
 
         #region StartRecording Tests
+
+        /// <summary>
+        /// since 2017-04-20
+        /// </summary>
+        [TestMethod]
+        public void testStartRecordingAsyncUpload()
+        {
+            Tropo tropo = new Tropo();
+            tropo.StartRecording(true,AudioFormat.Mp3, Method.Post, "http://blah.com/recordings/1234.wav", "jose", "password", "", "plain", "");
+
+            Assert.AreEqual(this.startRecordingAsyncUploadJson, tropo.RenderJSON());
+        }
 
         [TestMethod]
         public void testNewStartRecording()
