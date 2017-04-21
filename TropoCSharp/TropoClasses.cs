@@ -549,6 +549,9 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class StartRecording : TropoBase
     {
+        [JsonProperty(PropertyName = "asyncUpload")]
+        public bool? AsyncUpload { get; set; }
+
         [JsonProperty(PropertyName = "format")]
         public string Format { get; set; }
 
