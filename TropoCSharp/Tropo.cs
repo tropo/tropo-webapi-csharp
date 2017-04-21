@@ -1082,7 +1082,7 @@ namespace TropoCSharp.Tropo
         /// </summary>
         public void StopRecording()
         {
-            StopRecording stopRecording = new StopRecording();
+            StopRecording stopRecording = null;
             Serialize(stopRecording, "stopRecording");
         }
 
