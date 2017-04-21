@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TropoCSharp.Tropo;
 using System.Web;
+using System.Collections.Generic;
 
 namespace TropoSamples
 {
@@ -28,26 +29,28 @@ namespace TropoSamples
                 try
                 {
                     // Create a new Result object and pass in the JSON submitted from Tropo.
-                    Result tropoResult = new Result(resultJSON);
+                    Result tropoResult = Result.getResult(resultJSON);
 
                     // Get Actions container and parse.
-                    JArray Actions = tropoResult.Actions;
+                    List<TropoCSharp.Tropo.Action> Actions = tropoResult.Actions;
 
-                    // A simple example showing how to access properties of the Result object.
-                    //tropo.Say("The State of the current session is " + tropoResult.State);
-                    //tropo.Say("The Sequence of this Result payload is " + tropoResult.Sequence);
-                    //tropo.Say("The session ID for the current session is is " + TropoUtilities.addSpaces(tropoResult.SessionId));
+                    tropo.Say("session id is beijing " + tropoResult.SessionId);
 
-                    if (null != Actions)
+                    foreach (TropoCSharp.Tropo.Action item in Actions)
                     {
-                        tropo.Say("The test is " + TropoUtilities.removeQuotes(Actions.First["value"].ToString()));
-                        tropo.Say("The frank test is " + TropoUtilities.removeQuotes(Actions.Last["value"].ToString()));
-
+                        tropo.Say("action Name is: " + item.Name);
+                        tropo.Say("attempts is " + item.Attempts);
+                        tropo.Say("disposition is " + item.Disposition);
+                        tropo.Say("confidence is " + item.Confidence);
+                        tropo.Say("interpretation is " + item.Interpretation);
+                        tropo.Say("utterance is " + item.Utterance);
+                        tropo.Say("value is " + item.Value);
+                        tropo.Say("concept is: " + item.Concept);
+                        //tropo.Say("xml is " + item.xml);
+                        tropo.Say("uploadStatus is " + item.UploadStatus);
                     }
                     tropo.Say("user type is " + tropoResult.MachineDetection);
                     tropo.Say("uploadStatus is " + tropoResult.MachineDetection);
-
-                    //tropo.Say("The value selected by the caller is " + TropoUtilities.removeQuotes(Actions["value"].ToString()));
                 }
 
                 catch (JsonReaderException)
