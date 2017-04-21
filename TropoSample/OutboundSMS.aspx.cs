@@ -37,7 +37,7 @@ namespace TropoSamples
                     string textMessageBody = tropoSession.Parameters.Get("textMessageBody");
 
                     // Send an outbound message.
-                    tropo.Call(numberToDial, sendFromNumber, network, channel, true, 60, null, null);
+                    tropo.Call(numberToDial, sendFromNumber, network, channel, true, 60, null);
                     tropo.Say(textMessageBody);
 
                     // Render the JSON for Tropo to consume.
