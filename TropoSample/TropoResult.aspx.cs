@@ -50,6 +50,7 @@ namespace TropoSamples
                         tropo.Say("uploadStatus is " + item.UploadStatus);
                     }
                     tropo.Say("user type is " + tropoResult.MachineDetection);
+                    tropo.Say("uploadStatus is " + tropoResult.MachineDetection);
                 }
 
                 catch (JsonReaderException)

@@ -1094,7 +1094,6 @@ namespace TropoCSharp.Tropo
         /// <param name="choices">The grammar to use in recognizing and validating input.</param>
         /// <param name="from">A string representing who the call is from.</param>
         /// <param name="on">An On object.</param>
-        /// <param name="ringRepeat">The number of rings to allow on the outbound call attempt.</param>
         /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
         /// <param name="to">The new destination for the incoming call as a URL.</param>
         public void Transfer(bool? answerOnMedia, Choices choices, string from, On on, float? timeout,  IEnumerable<String> to)
@@ -1144,7 +1143,7 @@ namespace TropoCSharp.Tropo
         /// <param name="on"></param>
         /// <param name="timeout"></param>
         /// <param name="to"></param>
-        public void Transfer(bool? answerOnMedia, Array allowSignals, Choices choices, string from, int? interdigitTimeout,  On on, float? timeout, IEnumerable<String> to)
+        public void Transfer(bool? answerOnMedia, Array allowSignals, Choices choices, string from, float? interdigitTimeout,  On on, float? timeout, IEnumerable<String> to)
         {
             Transfer transfer = new Transfer();
             transfer.AnswerOnMedia = answerOnMedia;
@@ -1160,12 +1159,59 @@ namespace TropoCSharp.Tropo
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="answerOnMedia"></param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
+        /// <param name="choices"></param>
+        /// <param name="from"></param>
+        /// <param name="interdigitTimeout"></param>
+        /// <param name="on"></param>
+        /// <param name="timeout"></param>
+        /// <param name="to"></param>
+        /// <param name="name"></param>
+        /// <param name="required"></param>
+        /// <param name="machineDetection"></param>
+        /// <param name="headers"></param>
+        /// <param name="ringRepeat"></param>
+        /// <param name="playTones"></param>
+        /// <param name="voice"></param>
+        /// <param name="callbackUrl"></param>
+        /// <param name="promptLogSecurity"></param>
+        /// <param name="label"></param>
+        public void Transfer(bool? answerOnMedia, Array allowSignals, Choices choices, string from, float? interdigitTimeout, On on, float? timeout, IEnumerable<String> to, string name, bool? required, MachineDetection machineDetection, IDictionary<String, String> headers, int? ringRepeat, bool? playTones, string voice, string callbackUrl, string promptLogSecurity, string label)
+        {
+            Transfer transfer = new Transfer();
+            transfer.AnswerOnMedia = answerOnMedia;
+            transfer.allowSignals = allowSignals;
+            transfer.Choices = choices;
+            transfer.From = from;
+            transfer.InterdigitTimeout = interdigitTimeout;
+            transfer.On = on;
+            transfer.Timeout = timeout;
+            transfer.To = to;
+            transfer.Name = name;
+            transfer.Required = required;
+            transfer.MachineDetection = machineDetection;
+            transfer.Headers = headers;
+            transfer.RingRepeat = ringRepeat;
+            transfer.PlayTones = playTones;
+            transfer.Voice = voice;
+            transfer.CallbackUrl = callbackUrl;
+            transfer.PromptLogSecurity = promptLogSecurity;
+            transfer.Label = label;
+
+            Serialize(transfer, "transfer");
+        }
+
+        /// <summary>
         /// Overload for Transfer that allows a Transfer object to be passed directly.
         /// </summary>
         /// <param name="transfer">A Transfer object.</param>
         public void Transfer(Transfer transfer)
         {
-            Transfer(transfer.AnswerOnMedia, transfer.Choices, transfer.From, transfer.On, transfer.Timeout, transfer.To);
+            //Transfer(transfer.AnswerOnMedia, transfer.Choices, transfer.From, transfer.On, transfer.Timeout, transfer.To);
+            Transfer(transfer.AnswerOnMedia, transfer.allowSignals, transfer.Choices, transfer.From, transfer.InterdigitTimeout, transfer.On, transfer.Timeout, transfer.To, transfer.Name, transfer.Required, transfer.MachineDetection, transfer.Headers, transfer.RingRepeat, transfer.PlayTones, transfer.Voice, transfer.CallbackUrl, transfer.PromptLogSecurity, transfer.Label);
         }
 
 
