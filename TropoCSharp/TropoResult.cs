@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
 namespace TropoCSharp.Tropo
@@ -17,6 +18,41 @@ namespace TropoCSharp.Tropo
         /// <param name="json">Result JSON submitted from Tropo platform</param>
         public static Result getResult(string json)
         {
+            JObject results = JObject.Parse(json);
+            JContainer resultJcontainer = (JContainer)results["result"];
+            if (null != resultJcontainer["actions"])
+            {
+                JContainer ActionsObject = (JContainer)resultJcontainer["actions"];
+                if (ActionsObject.Type == JTokenType.Array)
+                {
+
+                }
+                else
+                {
+
+                    Action actionTemp = ActionsObject.ToObject<Action>();
+                    List<Action> actionList = new List<Action>();
+                    actionList.Add(actionTemp);
+
+                    List<JToken> removeList = new List<JToken>();
+                    foreach (JToken el in resultJcontainer.Children())
+                    {
+                        JProperty p = el as JProperty;
+                        if (p != null && "actions".Equals(p.Name))
+                        {
+                            removeList.Add(el);
+                            break;
+                        }
+                    }
+                    foreach (JToken el in removeList)
+                    {
+                        el.Remove();
+                    }
+                    Result result = resultJcontainer.ToObject<Result>();
+                    result.Actions = actionList;
+                    return result;
+                }
+            }
             RootObject jobject = JsonConvert.DeserializeObject<RootObject>(json);
             return jobject.result;
         }
