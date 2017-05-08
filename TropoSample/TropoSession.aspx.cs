@@ -3,6 +3,8 @@ using System.IO;
 using Newtonsoft.Json;
 using TropoCSharp.Tropo;
 using System.Web.UI;
+using System.Collections.Generic;
+using System.Net;
 
 namespace TropoSamples
 {
@@ -13,6 +15,19 @@ namespace TropoSamples
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            WebHeaderCollection myWebHeaderCollection = (WebHeaderCollection)Request.Headers;
+
+            string[] headers = myWebHeaderCollection.AllKeys;
+
+            // enumerate through the header collection.
+            foreach (string s in headers)
+            {
+                Console.WriteLine("Header {0}, value {1}",s,myWebHeaderCollection.Get(s));
+            }
+
+            //HttpContext.Current.Trace.Warn(DateTime.Now.ToString() + " xiaoxishi is" + xiaoxishi);
+
             using (StreamReader reader = new StreamReader(Request.InputStream))
             {
                 // Get the JSON submitted from Tropo.
@@ -25,7 +40,11 @@ namespace TropoSamples
                 {
                     // Create a new Session object and pass in the JSON submitted from Tropo.
                     Session tropoSession = new Session(sessionJSON);
-
+                    foreach (string s in headers)
+                    {
+                        Console.WriteLine("Header {0}, value {1}", s, myWebHeaderCollection.Get(s));
+                        tropo.Say("Header  is" + s + "  value is " + myWebHeaderCollection.Get(s));
+                    }
                     tropo.Say("The Tropo Session ID is " + tropoSession.Id);
                     tropo.Say("The channnel of the called party is " + tropoSession.To.Channel);
                     tropo.Say("The channel of the calling party is " + tropoSession.From.Channel);

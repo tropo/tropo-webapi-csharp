@@ -36,7 +36,7 @@ namespace TropoSample
             Choices frankchoices = new Choices("[5 DIGITS]", "dtmf", "#");
 
             // Set up the dialog.
-            //tropo.GeneralLogSecurity("suppress");
+            tropo.GeneralLogSecurity("suppress");
             //tropo.Ask(5, signals, false, null, choices, null, "test", Recognizer.UsEnglish, "suppress", "mask", "XXDD-", true, say, 30);
             //tropo.GeneralLogSecurity("none");
             tropo.Ask(5, signals, false, null, frankchoices, null, "frank test", Recognizer.UsEnglish, true, franksay, 30, "suppress", "mask", "XXDD-");

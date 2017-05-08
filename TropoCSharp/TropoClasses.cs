@@ -443,6 +443,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "password")]
         public string Password { get; set; }
 
+        //[JsonProperty(PropertyName = "transcription")]
+        //public ICollection<Transcription> Transcriptions { get; set; }
+
         [JsonProperty(PropertyName = "transcription")]
         public Transcription Transcription { get; set; }
 
@@ -637,7 +640,7 @@ namespace TropoCSharp.Tropo
         public Array allowSignals { get; set; }
 
         [JsonProperty(PropertyName = "machineDetection")]
-        public MachineDetection MachineDetection { get; set; }
+        public Object MachineDetection { get; set; }
 
         [JsonProperty(PropertyName = "choices")]
         public Choices Choices { get; set; }

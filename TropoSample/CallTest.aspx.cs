@@ -33,25 +33,27 @@ namespace TropoSample
             StartRecording recording = new StartRecording(AudioFormat.Mp3, Method.Post, "http://blah.com/recordings/1234.wav", "jose", "password");
 
             List<String> to = new List<String>(1);
-            to.Add("sip:xiangjun_yu@10.140.254.69:5678");
-            //to.Add("sip:frank@172.16.22.128:5678");
+            //to.Add("sip:xiangjun_yu@10.140.254.69:5678");
+            to.Add("+8613466549249");
 
             Call call = new Call();
             call.Recording = recording;
             call.Headers = headers;
-            call.Timeout = 10;
+            call.Timeout = 25;
             call.AnswerOnMedia = false;
             call.Channel = Channel.Voice;
             //call.Network = Network.SMS;
             call.To = to;
             //call.From = "3055551212";
-            call.MachineDetection = new MachineDetection("For the most accurate results, the introduction should be long enough to give Tropo time to detect a human or machine. The longer the introduction, the more time we have to determine how the call was answered. If the introduction is long enough to play until the voicemail beep plays, Tropo will have the most accurate detection. It takes a minimum of four seconds to determine if a call was answered by a human or machine, so introductions four seconds or shorter will always return HUMAN.");
+            call.MachineDetection = new MachineDetection("我是汉语，我是甜甜，我是机器检测");
+            //call.MachineDetection = new MachineDetection("For the most accurate results, the introduction should be long enough to give Tropo time to detect a human or machine. The longer the introduction, the more time we have to determine how the call was answered. If the introduction is long enough to play until the voicemail beep plays, Tropo will have the most accurate detection. It takes a minimum of four seconds to determine if a call was answered by a human or machine, so introductions four seconds or shorter will always return HUMAN.");
             //call.MachineDetection = new MachineDetection();
             //call.Voice = Voice.UsEnglishFemale_Allison;
             call.Voice = "en-us";
-            call.CallbackUrl = "";
-            call.PromptLogSecurity = "";
-            call.Label = "canUseAppidASLabel";
+            call.Voice = "Tian-tian";
+            call.CallbackUrl = "http://192.168.26.88:8080/FileUpload/receiveJson";
+            //call.PromptLogSecurity = "";
+            call.Label = "CallTestaspxcsLabel";
 
             //tropo.Hangup();
             tropo.Call(call);

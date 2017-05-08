@@ -73,16 +73,6 @@ namespace TropoCSharp.Tropo
         public int SessionDuration { get; set; }
 
         /// <summary>
-        /// Set on a transfer only, the duration in seconds of a transferred call, starting from when the destination leg answers.
-        /// </summary>
-        public int ConnectedDuration { get; set; }
-
-        /// <summary>
-        /// Set on a transfer only, the total duration in seconds of a transferred call, including the time spent ringing before the call was answered.
-        /// </summary>
-        public int Duration { get; set; }
-
-        /// <summary>
         /// Represents the number of Tropo payloads returned from your application.
         /// </summary>
         public int Sequence { get; set; }
@@ -110,7 +100,7 @@ namespace TropoCSharp.Tropo
         /// <summary>
         /// identify whether your call reached a live human or not
         /// </summary>
-        public string MachineDetection { get; set; }
+        public string userType { get; set; }
 
         /// <summary>
         /// The result of the actions requested in the previous payload.
@@ -135,9 +125,14 @@ namespace TropoCSharp.Tropo
         public int Attempts { get; set; }
 
         /// <summary>
-        /// The total length of time, in seconds, the current session has been running.
+        /// Set on a transfer only, the duration in seconds of a transferred call, starting from when the destination leg answers.
         /// </summary>
-        public int SessionDuration { get; set; }
+        public int ConnectedDuration { get; set; }
+
+        /// <summary>
+        /// Set on a transfer only, the total duration in seconds of a transferred call, including the time spent ringing before the call was answered.
+        /// </summary>
+        public int Duration { get; set; }
 
         /// <summary>
         /// The final result of the request, values may be SUCCESS, FAILED, EXTERNAL_EVENT, TIMEOUT, BUSY, or REJECTED.
@@ -177,6 +172,13 @@ namespace TropoCSharp.Tropo
         /// If the action is a Tropo "record" or a "stopCallRecording" this field will be present. 
         /// </summary>
         public string UploadStatus { get; set; }
+
+        /// <summary>
+        /// identify whether your call reached a live human or not
+        /// </summary>
+        public string userType { get; set; }
+
+
     }
 
     public class RootObject

@@ -608,6 +608,16 @@ namespace TropoCSharp.Tropo
         }
 
         /// <summary>
+        /// Overload for On that allows an On object to be passed.
+        /// </summary>
+        /// <param name="on">An On object.</param>
+        public void On(ICollection<On> ons)
+        {
+            Serialize(ons, "on");
+            
+        }
+
+        /// <summary>
         /// Plays a prompt (audio file or text to speech) and optionally waits for a response from the caller that is recorded.
         /// If collected, responses may be in the form of DTMF or speech recognition using a simple grammar format defined below.
         /// The record funtion is really an alias of the prompt function, but one which forces the record option to true regardless of how it is (or is not) initially set.
@@ -1179,7 +1189,7 @@ namespace TropoCSharp.Tropo
         /// <param name="callbackUrl"></param>
         /// <param name="promptLogSecurity"></param>
         /// <param name="label"></param>
-        public void Transfer(bool? answerOnMedia, Array allowSignals, Choices choices, string from, float? interdigitTimeout, On on, float? timeout, IEnumerable<String> to, string name, bool? required, MachineDetection machineDetection, IDictionary<String, String> headers, int? ringRepeat, bool? playTones, string voice, string callbackUrl, string promptLogSecurity, string label)
+        public void Transfer(bool? answerOnMedia, Array allowSignals, Choices choices, string from, float? interdigitTimeout, On on, float? timeout, IEnumerable<String> to, string name, bool? required, Object machineDetection, IDictionary<String, String> headers, int? ringRepeat, bool? playTones, string voice, string callbackUrl, string promptLogSecurity, string label)
         {
             Transfer transfer = new Transfer();
             transfer.AnswerOnMedia = answerOnMedia;
@@ -1226,12 +1236,12 @@ namespace TropoCSharp.Tropo
           
             Serialize(wait, "wait");
         }
-        
+
         /// <summary>
         /// Overload for Wait that allows the thread to sleep in milliseconds
         /// </summary>
         /// <param name="milliseconds">Sleep in milliseconds</param>
-        /// <param name="milliseconds">Allows for the assignment of an interruptable signal for this Tropo function</param>
+        /// <param name="allowSignals">Allows for the assignment of an interruptable signal for this Tropo function</param>
         public void Wait(int? milliseconds, Array allowSignals)
         {
             Wait wait = new Wait();
@@ -1244,7 +1254,6 @@ namespace TropoCSharp.Tropo
         /// <summary>
         /// Overload for Wait that allows a Wait object to be passed directly.
         /// </summary>
-        /// <param name="transfer">Sleep in milliseconds</param>
         public void Wait(Wait wait)
         {
             Wait(wait.Milliseconds, wait.AllowSignals);
@@ -1284,7 +1293,7 @@ namespace TropoCSharp.Tropo
             {
                 DefaultValueHandling = DefaultValueHandling.Ignore
             };
-            if (String.IsNullOrEmpty(prefix))
+            if (String.IsNullOrEmpty(prefix))   // GeneralLogSecurity
             {
                 ActionElements.Add(JsonConvert.SerializeObject(action, Formatting.None, settings));
             }
@@ -1292,6 +1301,28 @@ namespace TropoCSharp.Tropo
             {
                 ActionElements.Add("{ \"" + prefix + "\":" + JsonConvert.SerializeObject(action, Formatting.None, settings) + "}");
              }
+
+        }
+
+        /// <summary>
+        /// Method to serialize Tropo action Collection and add to the base Tropo object.
+        /// </summary>
+        /// <param name="actions"></param>
+        /// <param name="prefix"></param>
+        private void Serialize<T>(ICollection<T> actions, string prefix) where T : TropoBase
+        {
+            JsonSerializerSettings settings = new JsonSerializerSettings
+            {
+                DefaultValueHandling = DefaultValueHandling.Ignore
+            };
+            if (String.IsNullOrEmpty(prefix))
+            {
+                ActionElements.Add(JsonConvert.SerializeObject(actions, Formatting.None, settings));
+            }
+            else
+            {
+                ActionElements.Add("{ \"" + prefix + "\":" + JsonConvert.SerializeObject(actions, Formatting.None, settings) + "}");
+            }
 
         }
     }

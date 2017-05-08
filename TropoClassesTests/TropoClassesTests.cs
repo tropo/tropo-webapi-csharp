@@ -357,11 +357,13 @@ namespace TropoClassesTests
         {
             Say say = new Say("Please say your account number");
             Choices choices = new Choices("[5 DIGITS]", null, "#");
-            Transcription transcription = new Transcription();
 
+            Transcription transcription = new Transcription();
             transcription.Url = "http://example.com/";
             transcription.Id = "foo";
             transcription.EmailFormat = "encoded";
+            var trancriptions = new Collection<Transcription>();
+            trancriptions.Add(transcription);
 
             Tropo tropo = new Tropo();
             tropo.Record(1, false, true, choices, AudioFormat.Wav, 5, 30, Method.Post, "foo", true, say, 5, transcription, "bar", "http://example.com/");
@@ -373,12 +375,13 @@ namespace TropoClassesTests
         {
             Say say = new Say("Please say your account number");
             Choices choices = new Choices("[5 DIGITS]", null, "#");
-            Transcription transcription = new Transcription();
 
+            Transcription transcription = new Transcription();
             transcription.Url = "http://example.com/";
             transcription.Id = "foo";
             transcription.EmailFormat = "encoded";
-
+            var trancriptions = new Collection<Transcription>();
+            trancriptions.Add(transcription);
             Tropo tropo = new Tropo();
             //tropo.Record(1, false, true, choices, AudioFormat.Wav, 5, 30, Method.Post, "foo", true, say, 5, transcription, "bar", "http://example.com/");
             tropo.Record(1, true, null, false, true, choices, say, AudioFormat.Wav, 10, 600, Method.Post, "whname", true, transcription, "http://example.com/", null, null, 15, 5, null, "none");

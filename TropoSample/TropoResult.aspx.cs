@@ -16,8 +16,11 @@ namespace TropoSamples
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            HttpContext.Current.Trace.Warn(DateTime.Now.ToString() + " Request InputStream is " + Request.InputStream.ToString());
+
             using (StreamReader reader = new StreamReader(Request.InputStream))
-            {               
+            {
+
                 // Get the JSON submitted from Tropo. 
                 string resultJSON = TropoUtilities.parseJSON(reader);
                 Console.WriteLine("resultJSONis:" + resultJSON);
@@ -34,23 +37,28 @@ namespace TropoSamples
                     // Get Actions container and parse.
                     List<TropoCSharp.Tropo.Action> Actions = tropoResult.Actions;
 
-                    tropo.Say("session id is beijing " + tropoResult.SessionId);
+                    tropo.Say("session id is berlin " + tropoResult.SessionId);
 
-                    foreach (TropoCSharp.Tropo.Action item in Actions)
+                    if (null != Actions)
                     {
-                        tropo.Say("action Name is: " + item.Name);
-                        tropo.Say("attempts is " + item.Attempts);
-                        tropo.Say("disposition is " + item.Disposition);
-                        tropo.Say("confidence is " + item.Confidence);
-                        tropo.Say("interpretation is " + item.Interpretation);
-                        tropo.Say("utterance is " + item.Utterance);
-                        tropo.Say("value is " + item.Value);
-                        tropo.Say("concept is: " + item.Concept);
-                        //tropo.Say("xml is " + item.xml);
-                        tropo.Say("uploadStatus is " + item.UploadStatus);
+                        foreach (TropoCSharp.Tropo.Action item in Actions)
+                        {
+                            tropo.Say("action Name is: " + item.Name);
+                            tropo.Say("attempts is " + item.Attempts);
+                            tropo.Say("Connected Duration is " + item.ConnectedDuration);
+                            tropo.Say("Duration is " + item.Duration);
+                            tropo.Say("disposition is " + item.Disposition);
+                            tropo.Say("confidence is " + item.Confidence);
+                            tropo.Say("interpretation is " + item.Interpretation);
+                            tropo.Say("utterance is " + item.Utterance);
+                            tropo.Say("value is " + item.Value);
+                            tropo.Say("concept is: " + item.Concept);
+                            //tropo.Say("xml is " + item.xml);
+                            tropo.Say("uploadStatus is " + item.UploadStatus);
+                            tropo.Say("inner userType is " + item.userType);
+                        }
                     }
-                    tropo.Say("user type is " + tropoResult.MachineDetection);
-                    tropo.Say("uploadStatus is " + tropoResult.MachineDetection);
+                    tropo.Say("outer user type is " + tropoResult.userType);
                 }
 
                 catch (JsonReaderException)

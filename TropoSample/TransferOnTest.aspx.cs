@@ -51,7 +51,7 @@ namespace TropoSamples
             //call.CallbackUrl = "http://requestb.in/zm7e2zzm";
             call.CallbackUrl = "http://192.168.26.88:8080/FileUpload/receiveJson";
             //call.PromptLogSecurity = "none";
-            call.Label = "canUseAppidASLabel";
+            call.Label = "TransferOnTestasxpxcsLabel";
 
             //tropo.Hangup();
             tropo.Call(call);

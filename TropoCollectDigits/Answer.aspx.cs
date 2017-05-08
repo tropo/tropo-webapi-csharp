@@ -36,7 +36,7 @@ namespace TropoCollectDigits
                         string answer = item.Value;
                         tropo.Say("You entered, " + TropoUtilities.addSpaces(answer) + ". Goodbye");
                     }
-                    
+
 
                 }
 
