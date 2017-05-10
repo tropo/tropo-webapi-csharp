@@ -31,8 +31,7 @@ namespace TropoSamples
 
             tropo.Message(message);
 
-            // Render the JSON for Tropo to consume.
-            Response.Write(tropo.RenderJSON());
+            tropo.RenderJSON(Response);
 		}
 	}
 }

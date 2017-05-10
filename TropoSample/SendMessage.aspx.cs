@@ -36,8 +36,7 @@ namespace TropoSample
             // Call the message method of the Tropo object and pass in values.
             tropo.Message(say, to, false, Channel.Voice, from, "reminder", Network.Pstn, true, 60, "", "");
 
-            // Render the JSON for Tropo to consume.
-            Response.Write(tropo.RenderJSON());
+            tropo.RenderJSON(Response);
         }
     }
 }

@@ -40,8 +40,7 @@ namespace TropoSamples
                     tropo.Call(numberToDial, sendFromNumber, network, channel, true, 60, null);
                     tropo.Say(textMessageBody);
 
-                    // Render the JSON for Tropo to consume.
-                    Response.Write(tropo.RenderJSON());
+                    tropo.RenderJSON(Response);
 
                 }
 
@@ -66,7 +65,7 @@ namespace TropoSamples
 
                 finally
                 {
-                    Response.Write(tropo.RenderJSON());
+                    tropo.RenderJSON(Response);
                 }
             }
         }

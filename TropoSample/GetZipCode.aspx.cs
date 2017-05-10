@@ -25,8 +25,7 @@ namespace TropoSample
             tropo.Ask(3, false, choices, null, "zip", true, new Say("Please enter your 5 digit zip code"), 5);
             tropo.On(on);
 
-            // Render the JSON for Tropo to consume.
-            Response.Write(tropo.RenderJSON());
+            tropo.RenderJSON(Response);
         }
     }
 }

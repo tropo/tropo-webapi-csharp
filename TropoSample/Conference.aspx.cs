@@ -57,8 +57,7 @@ namespace TropoSamples
                     tropo.On("endCall", "Conference.aspx?signal=endCall", new Say("You have left the conference."));
                 }
 
-                // Render the JSON for Tropo to consume.
-                Response.Write(tropo.RenderJSON());
+                tropo.RenderJSON(Response);
             }
         }
     }

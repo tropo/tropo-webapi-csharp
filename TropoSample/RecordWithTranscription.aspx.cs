@@ -41,8 +41,7 @@ namespace TropoSample
 
             HttpContext.Current.Trace.Warn("learn trace of dot net" + DateTime.Now.ToString());
 
-            // Render the JSON for Tropo to consume.
-            Response.Write(tropo.RenderJSON());
+            tropo.RenderJSON(Response);
         }
     }
 }
