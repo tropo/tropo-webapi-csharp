@@ -67,7 +67,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AskTestpull6.aspx" />
+    <Content Include="CallTest.aspx" />
     <Content Include="FailAge.aspx" />
+    <Content Include="MessageTest.aspx" />
+    <Content Include="RedirectTest.aspx" />
+    <Content Include="StartRecordingTest.aspx" />
+    <Content Include="TransferOnTest.aspx" />
+    <Content Include="TransferTest.aspx" />
+    <Content Include="TropoReject.aspx" />
+    <Content Include="WelcomeToBeijing.aspx" />
+    <Content Include="WelcomeToNewYork.aspx" />
     <Content Include="YourAge.aspx" />
     <Content Include="AskTest.aspx" />
     <Content Include="index.html" />
@@ -88,8 +97,44 @@
       <DependentUpon>AskTestpull6.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="CallTest.aspx.cs">
+      <DependentUpon>CallTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="FailAge.aspx.cs">
       <DependentUpon>FailAge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MessageTest.aspx.cs">
+      <DependentUpon>MessageTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RedirectTest.aspx.cs">
+      <DependentUpon>RedirectTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StartRecordingTest.aspx.cs">
+      <DependentUpon>StartRecordingTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransferOnTest.aspx.cs">
+      <DependentUpon>TransferOnTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransferTest.aspx.cs">
+      <DependentUpon>TransferTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TropoReject.aspx.cs">
+      <DependentUpon>TropoReject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WelcomeToBeijing.aspx.cs">
+      <DependentUpon>WelcomeToBeijing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WelcomeToNewYork.aspx.cs">
+      <DependentUpon>WelcomeToNewYork.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="YourAge.aspx.cs">
@@ -145,6 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="M28.pubxml" />
+    <None Include="TropoSamples.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

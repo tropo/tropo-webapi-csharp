@@ -65,7 +65,7 @@ namespace TropoSamples
 
                 finally
                 {
-                    Response.Write(tropo.RenderJSON());
+                    tropo.RenderJSON(Response);
                 }
             }
         }

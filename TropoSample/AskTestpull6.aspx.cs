@@ -42,8 +42,7 @@ namespace TropoSample
 
             //tropo.Hangup();
 
-            // Render the dialog JSON for Tropo to consume.
-            Response.Write(tropo.RenderJSON());
+            tropo.RenderJSON(Response);
         }
     }
 }

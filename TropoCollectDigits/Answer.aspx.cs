@@ -53,9 +53,8 @@ namespace TropoCollectDigits
 
                 finally
                 {
-                    // Render JSON for Tropo to consume.
                     tropo.Hangup();
-                    Response.Write(tropo.RenderJSON());
+                    tropo.RenderJSON(Response);
 
                 }
             }

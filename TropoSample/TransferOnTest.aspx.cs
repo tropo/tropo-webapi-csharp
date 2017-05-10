@@ -89,8 +89,7 @@ namespace TropoSamples
 
             //tropo.On("continue", "TropoResult.aspx", new Say("call test result"));
 
-            //// Render the JSON for Tropo to consume.
-            Response.Write(tropo.RenderJSON());
+            tropo.RenderJSON(Response);
         }
     }
 }

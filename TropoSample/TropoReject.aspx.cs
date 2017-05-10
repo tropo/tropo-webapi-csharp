@@ -76,8 +76,8 @@ namespace TropoSamples
 
                 finally
                 {
-                    Response.Write(tropo.RenderJSON());
-                    HttpContext.Current.Trace.Warn("tropo.RenderJSON() is" + tropo.RenderJSON());
+                    tropo.RenderJSON(Response);
+                    HttpContext.Current.Trace.Warn("tropo.JSONToTe666666xt() is" + tropo.JSONToText());
                     //Response.Write("{\"tropo\":[{ \"reject\":null}]}");
                 }
             }

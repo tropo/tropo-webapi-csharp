@@ -21,8 +21,7 @@ namespace TropoCollectDigits
             // End the current session.
             tropo.Hangup();
 
-            // Render JSON for Tropo to consume.
-            Response.Write(tropo.RenderJSON());
+            tropo.RenderJSON(Response);
         }
     }
 }
