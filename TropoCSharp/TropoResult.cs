@@ -73,16 +73,6 @@ namespace TropoCSharp.Tropo
         public int SessionDuration { get; set; }
 
         /// <summary>
-        /// Set on a transfer only, the duration in seconds of a transferred call, starting from when the destination leg answers.
-        /// </summary>
-        public int ConnectedDuration { get; set; }
-
-        /// <summary>
-        /// Set on a transfer only, the total duration in seconds of a transferred call, including the time spent ringing before the call was answered.
-        /// </summary>
-        public int Duration { get; set; }
-
-        /// <summary>
         /// Represents the number of Tropo payloads returned from your application.
         /// </summary>
         public int Sequence { get; set; }
@@ -110,7 +100,7 @@ namespace TropoCSharp.Tropo
         /// <summary>
         /// identify whether your call reached a live human or not
         /// </summary>
-        public string MachineDetection { get; set; }
+        public string UserType { get; set; }
 
         /// <summary>
         /// The result of the actions requested in the previous payload.
@@ -145,6 +135,16 @@ namespace TropoCSharp.Tropo
         public string Disposition { get; set; }
 
         /// <summary>
+        /// Set on a transfer only, the duration in seconds of a transferred call, starting from when the destination leg answers.
+        /// </summary>
+        public int ConnectedDuration { get; set; }
+
+        /// <summary>
+        /// Set on a transfer only, the total duration in seconds of a transferred call, including the time spent ringing before the call was answered.
+        /// </summary>
+        public int Duration { get; set; }
+
+        /// <summary>
         /// The result returned by the confidence engine that the result is correct.
         /// </summary>
         public int Confidence { get; set; }
@@ -177,6 +177,13 @@ namespace TropoCSharp.Tropo
         /// If the action is a Tropo "record" or a "stopCallRecording" this field will be present. 
         /// </summary>
         public string UploadStatus { get; set; }
+
+        /// <summary>
+        /// identify whether your call reached a live human or not
+        /// </summary>
+        public string UserType { get; set; }
+
+
     }
 
     public class RootObject

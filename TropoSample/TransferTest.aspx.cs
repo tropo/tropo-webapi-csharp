@@ -32,8 +32,8 @@ namespace TropoSamples
 
 
             List<String> to = new List<String>(1);
-            to.Add("sip:xiangjun_yu@10.140.254.72:5678");
-            //to.Add("sip:frank@172.16.22.128:5678");
+            //to.Add("sip:xiangjun_yu@10.140.254.35:5678");
+            to.Add("sip:frank@172.16.22.128:5678");
 
             Call call = new Call();
             call.Headers = headers;
@@ -60,7 +60,7 @@ namespace TropoSamples
             //tropo.Hangup();
 
             Transfer transfer = new Transfer();
-            IEnumerable<string> transferTo = new string[] { "sip:frank@172.16.22.128:5678", "sip:xiangjun_yu@10.140.254.72:5678" };
+            IEnumerable<string> transferTo = new string[] { "sip:frank@172.16.22.128:5678", "sip:xiangjun_yu@10.140.254.35:5678" };
             string from = "87473032";
             //string[] names = { "sip:frank@172.16.22.128:5678", "sip:xiangjun_yu@10.140.254.40:5678" };
             //to = (IEnumerable<string>)names.GetEnumerator();
@@ -74,11 +74,11 @@ namespace TropoSamples
             on.Say = say3;
             //on.Post = "http://requestb.in/1cp3mf01";
             on.Post = "http://192.168.26.88:8080/FileUpload/receiveJson";
-            transfer.On = on;
+            //transfer.On = on;
             transfer.RingRepeat = 3;
             transfer.PlayTones = true;
             transfer.CallbackUrl = "http://192.168.26.88:8080/FileUpload/rece666iveJson";
-            MachineDetection ma = new MachineDetection("This is transfer machine detection");
+            MachineDetection ma = new MachineDetection("At some point in the future there may be a standard libpcap release with remote capture support, and at some point after that Apple may pick up that release, and at some point the OS X version of Wireshark may be modified to use those capabilities if present.");
             transfer.MachineDetection = ma;
             //transfer.PromptLogSecurity = "";
             transfer.Label = "transferL55abel";
