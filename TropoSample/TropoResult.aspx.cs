@@ -41,6 +41,8 @@ namespace TropoSamples
                         tropo.Say("action Name is: " + item.Name);
                         tropo.Say("attempts is " + item.Attempts);
                         tropo.Say("disposition is " + item.Disposition);
+                        tropo.Say("ConnectedDuration is " + item.ConnectedDuration);
+                        tropo.Say("Duration is " + item.Duration);
                         tropo.Say("confidence is " + item.Confidence);
                         tropo.Say("interpretation is " + item.Interpretation);
                         tropo.Say("utterance is " + item.Utterance);
@@ -48,9 +50,9 @@ namespace TropoSamples
                         tropo.Say("concept is: " + item.Concept);
                         //tropo.Say("xml is " + item.xml);
                         tropo.Say("uploadStatus is " + item.UploadStatus);
+                        tropo.Say("inner user type is " + item.UserType);
                     }
-                    tropo.Say("user type is " + tropoResult.MachineDetection);
-                    tropo.Say("uploadStatus is " + tropoResult.MachineDetection);
+                    tropo.Say("user type is " + tropoResult.UserType);
                 }
 
                 catch (JsonReaderException)
