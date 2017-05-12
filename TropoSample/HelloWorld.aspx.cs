@@ -21,7 +21,7 @@ namespace TropoSamples
             tropo.Say("hello Tokyo", null, null, "shname", null, null, "none");
             tropo.Say("hello Moscow", null, null, "shname", null, null, "suppress");
 
-            HttpContext.Current.Trace.Warn("tropo.JSONToTe666666xt() is " + tropo.JSONToText());
+            //HttpContext.Current.Trace.Warn("tropo.JSONToTe666666xt() is " + tropo.JSONToText());
 
             tropo.RenderJSON(Response);
 		}
