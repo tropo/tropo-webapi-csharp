@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TropoCSharp.Tropo;
 using TropoCSharp.Structs;
 using System.Collections;
+using Newtonsoft.Json;
 
 namespace TropoClassesTests
 {
@@ -55,7 +56,7 @@ namespace TropoClassesTests
             Tropo tropo = new Tropo();
             tropo.Ask(null, null, choices, null, "foo", null, say, null);
 
-            var rendered = tropo.JSONToText();
+            var rendered = renderJSONToText(tropo);
 
             Assert.AreEqual(this.askJson, rendered);
         }
@@ -72,7 +73,7 @@ namespace TropoClassesTests
             Tropo tropo = new Tropo();
             tropo.Ask(null, null, 1, choices, null, "foo", null, says, null);
 
-            var rendered = tropo.JSONToText();
+            var rendered = renderJSONToText(tropo);
 
             Assert.AreEqual(this.askJsonWithSayEvents, rendered);
         }
@@ -86,7 +87,7 @@ namespace TropoClassesTests
 
             Tropo tropo = new Tropo();
             tropo.Ask(ask);
-            Assert.AreEqual(this.askJson, tropo.JSONToText());
+            Assert.AreEqual(this.askJson, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -106,7 +107,7 @@ namespace TropoClassesTests
 
             Tropo tropo = new Tropo();
             tropo.Ask(ask);
-            Assert.AreEqual(this.askJsonWithOptions, tropo.JSONToText());
+            Assert.AreEqual(this.askJsonWithOptions, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -126,7 +127,7 @@ namespace TropoClassesTests
 
             Tropo tropo = new Tropo();
             tropo.Ask(ask);
-            Assert.AreEqual(this.askJsonWithOptions, tropo.JSONToText());
+            Assert.AreEqual(this.askJsonWithOptions, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -134,7 +135,7 @@ namespace TropoClassesTests
         {
             Tropo tropo = new Tropo();
             tropo.Ask(1, false, new Choices("[5 DIGITS]"), 30, "foo", true, new Say("Please enter your 5 digit zip code."), 30);
-            Assert.AreEqual(this.askJsonWithOptions, tropo.JSONToText());
+            Assert.AreEqual(this.askJsonWithOptions, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -144,7 +145,7 @@ namespace TropoClassesTests
             // Create an array of signals - used to interupt the Ask.
             string[] signals = new string[] { "endCall", "tooLong" };
             tropo.Ask(5, signals, false, null, new Choices("[5 DIGITS]"), 30, "foo", Recognizer.UsEnglish, true, new Say("Please enter your 5 digit zip code."), 30, "suppress", "mask", "XXDD-");
-            Assert.AreEqual(this.askJsonWithLogArguements, tropo.JSONToText());
+            Assert.AreEqual(this.askJsonWithLogArguements, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -154,7 +155,7 @@ namespace TropoClassesTests
             // Create an array of signals - used to interupt the Ask.
             string[] signals = new string[] { "endCall", "tooLong" };
             tropo.Ask(5, signals, false, null, new Choices("[5 DIGITS]"), 30, "foo", Recognizer.UsEnglish, true, new Say("Please enter your 5 digit zip code."), 2, 3.0f, 4.0f, 30, "suppress", "mask", "XXDD-");
-            Assert.AreEqual(this.askJsonWithLogArguements2, tropo.JSONToText());
+            Assert.AreEqual(this.askJsonWithLogArguements2, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -167,7 +168,7 @@ namespace TropoClassesTests
             //tropo.Ask(5, signals, false, null, choices, null, "test", Recognizer.UsEnglish, "suppress", "mask", "XXDD-", true, say, 30);
             tropo.Ask(5, signals, false, null, choices, null, "test", Recognizer.UsEnglish, true, say, 30);
             tropo.Hangup();
-            var rendered = tropo.JSONToText();
+            var rendered = renderJSONToText(tropo);
 
             Assert.AreEqual(this.askJsonWithEvents, rendered);
         }
@@ -185,7 +186,7 @@ namespace TropoClassesTests
 
             Tropo tropo = new Tropo();
             tropo.Call(numbersToCall);
-            Assert.AreEqual(this.callJson, tropo.JSONToText());
+            Assert.AreEqual(this.callJson, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -199,7 +200,7 @@ namespace TropoClassesTests
 
 
             tropo.Call("3055195825", "3055551212", Network.SMS, Channel.Text, false, 10, headers);
-            Assert.AreEqual(this.callJsonAllOptions, tropo.JSONToText());
+            Assert.AreEqual(this.callJsonAllOptions, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -230,7 +231,7 @@ namespace TropoClassesTests
             call.Label = "appidIdAsLabel";
 
             tropo.Call(call);
-            Assert.AreEqual(this.callJsonCallObject, tropo.JSONToText());
+            Assert.AreEqual(this.callJsonCallObject, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -245,7 +246,7 @@ namespace TropoClassesTests
             headers.Add("x-bling", "baz");
 
             tropo.Call("3055195825", signals, "3055551414", Network.Pstn, Channel.Voice, true, 60, headers);
-            Assert.AreEqual(this.callJsonWithEvents, tropo.JSONToText());
+            Assert.AreEqual(this.callJsonWithEvents, renderJSONToText(tropo));
         }
 
         #endregion
@@ -263,7 +264,7 @@ namespace TropoClassesTests
             to.Add("3055195825");
             tropo.Message(say, to, false, Channel.Text, from, null, Network.SMS, null, 10, Voice.BritishEnglishFemale_Kate, "none");
 
-            Assert.AreEqual(this.messageJson, tropo.JSONToText());
+            Assert.AreEqual(this.messageJson, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -287,7 +288,7 @@ namespace TropoClassesTests
             tropo.Voice = Voice.BritishEnglishFemale_Kate;
             tropo.Message(message);
 
-            Assert.AreEqual(this.messageJson, tropo.JSONToText());
+            Assert.AreEqual(this.messageJson, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -301,7 +302,7 @@ namespace TropoClassesTests
             to.Add("3055195825");
             tropo.Message(say, to, false, Channel.Text, from, "foo", Network.SMS, true, 10, "voicee", "none");
 
-            Assert.AreEqual(this.messageJsonAllOptions, tropo.JSONToText());
+            Assert.AreEqual(this.messageJsonAllOptions, renderJSONToText(tropo));
         }
 
         #endregion
@@ -332,7 +333,7 @@ namespace TropoClassesTests
 
             Tropo tropo = new Tropo();
             tropo.Record(record);
-            Assert.AreEqual(this.recordJson, tropo.JSONToText());
+            Assert.AreEqual(this.recordJson, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -349,7 +350,7 @@ namespace TropoClassesTests
 
             Tropo tropo = new Tropo();
             tropo.Record(record);
-            Assert.AreEqual(this.recordJson, tropo.JSONToText());
+            Assert.AreEqual(this.recordJson, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -365,7 +366,7 @@ namespace TropoClassesTests
 
             Tropo tropo = new Tropo();
             tropo.Record(1, false, true, choices, AudioFormat.Wav, 5, 30, Method.Post, "foo", true, say, 5, transcription, "bar", "http://example.com/");
-            Assert.AreEqual(this.recordJsonWithTranscription, tropo.JSONToText());
+            Assert.AreEqual(this.recordJsonWithTranscription, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -382,7 +383,7 @@ namespace TropoClassesTests
             Tropo tropo = new Tropo();
             //tropo.Record(1, false, true, choices, AudioFormat.Wav, 5, 30, Method.Post, "foo", true, say, 5, transcription, "bar", "http://example.com/");
             tropo.Record(1, true, null, false, true, choices, say, AudioFormat.Wav, 10, 600, Method.Post, "whname", true, transcription, "http://example.com/", null, null, 15, 5, null, "none");
-            Assert.AreEqual(this.recordJsonAllOptions, tropo.JSONToText());
+            Assert.AreEqual(this.recordJsonAllOptions, renderJSONToText(tropo));
         }
 
         #endregion
@@ -398,7 +399,7 @@ namespace TropoClassesTests
             Tropo tropo = new Tropo();
             tropo.StartRecording(true,AudioFormat.Mp3, Method.Post, "http://blah.com/recordings/1234.wav", "jose", "password", "", "plain", "");
 
-            Assert.AreEqual(this.startRecordingAsyncUploadJson, tropo.JSONToText());
+            Assert.AreEqual(this.startRecordingAsyncUploadJson, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -407,7 +408,7 @@ namespace TropoClassesTests
             Tropo tropo = new Tropo();
             tropo.StartRecording(AudioFormat.Mp3, Method.Post, "http://blah.com/recordings/1234.wav", "jose", "password");
 
-            Assert.AreEqual(this.startRecordingJson, tropo.JSONToText());
+            Assert.AreEqual(this.startRecordingJson, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -423,7 +424,7 @@ namespace TropoClassesTests
             Tropo tropo = new Tropo();
             tropo.StartRecording(startRecording);
 
-            Assert.AreEqual(this.startRecordingJson, tropo.JSONToText());
+            Assert.AreEqual(this.startRecordingJson, renderJSONToText(tropo));
         }
 
         #endregion
@@ -439,7 +440,7 @@ namespace TropoClassesTests
             tropo.Conference("123456789098765432", false, "testConference", false, true, "#");
             tropo.Say("Thank you for joining the conference.");
 
-            Assert.AreEqual(this.conferenceJson, tropo.JSONToText());
+            Assert.AreEqual(this.conferenceJson, renderJSONToText(tropo));
 
         }
 
@@ -452,7 +453,7 @@ namespace TropoClassesTests
             tropo.Say("Welcome to the conference.");
             tropo.Conference("123456789098765432", signals, false, "testConference", false, true, "#");
 
-            Assert.AreEqual(this.conferenceJsonWithEvents, tropo.JSONToText());
+            Assert.AreEqual(this.conferenceJsonWithEvents, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -466,7 +467,7 @@ namespace TropoClassesTests
             LeavePrompt leavePrompt = new LeavePrompt("some one leave the conference");
             tropo.Conference("123456789098765432", signals, 4, false, "testConference", false, true, "#", joinPrompt, leavePrompt, "none");
 
-            Assert.AreEqual(this.conferenceJsonWithWithPromptsAndpromptLogSecurity, tropo.JSONToText());
+            Assert.AreEqual(this.conferenceJsonWithWithPromptsAndpromptLogSecurity, renderJSONToText(tropo));
         }
 
         [TestMethod]
@@ -478,7 +479,7 @@ namespace TropoClassesTests
             tropo.GeneralLogSecurity("none");
             tropo.Say("this will be logged");
 
-            Assert.AreEqual(this.generalLogSecurityJson, tropo.JSONToText());
+            Assert.AreEqual(this.generalLogSecurityJson, renderJSONToText(tropo));
         }
 
         #endregion
@@ -492,7 +493,7 @@ namespace TropoClassesTests
             Tropo tropo = new Tropo();
             tropo.Redirect("sip:9995844724@10.140.254.62:5678", "redirectTest", true);
 
-            Assert.AreEqual(this.redirectJson, tropo.JSONToText());
+            Assert.AreEqual(this.redirectJson, renderJSONToText(tropo));
         }
 
         #endregion
@@ -505,11 +506,18 @@ namespace TropoClassesTests
             Tropo tropo = new Tropo();
             tropo.Say("hello Moscow", null, null, "shname", null, null, "suppress");
 
-            Assert.AreEqual(this.sayJson, tropo.JSONToText());
+            Assert.AreEqual(this.sayJson, renderJSONToText(tropo));
         }
 
         #endregion
 
+        private string renderJSONToText(Tropo tropo)
+        {
+            tropo.Language = null;
+            tropo.Voice = null;
+            JsonSerializerSettings settings = new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore };
+            return JsonConvert.SerializeObject(tropo, Formatting.None, settings).Replace("\\", "").Replace("\"{", "{").Replace("}\"", "}");
+        }
 
     }
 }
