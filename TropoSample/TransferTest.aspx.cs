@@ -60,7 +60,7 @@ namespace TropoSamples
             //tropo.Hangup();
 
             Transfer transfer = new Transfer();
-            IEnumerable<string> transferTo = new string[] { "sip:frank@172.16.22.128:5678", "sip:xiangjun_yu@10.140.254.35:5678" };
+            IEnumerable<string> transferTo = new string[] { "sip:frank@172.16.22.128:5678", "sip:xiangjun_yu@10.140.254.111:5678" };
             string from = "87473032";
             //string[] names = { "sip:frank@172.16.22.128:5678", "sip:xiangjun_yu@10.140.254.40:5678" };
             //to = (IEnumerable<string>)names.GetEnumerator();
