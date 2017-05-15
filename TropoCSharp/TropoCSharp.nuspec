@@ -11,7 +11,7 @@
     <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Release 15.7.0.</releaseNotes>
+    <releaseNotes>Release 15.8.0.</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>Cisco Tropo WebAPI CSharp</tags>
   </metadata>
