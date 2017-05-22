@@ -14,7 +14,7 @@ namespace TropoCSharp.Tropo
             tropo.Language = null;
             tropo.Voice = null;
             JsonSerializerSettings settings = new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore };
-            response.AddHeader("WebAPI-Lang-Ver", "CSharp V15.8.0 2017-05-22");
+            response.AddHeader("WebAPI-Lang-Ver", "CSharp V15.9.0 SNAPSHOT");
             response.Write(JsonConvert.SerializeObject(tropo, Formatting.None, settings).Replace("\\", "").Replace("\"{", "{").Replace("}\"", "}"));
 
         }
