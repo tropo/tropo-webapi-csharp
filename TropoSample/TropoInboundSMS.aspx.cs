@@ -27,17 +27,22 @@ namespace TropoSamples
 
                 // Create a new Session object and pass in the JSON submitted from Tropo.
                 Session tropoSession = new Session(sessionJSON);
+                string smsReceived = tropoSession.InitialText;
+
+                // yu can do your business logic with smsReceived....
+                //....
+                //....
 
                 // Create an XML doc to hold the response from the Tropo Session API.
                 XmlDocument doc = new XmlDocument();
-                string token = "584c466166734645667651785355666c7652564c495756676c4c664e786976415655584e6741525155536b6c";  // the app's voice token (app's url is SUP3160startCall.aspx)
+                string token = "6c48697670656858594b62704c62715358444e5a72744a794156715872656a66627a72464b7158626d58374";  // the app's voice token (app's url is SMSBusineessLogic.aspx)
                 // A collection to hold the parameters we want to send to the Tropo Session API.
                 IDictionary<string, string> parameters = new Dictionary<String, String>();
 
-                // Enter a phone number to send a call or SMS message to here.
                 parameters.Add("numberToDial", "+8613466549249");
-                parameters.Add("textMessageBody", tropoSession.InitialText);
+                parameters.Add("textMessageBody", smsReceived);
 
+                // Inintialized another application, here I just say the smsReceived to numberToDial
                 doc.Load(tropo.CreateSession(token, parameters));
             }
         }
