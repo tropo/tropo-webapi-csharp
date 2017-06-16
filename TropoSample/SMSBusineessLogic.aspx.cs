@@ -12,7 +12,7 @@ namespace TropoSamples
     /// Note - use in conjnction withe the TropoOutboundSMS example application.
     /// For further information, see http://blog.tropo.com/2011/04/14/sending-outbound-sms-with-c/
     /// </summary>
-    public partial class SUP3160startCall : Page
+    public partial class SMSBusineessLogic : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
