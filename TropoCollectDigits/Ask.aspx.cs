@@ -26,8 +26,7 @@ namespace TropoCollectDigits
             tropo.On(Event.Error, "Error.aspx", null);      // Fires when an error occurs.
             tropo.On(Event.Incomplete, "Error.aspx", null); // Fires when the user does not enter correct input.
 
-            // Render JSON for Tropo to consume.
-            Response.Write(tropo.RenderJSON());
+            tropo.RenderJSON(Response);
         }
     }
 }

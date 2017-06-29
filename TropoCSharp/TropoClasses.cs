@@ -65,6 +65,15 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "voice")]
         public string Voice { get; set; }
 
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
+
+        [JsonProperty(PropertyName = "asrLogSecurity")]
+        public string AsrLogSecurity { get; set; }
+
+        [JsonProperty(PropertyName = "maskTemplate")]
+        public string MaskTemplate { get; set; }
+
         public Ask()
         {
             Says = new Collection<Say>();
@@ -117,6 +126,21 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "timeout")]
         public float? Timeout { get; set; }
 
+        [JsonProperty(PropertyName = "machineDetection")]
+        public MachineDetection MachineDetection { get; set; }
+
+        [JsonProperty(PropertyName = "voice")]
+        public string Voice { get; set; }
+
+        [JsonProperty(PropertyName = "callbackUrl")]
+        public string CallbackUrl { get; set; }
+
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
+
+        [JsonProperty(PropertyName = "label")]
+        public string Label { get; set; }
+
         public Call()
         {
         }
@@ -164,6 +188,33 @@ namespace TropoCSharp.Tropo
     }
 
     /// <summary>
+    /// The grammar for outbound call could use the ability to identify whether your call reached a live human or not.
+    /// </summary>
+    public class MachineDetection : TropoBase
+    {
+        [JsonProperty(PropertyName = "introduction")]
+        public string Introduction { get; set; }
+
+        [JsonProperty(PropertyName = "voice")]
+        public string Voice { get; set; }
+
+        public MachineDetection()
+        {
+        }
+
+        public MachineDetection(string introduction)
+        {
+            Introduction = introduction;
+        }
+
+        public MachineDetection(string introduction, string voice)
+        {
+            Introduction = introduction;
+            Voice = voice;
+        }
+    }
+
+    /// <summary>
     /// This action allows multiple lines in separate sessions to be conferenced together so that the parties on each line can talk to each other simultaneously.
     /// </summary>
     public class Conference : TropoBase
@@ -192,8 +243,71 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "required")]
         public bool? Required { get; set; }
 
+        [JsonProperty(PropertyName = "joinPrompt")]
+        public JoinPrompt JoinPrompt { get; set; }
+
+        [JsonProperty(PropertyName = "leavePrompt")]
+        public LeavePrompt LeavePrompt { get; set; }
+
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
+
         public Conference()
         {
+        }
+    }
+
+    /// <summary>
+    /// Defines a prompt that plays to all participants of a conference when someone joins the conference.
+    /// </summary>
+    public class JoinPrompt : TropoBase
+    {
+        [JsonProperty(PropertyName = "value")]
+        public string Value { get; set; }
+
+        [JsonProperty(PropertyName = "voice")]
+        public string Voice { get; set; }
+
+        public JoinPrompt()
+        {
+        }
+
+        public JoinPrompt(string value)
+        {
+            Value = value;
+        }
+
+        public JoinPrompt(string value, string voice)
+        {
+            Value = value;
+            Voice = voice;
+        }
+    }
+
+    /// <summary>
+    /// Defines a prompt that plays to all participants of a conference when someone leaves the conference.
+    /// </summary>
+    public class LeavePrompt : TropoBase
+    {
+        [JsonProperty(PropertyName = "value")]
+        public string Value { get; set; }
+
+        [JsonProperty(PropertyName = "voice")]
+        public string Voice { get; set; }
+
+        public LeavePrompt()
+        {
+        }
+
+        public LeavePrompt(string value)
+        {
+            Value = value;
+        }
+
+        public LeavePrompt(string value, string voice)
+        {
+            Value = value;
+            Voice = voice;
         }
     }
 
@@ -242,6 +356,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "voice")]
         public string Voice { get; set; }
 
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
+
         public Message()
         {
         }
@@ -258,14 +375,11 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "next")]
         public string Next { get; set; }
 
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
-
-        [JsonProperty(PropertyName = "required")]
-        public bool? Required { get; set; }
-
         [JsonProperty(PropertyName = "say")]
         public Say Say { get; set; }
+
+        [JsonProperty(PropertyName = "post")]
+        public string Post { get; set; }
 
         public On()
         {
@@ -314,9 +428,6 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "method")]
         public string Method { get; set; }
 
-        [JsonProperty(PropertyName = "minConfidence")]
-        public int? MinConfidence { get; set; }
-
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
@@ -344,6 +455,12 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "voice")]
         public string Voice { get; set; }
 
+        [JsonProperty(PropertyName = "asyncUpload")]
+        public bool? AsyncUpload { get; set; }
+
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
+
         public Record()
         {
         }
@@ -361,7 +478,7 @@ namespace TropoCSharp.Tropo
         public bool? Required { get; set; }
 
         [JsonProperty(PropertyName = "to")]
-        public IEnumerable<String> To { get; set; }
+        public string To { get; set; }
 
         public Redirect()
         {
@@ -402,8 +519,14 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "voice")]
         public string Voice { get; set; }
 
+        /// <summary>
+        /// say in ask has event property
+        /// </summary>
         [JsonProperty(PropertyName = "event")]
         public string Event { get; set; }
+
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
 
         public Say()
         {
@@ -426,6 +549,9 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public class StartRecording : TropoBase
     {
+        [JsonProperty(PropertyName = "asyncUpload")]
+        public bool? AsyncUpload { get; set; }
+
         [JsonProperty(PropertyName = "format")]
         public string Format { get; set; }
 
@@ -482,8 +608,8 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
-        [JsonProperty(PropertyName = "uri")]
-        public string Uri { get; set; }
+        [JsonProperty(PropertyName = "url")]
+        public string Url { get; set; }
 
         [JsonProperty(PropertyName = "emailFormat")]
         public string EmailFormat { get; set; }
@@ -510,6 +636,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "allowSignals")]
         public Array allowSignals { get; set; }
 
+        [JsonProperty(PropertyName = "machineDetection")]
+        public MachineDetection MachineDetection { get; set; }
+
         [JsonProperty(PropertyName = "choices")]
         public Choices Choices { get; set; }
 
@@ -517,7 +646,13 @@ namespace TropoCSharp.Tropo
         public IDictionary<String, String> Headers { get; set; }
         
         [JsonProperty(PropertyName = "interdigitTimeout")]
-        public int? InterdigitTimeout { get; set; }
+        public float? InterdigitTimeout { get; set; }
+
+        [JsonProperty(PropertyName = "ringRepeat")]
+        public int? RingRepeat { get; set; }
+
+        [JsonProperty(PropertyName = "playTones")]
+        public bool? PlayTones { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
@@ -533,6 +668,18 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "timeout")]
         public float? Timeout { get; set; }
+
+        [JsonProperty(PropertyName = "voice")]
+        public string Voice { get; set; }
+
+        [JsonProperty(PropertyName = "callbackUrl")]
+        public string CallbackUrl { get; set; }
+
+        [JsonProperty(PropertyName = "promptLogSecurity")]
+        public string PromptLogSecurity { get; set; }
+
+        [JsonProperty(PropertyName = "label")]
+        public string Label { get; set; }
 
         public Transfer()
         {
@@ -553,7 +700,22 @@ namespace TropoCSharp.Tropo
          public Wait()
          {
          }
-     }
+    }
+
+    /// This will turn logging on/off
+    /// </summary>
+    public class GeneralLogSecurity : TropoBase
+    {
+        [JsonProperty(PropertyName = "generalLogSecurity")]
+        public string State { get; set; }
+
+        public GeneralLogSecurity()
+        {
+        }
+    }
+
+
+
 
     /// <summary>
     /// Defnies an endoint for transfer and redirects.
@@ -565,6 +727,9 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "e164Id")]
+        public string E164Id { get; set; }
 
         [JsonProperty(PropertyName = "channel")]
         public string Channel { get; set; }
@@ -582,6 +747,15 @@ namespace TropoCSharp.Tropo
         public Endpoint(string id, string channel, string name, string network)
         {
             Id = id;
+            Channel = channel;
+            Name = name;
+            Network = network;
+        }
+
+        public Endpoint(string id, string e164Id, string channel, string name, string network)
+        {
+            Id = id;
+            E164Id = e164Id;
             Channel = channel;
             Name = name;
             Network = network;

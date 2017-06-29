@@ -23,16 +23,20 @@ namespace TropoCollectDigits
                 {
 
                     // Create a new Result object and pass in the JSON submitted from Tropo.
-                    Result tropoResult = new Result(resultJSON);
+                    Result tropoResult = Result.getResult(resultJSON);
 
                     // Parse the Actions object and get the value property.
-                    JContainer Actions = TropoUtilities.parseActions(tropoResult.Actions);
 
                     // Get the input submited by the user.
                     // This value can be used to query a database, hit a web service, etc.
                     // In the example, we'll simply read the number back to the caller.
-                    string answer = TropoUtilities.removeQuotes(Actions["value"].ToString());
-                    tropo.Say("You entered, " + TropoUtilities.addSpaces(answer) + ". Goodbye");
+
+                    foreach (var item in tropoResult.Actions)
+                    {
+                        string answer = item.Value;
+                        tropo.Say("You entered, " + TropoUtilities.addSpaces(answer) + ". Goodbye");
+                    }
+                    
 
                 }
 
@@ -49,9 +53,8 @@ namespace TropoCollectDigits
 
                 finally
                 {
-                    // Render JSON for Tropo to consume.
                     tropo.Hangup();
-                    Response.Write(tropo.RenderJSON());
+                    tropo.RenderJSON(Response);
 
                 }
             }

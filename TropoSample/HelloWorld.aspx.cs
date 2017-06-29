@@ -1,4 +1,5 @@
 using System;
+using System.Web;
 using System.Web.UI;
 using TropoCSharp.Tropo;
 
@@ -16,9 +17,13 @@ namespace TropoSamples
 
             // Call the say method of the Tropo object and give it a prompt to say.
             tropo.Say("Hello World!");
+            tropo.Say("hello London", null, null, "shname", null, null, null);
+            tropo.Say("hello Tokyo", null, null, "shname", null, null, "none");
+            tropo.Say("hello Moscow", null, null, "shname", null, null, "suppress");
 
-            // Render the JSON for Tropo to consume.
-            Response.Write(tropo.RenderJSON());
+            //HttpContext.Current.Trace.Warn("tropo.JSONToTe666666xt() is " + tropo.JSONToText());
+
+            tropo.RenderJSON(Response);
 		}
 	}
 }

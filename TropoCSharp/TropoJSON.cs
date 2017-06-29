@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using Newtonsoft.Json;
+using System;
 
 namespace TropoCSharp.Tropo
 {
@@ -8,12 +9,14 @@ namespace TropoCSharp.Tropo
     /// </summary>
     public static class TropoJSONExtensions
     {
-        public static string RenderJSON(this Tropo tropo)
+        public static void RenderJSON(this Tropo tropo, HttpResponse response)
         {
             tropo.Language = null;
             tropo.Voice = null;
             JsonSerializerSettings settings = new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore };
-            return JsonConvert.SerializeObject(tropo, Formatting.None, settings).Replace("\\", "").Replace("\"{", "{").Replace("}\"", "}");
+            response.AddHeader("WebAPI-Lang-Ver", "CSharp V15.9.0 SNAPSHOT");
+            response.Write(JsonConvert.SerializeObject(tropo, Formatting.None, settings).Replace("\\", "").Replace("\"{", "{").Replace("}\"", "}"));
+
         }
     }
 

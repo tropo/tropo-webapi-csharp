@@ -5,23 +5,7 @@ TropoCSharp is a set of C# classes for working with the [Tropo cloud communicati
 
 Usage
 =====
-
-Download the [Json.NET version 3.5](http://json.codeplex.com/releases/view/50552) - tested with Release 8.
-
-Extract the following two files from this download:
-
-Bin\DotNet\Newtonsoft.Json.dll
-Bin\DotNet\Newtonsoft.Json
-
-To the following directories (Each project in the TropoCSharp solution uses these files):
-<pre>
-TropoCSharp\TropoClassesTests\bin\Debug
-TropoCSharp\TropoCSharp\bin\Debug
-TropoCSharp\TropoSample\bin
-</pre>
-You may also set up references to a common location where these files reside (e.g., in the GAC). You may also designate an alternate build location for assemblies in this solution and place these files there.  The choice is yours.
-
-Build the solution.
+Build the solution.  External references are managed through NuGet.
 
 You can test samples in the TropoSamples solution by viewing them in a web browser, or via HTTP POST (which is how the Tropo WebAPI interacts with web applications).
 
@@ -49,8 +33,7 @@ namespace TropoSamples
             // Call the say method of the Tropo object and give it a prompt to say.
             tropo.Say("Hello World!");
 
-            // Render the JSON for Tropo to consume.
-            Response.Write(tropo.RenderJSON());
+            tropo.RenderJSON(Response);
 		}
 	}
 }

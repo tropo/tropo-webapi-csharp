@@ -12,7 +12,7 @@ namespace TropoCSharp.Tropo
     public static class TropoCreateSessionExtensions
     {
         // The endpoint for initiating Tropo outbound sessions.
-        private const string CREATE_SESSION_URL = "http://api.tropo.com/1.0/sessions?action={0}&token={1}&";
+        private const string CREATE_SESSION_URL = "https://api.tropo.com/1.0/sessions?action={0}&token={1}&";
 
         // The default action command to send the Tropo outbound session API.
         private const string CREATE_SESSION_ACTION = "create";
