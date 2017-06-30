@@ -253,7 +253,8 @@ namespace TropoCSharp.Tropo
          /// <param name="ask">An Ask object.</param>
         public void Ask(Ask ask)
         {
-            Ask(ask.Attempts, ask.Bargein, ask.InterdigitTimeout, ask.Choices, ask.MinConfidence, ask.Name, ask.Required, ask.Says, ask.Timeout);
+            ask.Voice = ask.Voice ?? (String.IsNullOrEmpty(Voice) ? null : Voice);
+            Serialize(ask, "ask");
         }
 
         /// <summary>
