@@ -34,7 +34,8 @@ namespace TropoSample
             tropo.Call("+8613466549249");
             // Use the record() method to set up a recording.
             //tropo.Record(3, false, true, choices, AudioFormat.Wav, 10, 600, Method.Post, null, true, say, 15, trancription, null, "http://54.88.99.156:9080/FileUpload/uploadFile");
-            tropo.Record(3, null, null, null, null, choices, say, AudioFormat.Wav, 10, 600, Method.Post, "whname", true, trancription, "http://54.88.99.156:9080/FileUpload/uploadFile", null, null, 15, 5, null, "none");
+            tropo.Record(3, null, null, null, null, choices, say, AudioFormat.Wav, 10, 600, Method.Post, "whnnull20170721ame", true, trancription, "http://54.88.99.156:9080/FileUpload/uploadFile", null, null, 15, 5, null, "none",null);
+            tropo.Record(5, true, null, false, false, choices, say, AudioFormat.Wav, 5, 5, Method.Post, "gfdwefrg", true, trancription, "url", "passwor", "username", 15, 5, "vvvoi", "fd", 0.5f);
             tropo.On("continue", "TropoResult.aspx", new Say("This is a on say in record" ));
             // Hangup when finished.
             //tropo.Hangup();
