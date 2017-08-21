@@ -1052,6 +1052,38 @@ namespace TropoCSharp.Tropo
         /// <param name="password">This identifies the FTP account password.</param>
         /// <param name="transcriptionID">The value that's included with your transcription when it's sent to your URL. This allows you to keep track of transcriptions; accepts a string..</param>
         /// <param name="transcriptionEmailFormat">The format of the email. Setting it as "encoded" will include a chunk of JSON in the email body or you can set it as "omit" to send as a human-readable message. It defaults to "omit", so unless you want JSON, this can be left out.</param>
+        /// <param name="transcriptionLanguage">transcription languages.</param>
+        /// <param name="transcriptionOutURI">The address this transcription will be POSTed to; use a mailto: url to have the transcription emailed.</param>
+        public void StartRecording(bool? asyncUpload, string format, string method, string url, string username, string password, string transcriptionID, string transcriptionEmailFormat, string transcriptionLanguage, string transcriptionOutURI)
+        {
+            StartRecording startRecording = new StartRecording();
+            startRecording.AsyncUpload = asyncUpload;
+            startRecording.Format = format;
+            startRecording.Method = method;
+            startRecording.Url = url;
+            startRecording.Username = username;
+            startRecording.Password = password;
+            startRecording.TranscriptionID = transcriptionID;
+            startRecording.TranscriptionEmailFormat = transcriptionEmailFormat;
+            startRecording.TranscriptionLanguage = transcriptionLanguage;
+            startRecording.TranscriptionOutURI = transcriptionOutURI;
+
+            Serialize(startRecording, "startRecording");
+        }
+
+
+        /// <summary>
+        /// Allows Tropo applications to begin recording the current session.
+        /// The transcription of this recording is then sent via HTTP POST/Multipart Form.
+        /// </summary>
+        /// <param name="asyncUpload">Setting to true will instruct Tropo to upload the recording file in the background as soon as the recording is completed.</param>
+        /// <param name="format">This specifies the format for the audio recording; it can be 'audio/wav' or 'audio/mp3'.</param>
+        /// <param name="method">This defines how you want to send the audio file.</param>
+        /// <param name="url">This is the destination URL to send the recording.</param>
+        /// <param name="username">This identifies the FTP account username.</param>
+        /// <param name="password">This identifies the FTP account password.</param>
+        /// <param name="transcriptionID">The value that's included with your transcription when it's sent to your URL. This allows you to keep track of transcriptions; accepts a string..</param>
+        /// <param name="transcriptionEmailFormat">The format of the email. Setting it as "encoded" will include a chunk of JSON in the email body or you can set it as "omit" to send as a human-readable message. It defaults to "omit", so unless you want JSON, this can be left out.</param>
         /// <param name="transcriptionOutURI">The address this transcription will be POSTed to; use a mailto: url to have the transcription emailed.</param>
         public void StartRecording(bool? asyncUpload, string format, string method, string url, string username, string password, string transcriptionID, string transcriptionEmailFormat, string transcriptionOutURI)
         {
@@ -1068,6 +1100,7 @@ namespace TropoCSharp.Tropo
 
             Serialize(startRecording, "startRecording");
         }
+
 
         /// <summary>
         /// Overload for StartRecording that allows a a StartRecording object to be passed directly. 

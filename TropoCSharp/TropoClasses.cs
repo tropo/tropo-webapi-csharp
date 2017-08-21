@@ -570,9 +570,12 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "transcriptionID")]
         public string TranscriptionID { get; set; }
         
+        [JsonProperty(PropertyName = "transcriptionLanguage")]
+        public string TranscriptionLanguage { get; set; }
+
         [JsonProperty(PropertyName = "transcriptionEmailFormat")]
         public string TranscriptionEmailFormat { get; set; }
-        
+
         [JsonProperty(PropertyName = "transcriptionOutURI")]
         public string TranscriptionOutURI { get; set; }
 
@@ -613,6 +616,9 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "emailFormat")]
         public string EmailFormat { get; set; }
+
+        [JsonProperty(PropertyName = "language")]
+        public string Language { get; set; }
 
         public Transcription()
         {
