@@ -715,7 +715,7 @@ namespace TropoCSharp.Tropo
         /// <param name="interdigitTimeout">How long does Tropo wait between key presses to determine the user is done with their input.</param>
         /// <param name="voice">Specifies the default voice to be used when speaking text back to a user.</param>
         /// <param name="promptLogSecurity">Controls whether Tropo logs the text to speech string used by the method.</param>
-        public void Record(int? attempts, bool? asyncUpload, Array allowSignals, bool? bargein, bool? beep, Choices choices, Say say, string format, float? maxSilence, float? maxTime, string method, string name, bool? required, Transcription transcription, string url, string password, string username, float? timeout, int? interdigitTimeout, string voice, string promptLogSecurity)
+        public void Record(int? attempts, bool? asyncUpload, Array allowSignals, bool? bargein, bool? beep, Choices choices, Say say, string format, float? maxSilence, float? maxTime, string method, string name, bool? required, Transcription transcription, string url, string password, string username, float? timeout, int? interdigitTimeout, string voice, string promptLogSecurity, float? sensitivity)
         {
             Record record = new Record();
             record.Attempts = attempts;
@@ -739,6 +739,7 @@ namespace TropoCSharp.Tropo
             record.InterdigitTimeout = interdigitTimeout;
             record.Voice = voice;
             record.PromptLogSecurity = promptLogSecurity;
+            record.Sensitivity = sensitivity;
 
             Serialize(record, "record");
         }

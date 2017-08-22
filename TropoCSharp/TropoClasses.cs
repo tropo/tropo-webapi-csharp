@@ -461,6 +461,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "promptLogSecurity")]
         public string PromptLogSecurity { get; set; }
 
+        [JsonProperty(PropertyName = "sensitivity")]
+        public float? Sensitivity { get; set; }
+
         public Record()
         {
         }
