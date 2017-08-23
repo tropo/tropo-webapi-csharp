@@ -74,6 +74,7 @@
     <Content Include="StartRecordingTest.aspx" />
     <Content Include="TransferOnTest.aspx" />
     <Content Include="TransferTest.aspx" />
+    <Content Include="TropoInboundSMS.aspx" />
     <Content Include="TropoReject.aspx" />
     <Content Include="WelcomeToBeijing.aspx" />
     <Content Include="WelcomeToNewYork.aspx" />
@@ -123,6 +124,10 @@
     </Compile>
     <Compile Include="TransferTest.aspx.cs">
       <DependentUpon>TransferTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TropoInboundSMS.aspx.cs">
+      <DependentUpon>TropoInboundSMS.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="TropoReject.aspx.cs">

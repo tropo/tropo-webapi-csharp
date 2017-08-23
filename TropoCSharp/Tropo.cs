@@ -257,6 +257,20 @@ namespace TropoCSharp.Tropo
             Serialize(ask, "ask");
         }
 
+
+        /// <summary>
+        /// answer
+        /// </summary>
+        /// <param name="headers">This contains the Session Initiation Protocol (SIP) Headers for the current session.</param>
+        public void Answer(IDictionary<String, String> headers)
+        {
+            Answer answer = new Answer();
+            answer.Headers = headers;
+
+            Serialize(answer, "answer");
+        }
+
+
         /// <summary>
         /// Places a call or sends an an IM, Twitter, or SMS message. To start a call, use the Session API to tell Tropo to launch your code.
         /// </summary>

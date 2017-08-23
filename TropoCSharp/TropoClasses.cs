@@ -88,6 +88,21 @@ namespace TropoCSharp.Tropo
         }
     }
 
+
+    /// <summary>
+    /// answer verb.
+    /// </summary>
+    public class Answer : TropoBase
+    {
+        [JsonProperty(PropertyName = "headers")]
+        public IDictionary<String, String> Headers { get; set; }
+
+        public Answer()
+        {
+        }
+    }
+
+
     /// <summary>
     /// Initiates an outbound call or a text conversation. Note that this action is only valid when there is no active WebAPI call.
     /// </summary>
