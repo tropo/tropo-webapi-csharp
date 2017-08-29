@@ -516,7 +516,7 @@ namespace TropoClassesTests
             tropo.Language = null;
             tropo.Voice = null;
             JsonSerializerSettings settings = new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore };
-            return JsonConvert.SerializeObject(tropo, Formatting.None, settings).Replace("\\", "").Replace("\"{", "{").Replace("}\"", "}");
+            return JsonConvert.SerializeObject(tropo, Formatting.None, settings).Replace("\\\"", "\"").Replace("\\\\", "\\").Replace("\"{", "{").Replace("}\"", "}");
         }
 
     }
