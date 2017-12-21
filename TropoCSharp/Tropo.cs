@@ -664,6 +664,48 @@ namespace TropoCSharp.Tropo
             Serialize(record, "record");
         }
 
+        /// <summary>
+        /// Plays a prompt (audio file or text to speech) and optionally waits for a response from the caller that is recorded.
+        /// If collected, responses may be in the form of DTMF or speech recognition using a simple grammar format defined below.
+        /// The record funtion is really an alias of the prompt function, but one which forces the record option to true regardless of how it is (or is not) initially set.
+        /// At the conclusion of the recording, the audio file may be automatically sent to an external server via FTP or an HTTP POST/Multipart Form.
+        /// If specified, the audio file may also be transcribed and the text returned to you via an email address or HTTP POST/Multipart Form.
+        /// </summary>
+        /// <param name="attempts">How many times the caller can attempt input before an error is thrown.</param>
+        /// <param name="bargein">Should the user be allowed to barge in before TTS is complete?</param>
+        /// <param name="beep">When set to true, callers will hear a tone indicating the recording has begun.</param>
+        /// <param name="choices">The grammar to use in recognizing and validating input.</param>
+        /// <param name="format">This specifies the format for the audio recording.</param>
+        /// <param name="maxSilence">The maximum amount of time, in seconds, to wait for silence after a user stops speaking.</param>
+        /// <param name="maxTime">The maximum amount of time, in seconds, the user is allotted for input.</param>
+        /// <param name="method">This defines how you want to send the audio file.</param>
+        /// <param name="password">This identifies the FTP account password.</param>
+        /// <param name="required">Determines whether Tropo should move on to the next action.</param>
+        /// <param name="say">This determines what is played or sent to the caller.</param>
+        /// <param name="timeout">The amount of time Tropo will wait, in seconds, after sending or playing the prompt for the user to begin a response.</param>
+        /// <param name="username">This identifies the FTP account username.</param>
+        /// <param name="url">This is the destination URL to send the recording.</param>
+        public void Record(int? attempts, bool? bargein, bool? beep, Choices choices, string format, float? maxSilence, float? maxTime, string method, string password, bool? required, Say say, float? timeout, string username, string url, IEnumerable<RecordUrlTuple> recordingURL)
+        {
+            Record record = new Record();
+            record.Attempts = attempts;
+            record.Bargein = bargein;
+            record.Beep = beep;
+            record.Choices = choices;
+            record.Format = format;
+            record.MaxSilence = maxSilence;
+            record.MaxTime = maxTime;
+            record.Method = method;
+            record.Password = password;
+            record.Required = required;
+            record.Say = say;
+            record.Timeout = timeout;
+            record.Url = url;
+            record.Username = username;
+            record.RecordingURL = recordingURL;
+
+            Serialize(record, "record");
+        }
 
         /// <summary>
         /// Overload for Record that allows a Transcription object to be passed.
@@ -849,7 +891,7 @@ namespace TropoCSharp.Tropo
         /// <param name="record">A Record object.</param>
         public void Record(Record record)
         {
-            Record(record.Attempts, record.Bargein, record.Beep, record.Choices, record.Format, record.MaxSilence, record.MaxTime, record.Method, record.Password, record.Required, record.Say, record.Timeout, record.Username, record.Url);
+            Record(record.Attempts, record.Bargein, record.Beep, record.Choices, record.Format, record.MaxSilence, record.MaxTime, record.Method, record.Password, record.Required, record.Say, record.Timeout, record.Username, record.Url, record.RecordingURL);
         }
 
         /// <summary>
