@@ -616,7 +616,7 @@ namespace TropoCSharp.Tropo
         public string Method { get; set; }
 
         [JsonProperty(PropertyName = "url")]
-        public string Url { get; set; }
+        public object Url { get; set; }
 
         [JsonProperty(PropertyName = "username")]
         public string Username { get; set; }

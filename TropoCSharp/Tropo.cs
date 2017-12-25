@@ -1058,7 +1058,7 @@ namespace TropoCSharp.Tropo
         /// <param name="url">This is the destination URL to send the recording.</param>
         /// <param name="username">This identifies the FTP account username.</param>
         /// <param name="password">This identifies the FTP account password.</param>
-        public void StartRecording(string format, string method, string url, string username, string password)
+        public void StartRecording(string format, string method, object url, string username, string password)
         {
             StartRecording startRecording = new StartRecording();
             startRecording.Format = format;
@@ -1082,7 +1082,7 @@ namespace TropoCSharp.Tropo
         /// <param name="transcriptionID">The value that's included with your transcription when it's sent to your URL. This allows you to keep track of transcriptions; accepts a string..</param>
         /// <param name="transcriptionEmailFormat">The format of the email. Setting it as "encoded" will include a chunk of JSON in the email body or you can set it as "omit" to send as a human-readable message. It defaults to "omit", so unless you want JSON, this can be left out.</param>
         /// <param name="transcriptionOutURI">The address this transcription will be POSTed to; use a mailto: url to have the transcription emailed.</param>
-        public void StartRecording(string format, string method, string url, string username, string password, string transcriptionID, string transcriptionEmailFormat, string transcriptionOutURI)
+        public void StartRecording(string format, string method, object url, string username, string password, string transcriptionID, string transcriptionEmailFormat, string transcriptionOutURI)
         {
             StartRecording startRecording = new StartRecording();
             startRecording.Format = format;
@@ -1111,7 +1111,7 @@ namespace TropoCSharp.Tropo
         /// <param name="transcriptionEmailFormat">The format of the email. Setting it as "encoded" will include a chunk of JSON in the email body or you can set it as "omit" to send as a human-readable message. It defaults to "omit", so unless you want JSON, this can be left out.</param>
         /// <param name="transcriptionLanguage">transcription languages.</param>
         /// <param name="transcriptionOutURI">The address this transcription will be POSTed to; use a mailto: url to have the transcription emailed.</param>
-        public void StartRecording(bool? asyncUpload, string format, string method, string url, string username, string password, string transcriptionID, string transcriptionEmailFormat, string transcriptionLanguage, string transcriptionOutURI)
+        public void StartRecording(bool? asyncUpload, string format, string method, object url, string username, string password, string transcriptionID, string transcriptionEmailFormat, string transcriptionLanguage, string transcriptionOutURI)
         {
             StartRecording startRecording = new StartRecording();
             startRecording.AsyncUpload = asyncUpload;
@@ -1142,7 +1142,7 @@ namespace TropoCSharp.Tropo
         /// <param name="transcriptionID">The value that's included with your transcription when it's sent to your URL. This allows you to keep track of transcriptions; accepts a string..</param>
         /// <param name="transcriptionEmailFormat">The format of the email. Setting it as "encoded" will include a chunk of JSON in the email body or you can set it as "omit" to send as a human-readable message. It defaults to "omit", so unless you want JSON, this can be left out.</param>
         /// <param name="transcriptionOutURI">The address this transcription will be POSTed to; use a mailto: url to have the transcription emailed.</param>
-        public void StartRecording(bool? asyncUpload, string format, string method, string url, string username, string password, string transcriptionID, string transcriptionEmailFormat, string transcriptionOutURI)
+        public void StartRecording(bool? asyncUpload, string format, string method, object url, string username, string password, string transcriptionID, string transcriptionEmailFormat, string transcriptionOutURI)
         {
             StartRecording startRecording = new StartRecording();
             startRecording.AsyncUpload = asyncUpload;
