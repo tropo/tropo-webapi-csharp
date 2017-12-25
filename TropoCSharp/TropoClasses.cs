@@ -203,6 +203,42 @@ namespace TropoCSharp.Tropo
     }
 
     /// <summary>
+    /// The grammar to use in record and startRecording verb.
+    /// </summary>
+    public class RecordUrlTuple : TropoBase
+    {
+        [JsonProperty(PropertyName = "url")]
+        public string Url { get; set; }
+
+        [JsonProperty(PropertyName = "username")]
+        public string Username { get; set; }
+
+        [JsonProperty(PropertyName = "password")]
+        public string Password { get; set; }
+
+        [JsonProperty(PropertyName = "method")]
+        public string Method { get; set; }
+
+        public RecordUrlTuple()
+        {
+        }
+
+        public RecordUrlTuple(string @url)
+        {
+            Url = @url;
+        }
+
+        public RecordUrlTuple(string @url, string username, string password, string method)
+        {
+            Url = @url;
+            Username = username;
+            Password = password;
+            Method = method;
+        }
+    }
+
+
+    /// <summary>
     /// The grammar for outbound call could use the ability to identify whether your call reached a live human or not.
     /// </summary>
     public class MachineDetection : TropoBase
@@ -475,6 +511,9 @@ namespace TropoCSharp.Tropo
 
         [JsonProperty(PropertyName = "promptLogSecurity")]
         public string PromptLogSecurity { get; set; }
+
+        [JsonProperty(PropertyName = "recordURL")]
+        public IEnumerable<RecordUrlTuple> RecordingURL { get; set; }
 
         [JsonProperty(PropertyName = "sensitivity")]
         public float? Sensitivity { get; set; }
