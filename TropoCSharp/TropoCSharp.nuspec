@@ -1,18 +1,27 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
+    <id>tropo-webapi-csharp</id>
+    <version>15.11.0-alpha</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://github.com/tropo/tropo-webapi-csharp</licenseUrl>
-    <projectUrl>https://github.com/tropo/tropo-webapi-csharp</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <licenseUrl>https://github.com/tropo/tropo-webapi-csharp/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/tropo/tropo-webapi-csharp/</projectUrl>
+    <iconUrl>https://www.tropo.com/sites/all/themes/tropo2016/images/logo_tropo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Release 15.10.1</releaseNotes>
-    <copyright>Copyright 2017</copyright>
-    <tags>Cisco Tropo WebAPI CSharp</tags>
+    <releaseNotes>You can get latest source code from GitHub. This release contains two major fixes:
+name shouldn't be a necessary parameter (it affects SUPE-3519)
+support multiple URLs for record/startRecording API</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Tropo Web API SDK C#</tags>
   </metadata>
+  <files>
+    <file src="bin\Debug\TropoCSharp.dll" target="lib/net45" />
+    <file src="bin\Debug\TropoCSharp.dll" target="lib/net451" />
+    <file src="bin\Debug\TropoCSharp.dll" target="lib/net452" />
+    <file src="bin\Debug\TropoCSharp.dll" target="lib/net461" />
+    <file src="bin\Debug\TropoCSharp.dll" target="lib/net462" />
+</files>
 </package>
