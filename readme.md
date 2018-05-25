@@ -1,4 +1,5 @@
 [![NuGet version (tropo-webapi-csharp)](https://img.shields.io/nuget/v/tropo-webapi-csharp.svg?style=flat-square)](https://www.nuget.org/packages/tropo-webapi-csharp/)
+[![NuGet version (tropo-webapi-csharp)](https://img.shields.io/nuget/dt/tropo-webapi-csharp.svg?style=flat-square)](https://www.nuget.org/packages/tropo-webapi-csharp/)
 [![GitHub license](https://img.shields.io/github/license/tropo/tropo-webapi-csharp.svg?style=for-the-badge)](https://github.com/tropo/tropo-webapi-csharp/blob/master/LICENSE)
 
 
