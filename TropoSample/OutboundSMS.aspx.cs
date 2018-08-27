@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Web.UI;
@@ -31,16 +31,35 @@ namespace TropoSamples
 
                     // Get parameters submitted with Session API call.
                     string numberToDial = tropoSession.Parameters.Get("numberToDial");
+                    //numberToDial = "5093176303";
                     string sendFromNumber = tropoSession.Parameters.Get("sendFromNumber");
+                    //sendFromNumber = "14082041999";
                     string channel = tropoSession.Parameters.Get("channel");
                     string network = tropoSession.Parameters.Get("network");
                     string textMessageBody = tropoSession.Parameters.Get("textMessageBody");
 
+                    string[] week = new string[4];
+                    week[0] = "http://artifacts.voxeolabs.net.s3.amazonaws.com/test/test.png";
+                    week[1] = "this is 这是第二行";
+                    week[2] = "https://www.travelchinaguide.com/images/photogallery/2012/beijing-tiananmen-tower.jpg";
+                    week[3] = "Today is 13 Aug";
+                    //week[3] = "https://me888dia.giphy.com/media/LHZyixOnHwDDy/giphy.gif";
+
+
+                    string currenT = DateTime.Now.ToString("yyyy/MM/dd HH:MM tt");
+                    Say say = new Say();
+                    say.Value = "this is MMS test for webapi Csharp SDk sent @ " + currenT;
+                    say.Media = week;
+                    
+
+
+
                     // Send an outbound message.
                     tropo.Call(numberToDial, sendFromNumber, network, channel, true, 60, null);
-                    tropo.Say(textMessageBody);
+                    // tropo.Say(textMessageBody);
+                    tropo.Say(say);
 
-                    tropo.RenderJSON(Response);
+                    //tropo.RenderJSON(Response);
 
                 }
 

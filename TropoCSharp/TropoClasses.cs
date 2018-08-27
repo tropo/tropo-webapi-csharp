@@ -564,6 +564,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "allowSignals")]
         public Array allowSignals { get; set; }
 
+        [JsonProperty(PropertyName = "media")]
+        public Array Media { get; set; }
+
         [JsonProperty(PropertyName = "as")]
         public string As { get; set; }
 
@@ -827,6 +830,39 @@ namespace TropoCSharp.Tropo
         public Endpoint(string to)
         {
             To = to;
+        }
+    }
+
+
+
+
+    /// <summary>
+    /// Defnies an entity for MMS media.
+    /// </summary>
+    public class MMSMediaItem
+    {
+        [JsonProperty(PropertyName = "status")]
+        public string Status { get; set; }
+
+        [JsonProperty(PropertyName = "media")]
+        public string Media { get; set; }
+
+        [JsonProperty(PropertyName = "text")]
+        public string Text { get; set; }
+
+        [JsonProperty(PropertyName = "disposition")]
+        public string Disposition { get; set; }
+
+        public MMSMediaItem()
+        {
+        }
+
+        public MMSMediaItem(string status, string media, string text, string disposition)
+        {
+            Status = status;
+            Media = media;
+            Text = text;
+            Disposition = disposition;
         }
     }
 }

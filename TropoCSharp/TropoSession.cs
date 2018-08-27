@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections.Specialized;
 using System;
+using System.Collections.Generic;
 
 namespace TropoCSharp.Tropo
 {
@@ -69,6 +70,50 @@ namespace TropoCSharp.Tropo
                 }
             }
 
+            if (session["session"]["subject"] != null)
+            {
+                Subject = (string)session["session"]["subject"];
+            }
+
+            if (session["session"]["initialMedia"] != null)
+            {
+                initialMediaList = new List<MMSMediaItem>();
+                JArray array = (JArray)session["session"]["initialMedia"];
+                string status = "";
+                string media = "";
+                string text = "";
+                string disposition = "";
+                MMSMediaItem mMSMediaItem;
+                foreach (JObject content in array.Children<JObject>())
+                {
+                    status = "";
+                    media = "";
+                    text = "";
+                    disposition = "";
+
+                    foreach (JProperty subproperty in content.Properties())
+                        {
+                            switch (subproperty.Name)
+                            {
+                                case "status":
+                                    status = subproperty.Value.ToString();
+                                    break;
+                                case "media":
+                                    media = subproperty.Value.ToString();
+                                    break;
+                                case "text":
+                                    text = subproperty.Value.ToString();
+                                    break;
+                                case "disposition":
+                                    disposition = subproperty.Value.ToString();
+                                    break;
+                            }
+                        }
+                    mMSMediaItem = new MMSMediaItem(status, media, text, disposition);
+                    initialMediaList.Add(mMSMediaItem);
+                }
+            }
+
         }
 
         /// <summary>
@@ -96,6 +141,16 @@ namespace TropoCSharp.Tropo
         /// or instant message that the user sent when initiating the session.
         /// </summary>
         public string InitialText { get; set; }
+
+        /// <summary>
+        /// Inbound MMS subject
+        /// </summary>
+        public string Subject { get; set; }
+
+        /// <summary>
+        /// When the channel is of a type "TEXT" and network is MMS, this field contains the initial media of the message from the MMS 
+        /// </summary>
+        public List<MMSMediaItem> initialMediaList { get; set; }
 
         /// <summary>
         /// The time that the session was started.

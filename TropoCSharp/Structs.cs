@@ -64,6 +64,7 @@
         public const string Jabber = "JABBER";
         public const string Msn = "MSN";
         public const string SMS = "SMS";
+        public const string MMS = "MMS";
         public const string Yahoo = "YAHOO";
         public const string Twitter = "TWITTER";
     }
