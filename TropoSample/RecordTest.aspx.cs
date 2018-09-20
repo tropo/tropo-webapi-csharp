@@ -56,7 +56,16 @@ namespace TropoSample
 
             };
 
-            IEnumerable<RecordUrlTuple> recordingURL = new RecordUrlTuple[] { RecordUrlTuple1, RecordUrlTuple2, RecordUrlTuple3, RecordUrlTuple4 };
+            RecordUrlTuple RecordUrlTuple5 = new RecordUrlTuple()
+            {
+                Url = "http://fakeurl.four.com",
+                Password = "password3",
+                SessionToken = "fakeSessionTokenLine63RecordTest.aspx.cs",
+                Method = "put"
+
+            };
+
+            IEnumerable<RecordUrlTuple> recordingURL = new RecordUrlTuple[] { RecordUrlTuple1, RecordUrlTuple2, RecordUrlTuple3, RecordUrlTuple4, RecordUrlTuple5 };
 
             Record record = new Record()
             {

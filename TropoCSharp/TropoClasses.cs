@@ -216,6 +216,9 @@ namespace TropoCSharp.Tropo
         [JsonProperty(PropertyName = "password")]
         public string Password { get; set; }
 
+        [JsonProperty(PropertyName = "sessionToken")]
+        public string SessionToken { get; set; }
+
         [JsonProperty(PropertyName = "method")]
         public string Method { get; set; }
 
@@ -233,6 +236,15 @@ namespace TropoCSharp.Tropo
             Url = @url;
             Username = username;
             Password = password;
+            Method = method;
+        }
+
+        public RecordUrlTuple(string @url, string username, string password, string sessionToken, string method)
+        {
+            Url = @url;
+            Username = username;
+            Password = password;
+            SessionToken = sessionToken;
             Method = method;
         }
     }

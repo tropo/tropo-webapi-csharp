@@ -60,7 +60,16 @@ namespace TropoSample
 
             };
 
-            IEnumerable<RecordUrlTuple> recordingURL = new RecordUrlTuple[] { RecordUrlTuple1, RecordUrlTuple2, RecordUrlTuple3, RecordUrlTuple4 };
+            RecordUrlTuple RecordUrlTuple5 = new RecordUrlTuple()
+            {
+                Url = "http://fakeurl.four.com",
+                Password = "password3",
+                SessionToken = "StartRecordingTest.aspx.csLine67",
+                Method = "put"
+
+            };
+
+            IEnumerable<RecordUrlTuple> recordingURL = new RecordUrlTuple[] { RecordUrlTuple5, RecordUrlTuple1, RecordUrlTuple2, RecordUrlTuple3, RecordUrlTuple4 };
 
 
             //tropo.StartRecording(false, AudioFormat.Wav, Method.Post, "http://192.168.26.88:8080/FileUpload/uploadFile", "", "", "", "plain", "");
